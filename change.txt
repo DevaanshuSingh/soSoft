@@ -1,0 +1,29 @@
+<<<<<<< HEAD
+index.css created need to do more.....(1-01-2025 ,12:40am)
+
+//Day 2
+Here I have uploaded the header folder and in the header folder I had done the index.php part and home.php part, create_post.php part I have completed
+
+But there is one problem in the login.php When I use to log in it won't go to the home.php page....please correct that part....I have give the location in the home.php but it won't come....Please Solve it(2-01-2025, 12:02am)
+ Also make the table of posts in the db unless it will not work...
+
+ CREATE TABLE posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,  -- Unique identifier for each post
+    user_name VARCHAR(50) NOT NULL,     -- Username of the post creator
+    content TEXT NOT NULL               -- Content of the post
+);
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,  -- Unique identifier for each user
+    username VARCHAR(50) NOT NULL UNIQUE, -- Username, must be unique
+    password VARCHAR(255) NOT NULL      -- Password (hashed for security)
+);
+=======
+index.css created need to do more.....(1-01-2025 ,12:40am)(OLD_LINE)
+
+-> Face Color Changed In (Index.php) For Better UI,(NEW_LINE), Next What??
+>>>>>>> 92b8e0a931d8a044fdbbb089d4b2dd1717ae5d1d
+
+**************************************************************************************************
+//Thrusday
+Created My-Section
+**************************************************************************************************
