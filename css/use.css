@@ -39,22 +39,32 @@ body {
 
 .menu {
     height: 100vh;
-    /* width: 20vw; */
     background-color: rgba(103, 171, 216, 0.548);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2%;
+}
+
+.menu-button{
+    /* background-color: BLUE; */
+    width: 100%;
+    height: 10%;
+}
+.inside-menu{
+    /* background-color: GOLD; */
+    display: flex;
+    width: 100%;
+    height: 90%;
+}
+.container {
+    height: 100vh;
 }
 .main-container{
     height: 100%;
     width: 100%;
     background-color: rgba(103, 171, 216, 0.9);
-    /* border: 1px solid rgb(255, 0, 0); */
-}
-.container {
-    height: 100vh;
-    /* width: auto; */
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
 }
 
 .menu>.menu-button {

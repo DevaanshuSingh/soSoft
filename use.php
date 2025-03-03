@@ -30,9 +30,9 @@ if ($me && $allUsers) {
 
     <div class="menu">
       <div class="menu-button">
-        <i onclick="toggleMenu()" class="ri-arrow-right-circle-line menu-icon"></i>
+        <i id="menuToggler" onclick="toggleMenu()" class="ri-arrow-right-circle-line menu-icon"></i>
       </div>
-      <div class="inside-menu"> </div>
+      <div class="inside-menu">SBSR</div>
     </div>
     <div class="main-container">
 
@@ -65,43 +65,35 @@ if ($me && $allUsers) {
 
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
       let isMenuOpen = true;
       function toggleMenu() {
         if (isMenuOpen === true) {
-          // alert(`GRK Closing`);
           document.querySelector(".menu .menu-button").style.display = "hidden";
           document.querySelector(".menu").style.transition = "2s cubic-bezier(1, 7, 0.5, 5)";
           document.querySelector("body").style.gridTemplateColumns = "0 100%";
           document.querySelector("body").style.transition = "2s ease";
           document.querySelector(".menu-icon").style.transform = "rotate(0deg)";
           document.querySelector(".menu-icon").style.transition = "2s ease-out";
+          document.querySelector(".inside-menu").style.opacity = "0";
+          document.querySelector(".inside-menu").style.transition = "opacity 1.5s ease-in-out";
           isMenuOpen = false;
         } else {
           let bodyWidth = document.querySelector('body').offsetWidth;
-          // alert(`GRK Opening`);
+          if (bodyWidth <= 775)
+          document.querySelector("body").style.gridTemplateColumns = "45% 55%";
+        else
+          document.querySelector("body").style.gridTemplateColumns = "20% 80%";
           document.querySelector(".menu").style.display = "flex";
           document.querySelector(".menu").style.transition = "2s ease-in";
-          if (bodyWidth <= 775)
-            document.querySelector("body").style.gridTemplateColumns = "45% 55%";
-          else
-            document.querySelector("body").style.gridTemplateColumns = "20% 80%";
           document.querySelector("body").style.transition = "2s ease";
           document.querySelector(".menu-icon").style.transform = "rotate(180deg)";
           document.querySelector(".menu-icon").style.transition = "2s ease";
+          document.querySelector(".inside-menu").style.opacity = "1";
+          document.querySelector(".inside-menu").style.transition = "opacity 1.5s ease-in-out";
           isMenuOpen = true;
-        }
-        
-
-        //         let bodyWidth = document.querySelector('body').offsetWidth;
-        // document.querySelector(".menu").style.display = "flex";
-        // document.querySelector(".menu").style.transition = "2s ease-in";
-        // document.querySelector(".menu").style.opacity = "1";
-
-        // if (bodyWidth <= 775)
-        //   document.querySelector("body").style.gridTemplateColumns = "45% 55%";
-        // else
-        //   document.querySelector("body").style.gridTemplateColumns = "20% 80%";
+        }        
       }
 
       let isMySectionOpen = true;
