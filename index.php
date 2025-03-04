@@ -7,7 +7,7 @@
   <title>Bootstrap demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         <div class="container-fluid">
 
         <a class="navbar-brand" href="https://github.com/sukantahui">
-            <img  src="codernaccotax.png" alt="Logo" class="rounded-circle" width="40" height="40">
+            <img  src="./MEDIA/codernaccotax.png" alt="Logo" class="rounded-circle" width="40" height="40">
             <span class="brand-name ms-2" ><strong>CNAT</strong></span>
           </a>
 
@@ -30,10 +30,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav nav-list ms-auto">
               <li class="nav-item">
-                <a class="nav-link text-dark" href="login.php"><strong>LOGIN</strong></a>
+                <a class="nav-link text-dark" href="./LOGIN"><strong>LOGIN</strong></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  text-dark" href="signUp.php"><strong>SIGN UP</strong></a>
+                <a class="nav-link  text-dark" href="./SIGN-UP"><strong>SIGN UP</strong></a>
               </li>
             </ul>
           </div>

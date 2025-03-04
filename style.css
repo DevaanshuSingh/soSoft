@@ -3,7 +3,7 @@
     padding: 0;
     overscroll-behavior-y: none;
 
-    &::selection{
+    &::selection {
         color: rgb(226, 226, 248);
         background-color: rgba(0, 0, 0, 0.541);
     }
@@ -63,6 +63,10 @@ body::-webkit-scrollbar-thumb {
     transition: all 1s ease;
 }
 
+.navbar-toggler-icon {
+    mix-blend-mode: difference;
+}
+
 /* .rounded-circle {
     animation: round;
     animation-timeline: scroll();
@@ -84,7 +88,7 @@ body::-webkit-scrollbar-thumb {
     }
 }
 
-.collapse{
+.collapse {
     color: red;
 }
 
@@ -92,7 +96,7 @@ body::-webkit-scrollbar-thumb {
     color: rgb(95, 65, 228);
 }
 
-.nav-list{
+.nav-list {
     display: flex;
     flex-direction: row;
     justify-content: space-around;

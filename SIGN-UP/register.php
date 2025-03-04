@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once '../CONNECTION/config.php';
 
 try {
     if (isset($_POST['full-name'], $_POST['user-name'], $_POST['user-password'], $_POST['location'], $_POST['dob'], $_POST['bio'], $_POST['intrests'], $_POST['email'], $_FILES['image'])) {

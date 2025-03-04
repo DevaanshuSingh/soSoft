@@ -26,10 +26,27 @@ body {
     width: 100%;
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 10%;
+    background-color: rgba(0, 0, 0, 0.247);
+    font-size: large;
 }
+
+.logo a {
+    text-decoration: none;
+    color: GOLD;
+    transition: all underline 2s ease;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.logo .message{
+    color: GOLD;
+}
+
 
 .logo>img {
     max-width: 100%;
@@ -103,7 +120,7 @@ form {
     color: rgb(0, 0, 0);
     transition: all .8s ease;
     width: 100%;
-    
+
 
     &:hover {
         background-color: rgb(34, 37, 236);

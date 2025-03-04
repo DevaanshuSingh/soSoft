@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once '../CONNECTION/config.php';
 
 $loggedId = $_GET['loggedPersonId'];
 
@@ -21,8 +21,8 @@ if ($me && $allUsers) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SoSoft</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/use.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="./css/use.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
   </head>
 
@@ -44,7 +44,6 @@ if ($me && $allUsers) {
           <div class="show-user-profile-section">
             <?php
             try {
-
               //Generating user profiles
               foreach ($allUsers as $user) {
                 echo "<div class='user-profile'>
