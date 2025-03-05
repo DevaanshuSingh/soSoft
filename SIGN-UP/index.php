@@ -7,7 +7,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -16,35 +16,28 @@
         <img src="../MEDIA/codernaccotax.png" alt="CNAT">
         <div class="message"><strong>Yes Do Here,</strong></div>
     </nav>
-    <!-- <nav class="navbar ">
-  <div class="insile-logo logo">
-    <a class="navbar-brand" href="#">
-      <img src="../MEDIA/codernaccotax.png" alt="CNAT" >
-    </a>
-  </div>
-</nav> -->
 
     <div class="container">
         <div class="signup">
 
-            <form action="register.php" method="POST" enctype="multipart/form-data">
+            <form id="user-form" enctype="multipart/form-data">
 
                 <div class="single col-12">
                     <div class="mb-3 col-6">
                         <label for="full-name" class="form-label">Enter Full Name</label>
-                        <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Name"
+                        <input type="text" class="form-control" id="full_name" name="full-name" placeholder="Name"
                             required>
                     </div>
                     <div class="mb-3 col-6">
                         <label for="user-name" class="form-label">Enter User Name/Short Name</label>
-                        <input type="text" class="form-control" id="user-name" name="user-name" placeholder="Short Name"
+                        <input type="text" class="form-control" id="user_name" name="user-name" placeholder="Short Name"
                             required>
                     </div>
                 </div>
                 <div class="single col-12">
                     <div class="mb-3 col-6">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="user-password"
+                        <input type="password" class="form-control" id="user_password" name="user-password"
                             placeholder="Password" required>
                     </div>
                     <div class="mb-3 col-6">
@@ -94,6 +87,34 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $("#user-form").on("submit", function(e) {
+                e.preventDefault();
+
+                let formData = new FormData(this);
+
+                $.ajax({
+                    type: "POST",
+                    url: "regester.php",
+                    data: formData,
+                    processData: false, // ❌ Don't process data
+                    contentType: false, // ❌ Don't set content-type
+                    success: function(response) {
+                        console.log(response); // Debugging
+                        alert(response.message);
+                        if (response.status === "success") {
+                            window.location.href = "index.php";
+                        }
+                    },
+                    error: function(xhr) {
+                        alert("An error occurred. " + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ $get = $pdo->prepare("SELECT * FROM users;");
 $get->execute();
 $allUsers = $get->fetchAll();
 if ($me && $allUsers) {
-  ?>
+?>
 
   <!doctype html>
   <html lang="en">
@@ -32,10 +32,11 @@ if ($me && $allUsers) {
       <div class="menu-button">
         <i id="menuToggler" onclick="toggleMenu()" class="ri-arrow-right-circle-line menu-icon"></i>
       </div>
-      <div class="inside-menu">SBSR</div>
-    </div>
-    <div class="main-container">
 
+      <div class="inside-menu"></div>
+    </div>
+
+    <div class="main-container">
       <div class="container">
         <div class="heading">
           <span>CNAT's SOSOFT</span>
@@ -58,7 +59,7 @@ if ($me && $allUsers) {
           </div>
         </div>
         <!-- <div class="content"> -->
-          <div class="my-section">Self_Section</div>
+        <div class="my-section">Self_Section</div>
         <!-- </div> -->
       </div>
 
@@ -67,6 +68,7 @@ if ($me && $allUsers) {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
       let isMenuOpen = true;
+
       function toggleMenu() {
         if (isMenuOpen === true) {
           document.querySelector(".menu .menu-button").style.display = "hidden";
@@ -81,9 +83,9 @@ if ($me && $allUsers) {
         } else {
           let bodyWidth = document.querySelector('body').offsetWidth;
           if (bodyWidth <= 775)
-          document.querySelector("body").style.gridTemplateColumns = "45% 55%";
-        else
-          document.querySelector("body").style.gridTemplateColumns = "20% 80%";
+            document.querySelector("body").style.gridTemplateColumns = "45% 55%";
+          else
+            document.querySelector("body").style.gridTemplateColumns = "20% 80%";
           document.querySelector(".menu").style.display = "flex";
           document.querySelector(".menu").style.transition = "2s ease-in";
           document.querySelector("body").style.transition = "2s ease";
@@ -92,10 +94,11 @@ if ($me && $allUsers) {
           document.querySelector(".inside-menu").style.opacity = "1";
           document.querySelector(".inside-menu").style.transition = "opacity 1.5s ease-in-out";
           isMenuOpen = true;
-        }        
+        }
       }
 
       let isMySectionOpen = true;
+
       function toggleMySection() {
         if (isMenuOpen === true) {
           // alert(`GRK Closing`);
@@ -117,9 +120,9 @@ if ($me && $allUsers) {
   </body>
 
   </html>
-  <?php
+<?php
 } else {
-  ?>
+?>
 
   <!DOCTYPE html>
   <html lang="en">
@@ -132,10 +135,10 @@ if ($me && $allUsers) {
 
   <body>
     <h1>No Data Found</h1>
-    <div><a href="index.php">Go To Home</a></div>
+    <div><a href="..">Go To Home</a></div>
   </body>
 
   </html>
 
-  <?php
+<?php
 }

@@ -1,65 +1,80 @@
 <?php
 require_once '../CONNECTION/config.php';
 
+header('Content-Type: application/json'); // Ensures JSON response
+
 try {
-    if (isset($_POST['full-name'], $_POST['user-name'], $_POST['user-password'], $_POST['location'], $_POST['dob'], $_POST['bio'], $_POST['intrests'], $_POST['email'], $_FILES['image'])) {
-        $fullName = $_POST['full-name'];
-        $userName = $_POST['user-name'];
-        $userPassword = $_POST['user-password'];
-        $location = $_POST['location'];
-        $dob = $_POST['dob'];
-        $bio = $_POST['bio'];
-        $intrests = $_POST['intrests'];
-        $email = $_POST['email'];
+    if (!isset($_POST['full_name'], $_POST['user_name'], $_POST['user_password'], $_POST['location'], $_POST['dob'], $_POST['bio'], $_POST['intrests'], $_POST['email']) || !isset($_FILES['image'])) {
+        echo json_encode(["status" => "error", "message" => "Required data not provided."]);
+        exit;
+    }
 
-        $imagePath = null;
-        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-            $fileTmpPath = $_FILES['image']['tmp_name'];
-            $fileName = $_FILES['image']['name'];
-            $fileNameCmps = explode(".", $fileName);
-            $fileExtension = strtolower(end($fileNameCmps));
+    $fullName = $_POST['full_name'];
+    $userName = $_POST['user_name'];
+    $userPassword = $_POST['user_password'];
+    $location = $_POST['location'];
+    $dob = $_POST['dob'];
+    $bio = $_POST['bio'];
+    $intrests = $_POST['intrests'];
+    $email = $_POST['email'];
 
-            $allowedExts = ['jpg', 'jpeg', 'png', 'gif'];
+    // Check if user already exists
+    $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    if ($stmt->fetch()) {
+        echo json_encode(["status" => "error", "message" => "User already registered."]);
+        exit;
+    }
 
-            if (in_array($fileExtension, $allowedExts)) {
-                $uploadFileDir = './uploaded_files/';
-                if (!is_dir($uploadFileDir)) {
-                    mkdir($uploadFileDir, 0755, true);
-                }
+    // Handle file upload
+    $imagePath = null;
+    if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['image']['tmp_name'];
+        $fileName = $_FILES['image']['name'];
+        $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-                $dest_path = $uploadFileDir . uniqid() . '.' . $fileExtension;
-
-                if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                    $imagePath = $dest_path;
-                } else {
-                    die("Error moving the uploaded file.");
-                }
-            } else {
-                die("Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.");
-            }
-        } else {
-            die("No file uploaded or there was an upload error.");
+        $allowedExts = ['jpg', 'jpeg', 'png', 'gif'];
+        if (!in_array($fileExt, $allowedExts)) {
+            echo json_encode(["status" => "error", "message" => "Invalid file type. Only JPG, JPEG, PNG, and GIF allowed."]);
+            exit;
         }
 
-        // foreach ($_POST as $key => $posted) {
-        //     echo "$key: $posted<br>";
-        // }
-
-        $stmt = $pdo->prepare("INSERT INTO users (fullName, userName, userPassword, bio, location, dob, interests, profile_picture,email) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)");
-
-        if ($stmt->execute([$fullName, $userName, $userPassword, $bio, $location, $dob, $intrests, $imagePath, $email])) {
-            echo "<script>alert('Registration successful')
-                    window.location.href = 'index.php';
-                </script>";
-        } else {
-            echo "<script>alert('Not Regestered')</script>";
+        $uploadDir = "uploads/";
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
         }
+
+        $uniqueFileName = uniqid() . '.' . $fileExt;
+        $destPath = $uploadDir . $uniqueFileName;
+
+        if (!move_uploaded_file($fileTmpPath, $destPath)) {
+            echo json_encode(["status" => "error", "message" => "Error moving the uploaded file."]);
+            exit;
+        }
+        $imagePath = $destPath;
     } else {
-        echo '<script>
-        alert("Required data not provided.");
-        window.location.href = "index.php";
-        </script>';
+        echo json_encode(["status" => "error", "message" => "No file uploaded or upload error."]);
+        exit;
+    }
+
+    // Get user count for serial number
+    $stmt = $pdo->prepare("SELECT COUNT(id) FROM users;");
+    $stmt->execute();
+    $totalUsersCount = $stmt->fetchColumn();
+    $userRegSeriolNo = ++$totalUsersCount;
+
+    // Hash password before storing
+    $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+
+    // Insert user into database
+    $stmt = $pdo->prepare("INSERT INTO users (userRegSeriolNo, fullName, userName, userPassword, bio, location, dob, interests, profile_picture, email) 
+                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    if ($stmt->execute([$userRegSeriolNo, $fullName, $userName, $hashedPassword, $bio, $location, $dob, $intrests, $imagePath, $email])) {
+        echo json_encode(["status" => "success", "message" => "Registration successful!"]);
+    } else {
+        echo json_encode(["status" => "error", "message" => "Registration failed."]);
     }
 } catch (PDOException $e) {
-    echo "Error While Registering:<br>" . $e->getMessage();
+    echo json_encode(["status" => "error", "message" => "Error: " . $e->getMessage()]);
 }
+exit;

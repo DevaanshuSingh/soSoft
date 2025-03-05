@@ -4,6 +4,7 @@ USE `social_software`;
 
 CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userRegSeriolNo` BIGINT(20) NOT NULL,
   `userName` varchar(255) NOT NULL,
   `fullName` varchar(255) DEFAULT NULL,
   `userPassword` varchar(255) DEFAULT NULL,
