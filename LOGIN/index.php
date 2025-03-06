@@ -16,7 +16,7 @@
         <div class="about">
             <div class="inner-content">
                 <div class="texts">
-                    <img src="codernaccotax.png" alt="CNAT_LOGO">
+                    <img src="../MEDIA/codernaccotax.png" alt="CNAT_LOGO">
                     <strong class="special-keys">CNAT(CODERNACCOTAX)</strong> Presents First Ever
                     Social_Software!!<br>Here You Can Connect
                     With People Easily, After Connecting You
@@ -70,20 +70,17 @@
         crossorigin="anonymous"></script>
     <script>
         function wrongInput() {
-            // document.querySelector('.login-heading h1').innerHTML = "0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;";
             document.querySelector('.login-heading h1').innerHTML = "<span><strong>LOGIN HERE:</strong></span><div class='face'>o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;</div>";
-            // alert("Please Register First");
             document.querySelector('.face').style.transition = "all 2s ease";
             document.querySelector('.face').style.border = "none";
             document.querySelector('.face').style.backgroundColor = "rgba(255, 0, 0, 0.25)";
             document.querySelector('.face').style.borderRadius = "20%";
-
-        };
+        }
 
         function correctInput() {
             document.querySelector('.login-heading h1').innerHTML = "<span><strong>LOGIN HERE:</strong></span><div class='face'>O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;</div>";
             alert("Welcome");
-        };
+        }
     </script>
 </body>
 
@@ -97,25 +94,12 @@ try {
         $fullName = $_POST['full-name'];
         $userPassword = $_POST['user-password'];
         $email = $_POST['user-email'];
-
-        foreach ($_POST as $posted) {
-            echo "POST: $posted<br>";
-        }
-
+        
         $stmt = $pdo->prepare("SELECT * FROM users WHERE fullName=? AND userPassword=? AND email=?;");
         $stmt->execute([$fullName, $userPassword, $email]);
-        if($userInfo = $stmt->fetchAll())
-            echo "<h1>Worked</h1>";
-        else
-            echo "<h1>Not Worked</h1>";
+        $userInfo = $stmt->fetchAll();
 
-            foreach ($userInfo as $key => $user) {
-                foreach ($user as $key => $value) {
-                    echo "<br>$key: $value";
-                }
-                echo "<br><strong>NEXT</strong>";
-            }
-        $loggedId = $userInfo[0]['id'];
+        $loggedId = $userInfo[0]['id'];     
         if ($userInfo) {
             echo "<form id='subitTheForm' action='../MAIN' method='GET'>
                     <input type='hidden' name='loggedPersonId' value='$loggedId'>
