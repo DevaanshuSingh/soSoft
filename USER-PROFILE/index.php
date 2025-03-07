@@ -12,5 +12,6 @@
             <img src="profile-photo" alt="">
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
