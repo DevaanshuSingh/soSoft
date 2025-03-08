@@ -1,0 +1,123 @@
+html,
+body {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(59, 105, 150, 0.859);
+}
+
+.product-name {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    font-size: 2vmin;
+    /* width: auto; */
+    height: 5vmin;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 0 1% 0 0;
+    position: fixed;
+}
+
+.main-container {
+    height: 100%;
+    width: 100%;
+}
+
+.about-mine {
+    min-height: 80vmin;
+    width: 100%;
+    margin-top: 5vmin;
+    /* border: 1px solid red; */
+}
+
+.infos {
+    height: 70vmin;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid black;
+}
+
+.first-col {
+    height: 100%;
+    width: 50%;
+}
+
+.first-col img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    background-size: cover;
+    border-right: 1px solid rgba(17, 29, 24, 0.564);
+}
+
+.second-col {
+    height: 100%;
+    width: 50%;
+}
+.short-name{
+    border-bottom: 1px solid black;
+}
+.name {
+    height: 50%;
+    width: 100%;
+}
+
+.name header {
+    height: 10%;
+    width: 100%;
+    /* border-bottom: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vmin;
+}
+
+.name main {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5vmin;
+    /* background-color: blue; */
+    flex-wrap: wrap;
+    padding: 1%;
+}
+
+.contents {
+    border: 1px solid black;
+    height: 10vmin;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.more-me{
+    height: 98%;
+    width: 30%;
+    background-color: none;
+    border-radius: 3%;
+    border: none;
+    /* clip-path: polygon(20% 0%, 80% 0%, 100% 51%, 100% 51%, 80% 100%, 20% 100%, 0 47%, 0 47%); */
+    clip-path: polygon(2% 0, 98% 0, 100% 51%, 100% 51%, 98% 100%, 2% 100%, 0 47%, 0 47%);
+
+
+}

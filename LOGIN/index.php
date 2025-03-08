@@ -94,24 +94,24 @@ try {
         $fullName = $_POST['full-name'];
         $userPassword = $_POST['user-password'];
         $email = $_POST['user-email'];
-        
+
         $stmt = $pdo->prepare("SELECT * FROM users WHERE fullName=? AND userPassword=? AND email=?;");
         $stmt->execute([$fullName, $userPassword, $email]);
-        $userInfo = $stmt->fetchAll();
-
-        $loggedId = $userInfo[0]['id'];     
+        $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($userInfo) {
-            echo "<form id='subitTheForm' action='../MAIN' method='GET'>
-                    <input type='hidden' name='loggedPersonId' value='$loggedId'>
-                </form>";
+            $loggedId = $userInfo['id'];
+            echo "<form id='submitTheForm' action='../MY-PROFILE' method='GET'>
+                        <input type='hidden' name='loggedPersonId' value='$loggedId'>
+                    </form>";
             echo "<script>
-            correctInput();
-                document.querySelector('#subitTheForm').submit();
+                    correctInput();
+                    alert(" . $loggedId . ");
+                    document.querySelector('#submitTheForm').submit();
                 </script>";
         } else {
             echo "<script>
-                wrongInput();
-            </script>";
+                    wrongInput();
+                </script>";
         }
     }
 } catch (PDOException $e) {

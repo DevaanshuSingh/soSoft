@@ -27,7 +27,7 @@ if ($me && $allUsers) {
   </head>
 
   <body>
-
+    <div class="product-name"><strong class="text-primary">CNAT's SOSOFT</strong></div>
 
     <div class="menu">
       <div class="menu-button">
@@ -44,7 +44,7 @@ if ($me && $allUsers) {
       <div class="container-fluid">
 
         <div class="heading">
-          <span>CNAT's SOSOFT</span>
+          <span>All USERS</span>
         </div>
 
         <div class="users">

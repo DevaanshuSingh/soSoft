@@ -26,6 +26,10 @@ body::-webkit-scrollbar {
     /* transition: all 2s cubic-bezier(0.6, -0.28, 0.74, 0.05); */
 }
 
+*::selection{
+    background-color: rgba(0, 0, 255, 0.13);
+}
+
 body {
     height: 100vh;
     width: 100vw;
@@ -33,6 +37,17 @@ body {
     grid-template-columns: 20% 80%;
     overscroll-behavior: none;
     /* background-color: rgb(143, 217, 252) !important; */
+}
+
+.product-name{
+    position: fixed;
+    top:0;
+    right: .5%;
+    margin: 1%;
+    z-index: 5000;
+    opacity: 0.8;
+    /* font-size: .5rem; */
+    font-size: 2vmin;
 }
 
 @media (width <=775px) {
@@ -74,6 +89,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 4.1vmin;
 }
 
 .inside-menu>.menu-body {
@@ -98,7 +114,7 @@ body {
 }
 
 .container-fluid::-webkit-scrollbar-track {
-    z-index: 50000;
+    z-index: 5;
     background: transparent;
 }
 
@@ -143,6 +159,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* font-size:larger; */
+    font-family:'Times New Roman', Times, serif;
+    font-size: 3.5vmin;
+
     /* background-color: red; */
 }
 
