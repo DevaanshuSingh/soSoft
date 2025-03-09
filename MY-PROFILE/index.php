@@ -5,9 +5,15 @@ $myId = $_GET['loggedPersonId'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$myId]);
 $me = $stmt->fetch();
+
+//Getting Features/Contents;
+$stmt = $pdo->prepare("SELECT * FROM myFeatures;");
+$stmt->execute([]);
+$allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
+
+
 if ($me) {
     // print_r($me);
-
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -24,26 +30,33 @@ if ($me) {
 
         <div class="product-name">CNAT's SoSOFT</div>
         <div class="main-container">
+
+            <div class="full-image"></div>
+
             <section class="about-mine">
                 <div class="infos">
                     <div class="first-col info-cols">
-                        <img src="../MEDIA/codernaccotax.png" alt="">
+                        <img src=".<?php echo $me['profile_picture']; ?>" alt="">
                     </div>
                     <div class="second-col info-cols">
-                        <div class="short-name name">
-                            <header>Short Name</header>
-                            <main><span><?php echo $me['userName']; ?></span></main>
-                        </div>
                         <div class="full-name name">
                             <header>Full Name</header>
                             <main><span><?php echo $me['fullName']; ?></span></main>
                         </div>
+
+                        <div class="bio name">
+                            <header>Bio</header>
+                            <main><span><?php echo $me['bio']; ?></span></main>
+                        </div>
                     </div>
                 </div>
                 <div class="contents">
-                    <button class="more-me">POSTS</button>
-                    <button class="more-me">ABOUT</button>
-                    <button class="more-me">PHOTOS</button>
+                    <?php
+                    $x = 0;
+                    foreach ($allFeatures as $feature) {
+                        echo "<button class='more-me'0 value='" . ++$x . "'>" . $feature['featureName'] . "</button>";
+                    }
+                    ?>
                 </div>
             </section>
         </div>

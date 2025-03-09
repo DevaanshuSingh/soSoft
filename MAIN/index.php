@@ -54,9 +54,9 @@ if ($me && $allUsers) {
             try {
               foreach ($allUsers as $user) {
                 echo "<div class='user-profile'>
-                      <div class='user-profile-pic'> <img src='." . $user['profile_picture'] . "' alt='" . $user['userName'] . "'> </div>
-                      <div class='user-profile-name'><strong>" . $user['userName'] . "</strong></div>
-                  </div>";
+                        <div class='user-profile-pic'> <img src='." . $user['profile_picture'] . "' alt='" . $user['userName'] . "'> </div>
+                        <div class='user-profile-name'><strong>" . $user['userName'] . "</strong></div>
+                      </div>";
                 // print_r($user);
               }
             } catch (PDOException $e) {
