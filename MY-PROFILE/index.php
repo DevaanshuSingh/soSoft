@@ -31,8 +31,13 @@ if ($me) {
         <div class="product-name">CNAT's SoSOFT</div>
         <div class="main-container">
 
-            <div class="full-image"></div>
-
+            <div class="full-image">
+                <div class="cross-part text-white position-absolute">
+                    <h1>X</h1>
+                </div>
+                <img src="" alt="">
+            </div>
+            <div class="postNow">Go Social</div>
             <section class="about-mine">
                 <div class="infos">
                     <div class="first-col info-cols">
@@ -54,14 +59,19 @@ if ($me) {
                     <?php
                     $x = 0;
                     foreach ($allFeatures as $feature) {
-                        echo "<button class='more-me'0 value='" . ++$x . "'>" . $feature['featureName'] . "</button>";
+                        ++$x;
+                        echo "<button class='more-me' value='" . $x . "'>" . $feature['featureName'] . "</button>";
                     }
                     ?>
                 </div>
             </section>
+
+
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="script.js"></script>
     </body>
 
     </html>
