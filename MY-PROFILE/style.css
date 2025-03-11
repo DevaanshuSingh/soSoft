@@ -8,6 +8,11 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+.h-200 {
+    height: 200vh;
+    border: 1px solid blue;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -20,21 +25,41 @@ body {
 }
 
 .product-name {
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    font-size: 2vmin;
-    /* width: auto; */
-    height: 5vmin;
+    /* position: fixed; */
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 7vh;
     display: flex;
     align-items: center;
-    justify-content: end;
-    padding: 0 1% 0 0;
-    position: fixed;
+    justify-content: space-between;
+    /* background-color: rgba(255, 0, 0, 0.323); */
+    padding: 0 2%;
+    font-size: clamp(1rem, 2vmin, 2.5rem);
+    z-index: 600;
+    margin: 0;
+}
+
+.goToMain {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.goToMain:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .main-container {
-    height: 100%;
+    height: auto;
     width: 100%;
     display: flex;
     align-items: center;
@@ -62,7 +87,7 @@ body {
     cursor: pointer;
 }
 
-.full-image .cross-part h1:hover{
+.full-image .cross-part h1:hover {
     color: red;
 }
 
@@ -74,7 +99,7 @@ body {
     cursor: pointer
 }
 
-.postNow{
+.postNow {
     height: 10vmin;
     width: 10vmin;
     position: absolute;
@@ -88,17 +113,56 @@ body {
     transition: .8s ease;
     cursor: pointer;
     font-size: 80%;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.postNow:hover{
+.postNow:hover {
     transform: scale(1.2);
 }
 
+.post-section {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.871);
+    z-index: 501;
+    display: flex;
+    visibility: hidden;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.closePostSection {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    font-size: 2rem;
+}
+
+.post-section main {
+    height: 70%;
+    width: 90%;
+    border: 1px solid rgb(0, 4, 255);
+}
+
+.side-bars {
+    height: 70%;
+    width: 5vw;
+    position: relative;
+    background-color: gold;
+}
+
+.left-bar {
+    left: 0;
+}
+
+.right-bar {
+    right: 0;
+}
+
 .about-mine {
-    min-height: 80vmin;
+    min-height: 60vmin;
     width: 98%;
     margin-top: 5vmin;
     background: rgba(255, 255, 255, 0.3);
@@ -110,33 +174,25 @@ body {
 }
 
 .infos {
-    height: 70vmin;
+    height: 50vmin;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.first-col {
+}.first-col {
     height: 100%;
     width: 50%;
-}
-
-.first-col img {
+}.first-col img {
     height: 100%;
     width: 100%;
     object-fit: contain;
     background-size: cover;
     border-right: 1px solid rgba(255, 255, 255, 0.507);
     cursor: pointer
-}
-
-.second-col {
+}.second-col {
     height: 100%;
     width: 50%;
-}
-
-.name {
+}.name {
     height: 50%;
     width: 100%;
     /* border: 1px solid black; */
@@ -144,17 +200,13 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-}
-
-.name header {
+}.name header {
     border-bottom: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 3vmin;
-}
-
-.name main {
+}.name main {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,9 +214,7 @@ body {
     flex-wrap: nowrap;
     padding-left: 1%;
     width: 100%;
-}
-
-.contents {
+}.contents {
     border-top: 2px solid rgba(255, 255, 255, 0.912);
     height: 10vmin;
     width: 100%;

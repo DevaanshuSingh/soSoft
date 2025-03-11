@@ -105,7 +105,7 @@ try {
                     </form>";
             echo "<script>
                     correctInput();
-                    alert(" . $loggedId . ");
+                    // alert(" . $loggedId . ");
                     document.querySelector('#submitTheForm').submit();
                 </script>";
         } else {

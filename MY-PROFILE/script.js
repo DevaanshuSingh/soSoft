@@ -10,3 +10,18 @@ $(".cross-part").on("click", function () {
         $(".full-image img").attr("src", "");
     });
 });
+
+$(".goToMain").on("click", function () {
+    location.href = "../MAIN";
+});
+
+$(document).ready(function () {
+    $("#goSocialBtn").on("click", function () {
+        $(".post-section").css("visibility", "visible");
+    });
+
+    $(".closePostSection").on("click", () => {
+        $(".post-section").css("visibility", "hidden");
+    });
+});
+

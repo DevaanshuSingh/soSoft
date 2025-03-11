@@ -1,6 +1,6 @@
 <?php
 require_once '../CONNECTION/config.php';
-
+print_r($_GET);
 $myId = $_GET['loggedPersonId'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$myId]);
@@ -28,17 +28,29 @@ if ($me) {
 
     <body>
 
-        <div class="product-name">CNAT's SoSOFT</div>
-        <div class="main-container">
+        <div class="product-name">
+            <button class="goToMain btn btn-info">View Socity</button>
+            <div class="software-name">CNAT's SoSOFT</div>
+        </div>
 
+        <div class="main-container">
             <div class="full-image">
                 <div class="cross-part text-white position-absolute">
                     <h1>X</h1>
                 </div>
                 <img src="" alt="">
             </div>
-            <div class="postNow">Go Social</div>
-            <section class="about-mine">
+
+            <button tabindex="0" role="button" class="postNow" id="goSocialBtn">Go Social</button>
+
+            <section class="post-section">
+                <span class="text-white closePostSection" tabindex="0" role="button">X</span>
+                <div class="left-bar side-bars"></div>
+                <main></main>
+                <div class="right-bar side-bars"></div>
+            </section>
+            
+            <section class="about-mine m-0">
                 <div class="infos">
                     <div class="first-col info-cols">
                         <img src=".<?php echo $me['profile_picture']; ?>" alt="">
@@ -65,8 +77,6 @@ if ($me) {
                     ?>
                 </div>
             </section>
-
-
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
