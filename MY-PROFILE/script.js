@@ -11,9 +11,25 @@ $(".cross-part").on("click", function () {
     });
 });
 
-$(".goToMain").on("click", function () {
-    location.href = "../MAIN";
+$(document).on("click", ".goToMain", function () {
+    var userId = $(this).data("user-id");
+    window.location.href = "../MAIN?userId=" + userId;
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: "../MAIN",
+    //     data: { userId: userId },
+    //     success: function (response) {
+    //         console.log("सफलता:", response);
+    //         // window.location.href = "../MAIN";
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.error("त्रुटि:", error);
+    //         alert("कुछ समस्या आई, कृपया पुनः प्रयास करें!");
+    //     }
+    // });
 });
+
 
 $(document).ready(function () {
     $("#goSocialBtn").on("click", function () {
@@ -22,6 +38,31 @@ $(document).ready(function () {
 
     $(".closePostSection").on("click", () => {
         $(".post-section").css("visibility", "hidden");
+    });
+});
+
+$(document).ready(function () {
+    $(".left-bar").on("click", function () {
+        let currentWidth = $(this).width();
+        
+        if (currentWidth <= 20) { 
+            $(this).css("width", "20vw");
+            console.log("Left++");
+        } else {
+            $(this).css("width", "2vw");
+            console.log("Left--");
+        }
+    });
+    $(".right-bar").on("click", function () {
+        let currentWidth = $(this).width();
+        
+        if (currentWidth <= 20) { 
+            $(this).css("width", "20vw");
+            console.log("right++");
+        } else {
+            $(this).css("width", "2vw");
+            console.log("right--");
+        }
     });
 });
 

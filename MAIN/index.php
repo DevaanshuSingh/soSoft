@@ -1,7 +1,8 @@
 <?php
 require_once '../CONNECTION/config.php';
+$loggedId = $_GET['userId'];
+// print_r($_POST);
 
-$loggedId = $_GET['loggedPersonId'];
 
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$loggedId]);
