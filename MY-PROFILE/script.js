@@ -1,7 +1,9 @@
-$(".first-col img").on("click", function () {
-    let imageSrc = $(this).attr("src");
-    $(".full-image img").attr("src", imageSrc);
-    $(".full-image").css("display", "flex").hide().fadeIn(500);
+$(document).ready(function () {
+    $(".first-col img").on("click", function () {
+        let imageSrc = $(this).attr("src");
+        $(".full-image img").attr("src", imageSrc);
+        $(".full-image").css("display", "flex").hide().fadeIn(500);
+    })
 });
 
 $(".cross-part").on("click", function () {
@@ -30,7 +32,6 @@ $(document).on("click", ".goToMain", function () {
     // });
 });
 
-
 $(document).ready(function () {
     $("#goSocialBtn").on("click", function () {
         $(".post-section").css("visibility", "visible");
@@ -42,27 +43,19 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $(".left-bar").on("click", function () {
-        let currentWidth = $(this).width();
-        
-        if (currentWidth <= 20) { 
+    $(".side-bars").on("click", function (elem) {
+        let viewportWidth = window.innerWidth;
+        let currentWidthVW = ($(this).width() / viewportWidth) * 100;
+        $(this).find("*").css("transition", "1s ease");
+
+        if (currentWidthVW < 19) {
             $(this).css("width", "20vw");
-            console.log("Left++");
+            $(this).find("*").css("display", "flex");
+            // console.log(elem.currentTarget.className + "++");
         } else {
             $(this).css("width", "2vw");
-            console.log("Left--");
-        }
-    });
-    $(".right-bar").on("click", function () {
-        let currentWidth = $(this).width();
-        
-        if (currentWidth <= 20) { 
-            $(this).css("width", "20vw");
-            console.log("right++");
-        } else {
-            $(this).css("width", "2vw");
-            console.log("right--");
+            $(this).find("*").css("display", "none");
+            // console.log(elem.currentTarget.className + "--");
         }
     });
 });
-

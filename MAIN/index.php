@@ -116,24 +116,24 @@ if ($me && $allUsers) {
 
   </html>
 <?php
-} else {
-?>
+  } else {
+    ?>
 
-  <!DOCTYPE html>
-  <html lang="en">
+      <!DOCTYPE html>
+      <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Not Found</title>
+      </head>
 
-  <body>
-    <h1>No Data Found</h1>
-    <div><a href="..">Go To Home</a></div>
-  </body>
+      <body>
+        <h1>No Data Found</h1>
+        <div><a href="..">Go To Home</a></div>
+      </body>
 
-  </html>
+      </html>
 
-<?php
-}
+    <?php
+  }
