@@ -1,22 +1,23 @@
 <?php
-    require_once '../CONNECTION/config.php';
-    // print_r($_GET);
-    $myId = $_GET['loggedPersonId'];
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
-    $stmt->execute([$myId]);
-    $me = $stmt->fetch();
+require_once '../CONNECTION/config.php';
+// print_r($_GET);
+$myId = $_GET['loggedPersonId'];
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
+$stmt->execute([$myId]);
+$me = $stmt->fetch();
 
-    //Getting Features/Contents;
-    $stmt = $pdo->prepare("SELECT * FROM myFeatures;");
-    $stmt->execute([]);
-    $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
+//Getting Features/Contents;
+$stmt = $pdo->prepare("SELECT * FROM myFeatures;");
+$stmt->execute([]);
+$allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
 
-    if ($me) {
+if ($me) {
     // print_r($me);
 ?>
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,27 +82,43 @@
                     $x = 0;
                     foreach ($allFeatures as $feature) {
                         ++$x;
-                        echo "<button class='more-me' value='" . $x . "'>" . $feature['featureName'] . "</button>";
+                        echo "<button class='more-me' value='" . $x . "' onclick(this)>" . $feature['featureName'] . "</button>";
                     }
                     ?>
                 </div>
             </section>
 
-            <section class="get-contents">
-                <?php
-                    // require_once "./GET-CONTENTS/get-photos.php"
-                ?>
-            </section>
+            <section class="get-contents"></section>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="script.js"></script>
+        <script>
+            let selectedUsers = null;
+            document.querySelectorAll("header .btn").forEach(button => {
+                button.addEventListener("click", function() {
+                    selectedUsers = this.value;
+                    // alert("Button Clicked "+selectedUsers);
+                    $.ajax({
+                        type: 'POST',
+                        url: 'get-info.php',
+                        data: {
+                            user: selectedUsers
+                        },
+                        success: function(response) {
+                            $('table tbody').html("Response Is: " + response);
+                            $('#myTable').DataTable();
+                        }
+                    });
+                });
+            });
+        </script>
     </body>
 
     </html>
 <?php
-    } else {
+} else {
 ?>
 
     <!DOCTYPE html>
