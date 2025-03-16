@@ -59,3 +59,20 @@ $(document).ready(function () {
         }
     });
 });
+
+let buttonClicked = null;
+function btnClicked(btn) {
+    buttonClicked = btn.value;
+    console.log(buttonClicked);
+
+    $.ajax({
+        type: 'POST',
+        url: `GET-CONTENTS/content${buttonClicked}.php`,  // ✅ सही किया गया URL
+        success: function(response) {
+            $('.get-contents').html(response);
+        },
+        error: function(xhr, status, error) {  // ❌ एरर हैंडलिंग जोड़ें
+            console.error("AJAX Error: ", error);
+        }
+    });
+}
