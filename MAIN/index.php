@@ -54,11 +54,10 @@ if ($me && $allUsers) {
             <?php
             try {
               foreach ($allUsers as $user) {
-                echo "<div class='user-profile'>
+                echo "<div class='user-profile' data-user-id=".$user['id']." onclick='selecteduser(this)'>
                         <div class='user-profile-pic'> <img src='." . $user['profile_picture'] . "' alt='" . $user['userName'] . "'> </div>
                         <div class='user-profile-name'><strong>" . $user['userName'] . "</strong></div>
                       </div>";
-                // print_r($user);
               }
             } catch (PDOException $e) {
               echo "Error While Registering:<br>" . $e->getMessage();
@@ -109,6 +108,11 @@ if ($me && $allUsers) {
 
       </div>
     </div>
+
+    <!-- Hidden Form For Sending Data(selectedUserId) To USER-PROFILE -->
+     <form action="../USER-PROFILE" method="get" id="hiddenForm">
+      <input type="hidden" name="selectedUserId" id="selectedUser">
+     </form>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>

@@ -31,12 +31,10 @@ function toggleMenu() {
 let isMySectionOpen = true;
 function toggleMySection() {
   if (isMenuOpen === true) {
-    // alert(`GRK Closing`);
     document.querySelector(".my-section").style.height = "0";
     document.querySelector(".my-section").style.transition = "all 5s ease";
     isMenuOpen = false;
   } else {
-    // alert(`GRK Opening`);
     document.querySelector(".menu").style.display = "flex";
     document.querySelector(".menu").style.transition = "2s ease-in";
     document.querySelector("body").style.gridTemplateColumns = "20% 80%";
@@ -45,5 +43,24 @@ function toggleMySection() {
     document.querySelector(".menu-icon").style.transition = "2s ease";
     isMenuOpen = true;
   }
+
 }
 
+// function selecteduser(user) {
+//   // console.log(user);
+//   userId = $(user).attr('data-user-id');
+//   console.log("Id: " + userId);
+//   $('#selectedUser').val(userId);
+//   console.log($('#selectedUser').val());
+//   $('#hiddenForm').submit();
+
+// }
+
+
+function selecteduser(user) {
+  userId = $(user).attr('data-user-id');
+  console.log("Id: " + userId);
+  $('#selectedUser').val(userId);
+  console.log($('#selectedUser').val());
+  $('#hiddenForm').submit();
+}
