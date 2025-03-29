@@ -1,7 +1,9 @@
 <?php
+    session_start();
+
 require_once '../CONNECTION/config.php';
 // print_r($_GET);
-$myId = $_GET['loggedPersonId'];
+$myId = $_SESSION["myId"];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$myId]);
 $me = $stmt->fetch();
@@ -31,7 +33,7 @@ if ($me) {
     <body>
 
         <div class="product-name">
-            <button class="goToMain btn btn-info" data-user-id="<?php echo  $_GET['loggedPersonId']; ?>">View Socity</button>
+            <button class="goToMain btn btn-info" data-user-id="<?php echo  $myId; ?>">View Socity</button>
             <div class="software-name">CNAT's SoSOFT</div>
         </div>
 

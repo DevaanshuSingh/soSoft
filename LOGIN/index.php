@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -99,9 +103,9 @@ try {
         $stmt->execute([$fullName, $userPassword, $email]);
         $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($userInfo) {
-            $loggedId = $userInfo['id'];
-            echo "<form id='submitTheForm' action='../MY-PROFILE' method='GET'>
-                        <input type='hidden' name='loggedPersonId' value='$loggedId'>
+            $_SESSION["myId"] =$userInfo['id'];
+
+            echo "<form id='submitTheForm' action='../MY-PROFILE' method='POST'>
                     </form>";
             echo "<script>
                     correctInput();
