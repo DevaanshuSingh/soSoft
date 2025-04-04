@@ -67,11 +67,11 @@ function btnClicked(btn) {
 
     $.ajax({
         type: 'POST',
-        url: `GET-CONTENTS/content${buttonClicked}.php`,  // ✅ सही किया गया URL
+        url: `GET-CONTENTS/content${buttonClicked}.php`,
         success: function(response) {
             $('.get-contents').html(response);
         },
-        error: function(xhr, status, error) {  // ❌ एरर हैंडलिंग जोड़ें
+        error: function(xhr, status, error) {
             console.error("AJAX Error: ", error);
         }
     });

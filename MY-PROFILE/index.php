@@ -6,16 +6,15 @@ require_once '../CONNECTION/config.php';
 $myId = $_SESSION["myId"];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$myId]);
-$me = $stmt->fetch();
+$me = $stmt->fetch(PDO::FETCH_ASSOC);
 
 //Getting Features/Contents;
 $stmt = $pdo->prepare("SELECT * FROM myFeatures;");
 $stmt->execute([]);
 $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
-
 if ($me) {
-    // print_r($me);
+    print_r($me);
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -67,13 +66,13 @@ if ($me) {
                 <div class="infos">
                     <div class="first-col info-cols">
                         <!-- <img src="../MEDIA/c.jpg" alt=""> -->
+                         <!-- CHECK WHY IMAGE IS NOT FOUND -->
                         <img src=".<?php echo $me['profile_picture']; ?>" alt="">
                     </div>
                     <div class="second-col info-cols">
                         <div class="full-name name">
                             <header>Full Name</header>
-                            <main><span><?php echo $me['fullName']; ?></span></main>
-                        </div>
+                            </div>
 
                         <div class="bio name">
                             <header>Bio</header>

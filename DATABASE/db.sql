@@ -1,3 +1,4 @@
+-- Active: 1742668335270@@127.0.0.1@3306
 CREATE DATABASE `social_software`;
 USE `social_software`;
 CREATE TABLE `users` (
@@ -18,5 +19,10 @@ CREATE TABLE `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) NOT NULL,
   `content` text NOT NULL,
+  PRIMARY KEY (`id`)
+);
+CREATE TABLE `myFeatures` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `featureName` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 );
