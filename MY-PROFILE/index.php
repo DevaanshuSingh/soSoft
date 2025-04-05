@@ -14,7 +14,7 @@ $stmt->execute([]);
 $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
 if ($me) {
-    // print_r($me);
+    print_r($me);
 ?>
     <!DOCTYPE html>
     <html lang="en">
