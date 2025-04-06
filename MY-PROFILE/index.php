@@ -13,6 +13,7 @@ $stmt = $pdo->prepare("SELECT * FROM myFeatures;");
 $stmt->execute([]);
 $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
+$_SESSION['myId'] = $myId;
 if ($me) {
     print_r($me);
 ?>
@@ -33,7 +34,8 @@ if ($me) {
     <body>
 
         <div class="product-name">
-            <button class="goToMain btn btn-info" data-user-id="<?php echo  $myId; ?>">View Socity</button>
+            <!-- <button class="goToMain btn btn-info" data-user-id="<?php echo  $myId; ?>">View Socity</button> -->
+            <button class="goToMain btn btn-info" >View Socity</button>
             <div class="software-name">CNAT's SoSOFT</div>
         </div>
 
@@ -68,7 +70,7 @@ if ($me) {
                     <div class="first-col info-cols">
                         <!-- <img src="../MEDIA/c.jpg" alt=""> -->
                          <!-- CHECK WHY IMAGE IS NOT FOUND -->
-                        <img src=".<?php echo $me['profile_picture']; ?>" alt="">
+                        <img src="<?php echo $me['profile_picture']; ?>" alt="">
                     </div>
                     <div class="second-col info-cols">
                         <div class="full-name name">

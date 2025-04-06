@@ -14,22 +14,7 @@ $(".cross-part").on("click", function () {
 });
 
 $(document).on("click", ".goToMain", function () {
-    var userId = $(this).data("user-id");
-    window.location.href = "../MAIN?userId=" + userId;
-
-    // $.ajax({
-    //     type: "POST",
-    //     url: "../MAIN",
-    //     data: { userId: userId },
-    //     success: function (response) {
-    //         console.log("सफलता:", response);
-    //         // window.location.href = "../MAIN";
-    //     },
-    //     error: function (xhr, status, error) {
-    //         console.error("त्रुटि:", error);
-    //         alert("कुछ समस्या आई, कृपया पुनः प्रयास करें!");
-    //     }
-    // });
+    location.href = "../MAIN";
 });
 
 $(document).ready(function () {
