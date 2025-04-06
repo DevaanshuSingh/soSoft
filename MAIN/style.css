@@ -142,7 +142,7 @@ html{
 }.user-profile {
     height: 95%;
     width: 20vmax;
-    border: 1px solid black;
+    border-right: 1px solid black;
     flex-shrink: 0;
     display: grid;
     grid-template-rows: 1.8fr .1fr;

@@ -1,7 +1,8 @@
 <?php
 require_once '../CONNECTION/config.php';
 print_r($_GET);
-$myId = $_GET['selectedUserId'];
+// $myId = $_GET['selectedUserId'];
+$myId = 2;
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$myId]);
 $user = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
@@ -31,11 +32,7 @@ if ($user) {
     <body>
 
         <div class="product-name">
-            <button class="goToMain btn btn-info" data-user-id="
-            <?php
-                // echo  $_GET['loggedPersonId']; 
-            ?>
-            ">View Socity</button>
+            <button class="goToMain btn btn-info" >View Socity</button>
             <div class="software-name">CNAT's SoSOFT</div>
         </div>
 

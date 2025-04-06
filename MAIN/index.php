@@ -1,17 +1,18 @@
 <?php
-require_once '../CONNECTION/config.php';
-$loggedId = $_GET['userId'];
+session_start();
+// print_r($_SESSION);
+  require_once '../CONNECTION/config.php';
+  $myId = $_SESSION['myId'];
 // print_r($_POST);
 
+  $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
+  $stmt->execute([$myId]);
+  $me = $stmt->fetch();
 
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
-$stmt->execute([$loggedId]);
-$me = $stmt->fetch();
-
-$get = $pdo->prepare("SELECT * FROM users;");
-$get->execute();
-$allUsers = $get->fetchAll();
-if ($me && $allUsers) {
+  $get = $pdo->prepare("SELECT * FROM users;");
+  $get->execute();
+  $allUsers = $get->fetchAll();
+  if ($me && $allUsers) {
 ?>
 
   <!doctype html>
@@ -54,11 +55,18 @@ if ($me && $allUsers) {
             <?php
             try {
               foreach ($allUsers as $user) {
-                echo "<div class='user-profile' data-user-id=".$user['id']." onclick='selecteduser(this)'>
-                        <div class='user-profile-pic'> <img src='." . $user['profile_picture'] . "' alt='" . $user['userName'] . "'> </div>
+                if ($user['id'] == $myId)
+                  continue;
+                echo "<div class='user-profile' data-user-id=" . $user['id'] . " onclick='selecteduser(this)'>
+                        <div class='user-profile-pic'> <img src='" . $user['profile_picture'] . "' alt='" . $user['userName'] . "'> </div>
                         <div class='user-profile-name'><strong>" . $user['userName'] . "</strong></div>
                       </div>";
               }
+              echo "<div class='user-profile' data-user-id=" . $user['id'] . " onclick='selecteduser(this)'>
+                        // <div class='user-profile-pic'> <img src='" . $user['profile_picture'] . "' alt='" . $user['userName'] . "'> </div>
+                        // <div class='user-profile-name'><strong>" . $user['userName'] . "</strong></div>
+                        Waiting
+                      </div>";
             } catch (PDOException $e) {
               echo "Error While Registering:<br>" . $e->getMessage();
             }
@@ -110,9 +118,9 @@ if ($me && $allUsers) {
     </div>
 
     <!-- Hidden Form For Sending Data(selectedUserId) To USER-PROFILE -->
-     <form action="../USER-PROFILE" method="get" id="hiddenForm">
+    <!-- <form action="../USER-PROFILE" method="get" id="hiddenForm">
       <input type="hidden" name="selectedUserId" id="selectedUser">
-     </form>
+    </form> -->
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
@@ -120,24 +128,24 @@ if ($me && $allUsers) {
 
   </html>
 <?php
-  } else {
-    ?>
+} else {
+?>
 
-      <!DOCTYPE html>
-      <html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
 
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Not Found</title>
-      </head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Found</title>
+  </head>
 
-      <body>
-        <h1>No Data Found</h1>
-        <div><a href="..">Go To Home</a></div>
-      </body>
+  <body>
+    <h1>No Data Found</h1>
+    <div><a href="..">Go To Home</a></div>
+  </body>
 
-      </html>
+  </html>
 
-    <?php
-  }
+<?php
+}

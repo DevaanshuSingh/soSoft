@@ -46,21 +46,8 @@ function toggleMySection() {
 
 }
 
-// function selecteduser(user) {
-//   // console.log(user);
-//   userId = $(user).attr('data-user-id');
-//   console.log("Id: " + userId);
-//   $('#selectedUser').val(userId);
-//   console.log($('#selectedUser').val());
-//   $('#hiddenForm').submit();
-
-// }
-
-
 function selecteduser(user) {
-  userId = $(user).attr('data-user-id');
-  console.log("Id: " + userId);
-  $('#selectedUser').val(userId);
-  console.log($('#selectedUser').val());
-  $('#hiddenForm').submit();
+  sessionStorage.setItem("selectedUserId", $(user).attr('data-user-id'));
+  console.log($(user).attr('data-user-id'));
+  location.href = '../USER-PROFILE';
 }
