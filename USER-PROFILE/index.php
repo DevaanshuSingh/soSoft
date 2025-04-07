@@ -1,6 +1,6 @@
 <?php
 require_once '../CONNECTION/config.php';
-print_r($_GET);
+// print_r($_GET);
 // $myId = $_GET['selectedUserId'];
 $myId = 2;
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
@@ -32,11 +32,11 @@ if ($user) {
     <body>
 
         <div class="product-name">
-            <button class="goToMain btn btn-info" >View Socity</button>
+            <button class="goToMain btn btn-info">View Socity</button>
             <div class="software-name">CNAT's SoSOFT</div>
         </div>
 
-        <div class="main-container">
+        <div class="main-container ">
             <div class="full-image">
                 <div class="cross-part text-white position-absolute">
                     <h1>X</h1>
@@ -48,7 +48,7 @@ if ($user) {
                 <div class="infos">
                     <div class="first-col info-cols">
                         <!-- <img src="../MEDIA/c.jpg" alt=""> -->
-                        <img src=".<?php
+                        <img src="<?php
                                     echo $user[0]['profile_picture'];
                                     ?>" alt="">
                     </div>
@@ -73,7 +73,11 @@ if ($user) {
                     $x = 0;
                     foreach ($allFeatures as $feature) {
                         ++$x;
-                        echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
+                        if ($feature['featureName'] == "Be Friends") {
+                            echo "<button class='more-me be-friend-btn' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
+                        } else {
+                            echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
+                        }
                     }
                     ?>
                 </div>
@@ -82,9 +86,15 @@ if ($user) {
             <section class="get-contents mt-5"></section>
         </div>
 
+        <script src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script>
+
+            
+$(".product-name .goToMain").on("click", function () {
+    location.href = "../MAIN";
+});
             let selectedUsers = null;
             document.querySelectorAll("header .btn").forEach(button => {
                 button.addEventListener("click", function() {

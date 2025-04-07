@@ -88,6 +88,8 @@ if ($me) {
                     $x = 0;
                     foreach ($allFeatures as $feature) {
                         ++$x;
+                        // if($x==4)
+                        //     continue;
                         echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                     }
                     ?>

@@ -52,7 +52,7 @@ function btnClicked(btn) {
 
     $.ajax({
         type: 'POST',
-        url: `GET-CONTENTS/content${buttonClicked}.php`,
+        url: `../GET-CONTENTS/content${buttonClicked}.php`,
         success: function(response) {
             $('.get-contents').html(response);
         },
