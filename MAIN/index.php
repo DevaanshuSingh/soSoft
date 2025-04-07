@@ -62,9 +62,17 @@ session_start();
                         <div class='user-profile-name'><strong>" . $user['userName'] . "</strong></div>
                       </div>";
               }
+<<<<<<< HEAD
               // echo "<div class='user-profile' data-user-id=" . $user['id'] . " onclick='selecteduser(this)'>
               //           Waiting
               //         </div>";
+=======
+              echo "<div class='user-profile' data-user-id=" . $user['id'] . " onclick='selecteduser(this)'>
+                        // <div class='user-profile-pic'> <img src='" . $user['profile_picture'] . "' alt='" . $user['userName'] . "'> </div>
+                        // <div class='user-profile-name'><strong>" . $user['userName'] . "</strong></div>
+                        Waiting
+                      </div>";
+>>>>>>> 9e50e8c79357c65bcae6630a2fd85f0b32bbba6e
             } catch (PDOException $e) {
               echo "Error While Registering:<br>" . $e->getMessage();
             }

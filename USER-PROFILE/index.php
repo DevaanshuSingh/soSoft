@@ -1,6 +1,10 @@
 <?php
 require_once '../CONNECTION/config.php';
+<<<<<<< HEAD
 // print_r($_GET);
+=======
+print_r($_GET);
+>>>>>>> 9e50e8c79357c65bcae6630a2fd85f0b32bbba6e
 // $myId = $_GET['selectedUserId'];
 $myId = 2;
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
@@ -32,7 +36,11 @@ if ($user) {
     <body>
 
         <div class="product-name">
+<<<<<<< HEAD
             <button class="goToMain btn btn-info">View Socity</button>
+=======
+            <button class="goToMain btn btn-info" >View Socity</button>
+>>>>>>> 9e50e8c79357c65bcae6630a2fd85f0b32bbba6e
             <div class="software-name">CNAT's SoSOFT</div>
         </div>
 
