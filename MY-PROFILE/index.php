@@ -15,7 +15,7 @@ $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
 $_SESSION['myId'] = $myId;
 if ($me) {
-    print_r($me);
+    // print_r($me);
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -68,13 +68,13 @@ if ($me) {
             <section class="about-mine m-0 mb-5">
                 <div class="infos">
                     <div class="first-col info-cols">
-                        <!-- <img src="../MEDIA/c.jpg" alt=""> -->
-                         <!-- CHECK WHY IMAGE IS NOT FOUND -->
                         <img src="<?php echo $me['profile_picture']; ?>" alt="">
                     </div>
                     <div class="second-col info-cols">
                         <div class="full-name name">
                             <header>Full Name</header>
+                            <main><span><?php echo $me['fullName']; ?></span></main>
+
                             </div>
 
                         <div class="bio name">
@@ -88,8 +88,8 @@ if ($me) {
                     $x = 0;
                     foreach ($allFeatures as $feature) {
                         ++$x;
-                        // if($x==4)
-                        //     continue;
+                        if($feature['featureName'] == "Be Friends")
+                            continue;
                         echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                     }
                     ?>

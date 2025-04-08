@@ -47,7 +47,9 @@ function toggleMySection() {
 }
 
 function selecteduser(user) {
-  sessionStorage.setItem("selectedUserId", $(user).attr('data-user-id'));
+  // sessionStorage.setItem("selectedUserId", $(user).attr('data-user-id'));
   console.log($(user).attr('data-user-id'));
+
+  document.cookie = `selectedUserId = ${$(user).attr('data-user-id')}; path=/`;
   location.href = '../USER-PROFILE';
 }

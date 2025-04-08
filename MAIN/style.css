@@ -59,7 +59,7 @@ html{
     justify-content: center;
     font-size: 4.1vmin;
 }.inside-menu>.menu-body {
-    /* border: 1px solid GOLD; */
+    border: 1px solid GOLD;
     height: 95%;
     width: 100%;
 }.container-fluid {
@@ -114,7 +114,7 @@ html{
     font-size: 3.5vmin;
     /* background-color: red; */
 }.users {
-    /* background-color: BLUE; */
+    background-color: rgba(180, 219, 147, 0.253);
     height: 32.5%;
     width: 100%;
     display: flex;

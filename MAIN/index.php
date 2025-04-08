@@ -57,22 +57,14 @@ session_start();
               foreach ($allUsers as $user) {
                 if ($user['id'] == $myId)
                   continue;
-                echo "<div class='user-profile' data-user-id=" . $user['id'] . " onclick='selecteduser(this)'>
+                echo "<div class='user-profile' data-user-id='" . $user['id'] . "' onclick='selecteduser(this)'>
                         <div class='user-profile-pic'> <img src='" . $user['profile_picture'] . "' alt='" . $user['userName'] . "'> </div>
                         <div class='user-profile-name'><strong>" . $user['userName'] . "</strong></div>
                       </div>";
               }
-<<<<<<< HEAD
               // echo "<div class='user-profile' data-user-id=" . $user['id'] . " onclick='selecteduser(this)'>
               //           Waiting
               //         </div>";
-=======
-              echo "<div class='user-profile' data-user-id=" . $user['id'] . " onclick='selecteduser(this)'>
-                        // <div class='user-profile-pic'> <img src='" . $user['profile_picture'] . "' alt='" . $user['userName'] . "'> </div>
-                        // <div class='user-profile-name'><strong>" . $user['userName'] . "</strong></div>
-                        Waiting
-                      </div>";
->>>>>>> 9e50e8c79357c65bcae6630a2fd85f0b32bbba6e
             } catch (PDOException $e) {
               echo "Error While Registering:<br>" . $e->getMessage();
             }
@@ -122,11 +114,6 @@ session_start();
 
       </div>
     </div>
-
-    <!-- Hidden Form For Sending Data(selectedUserId) To USER-PROFILE -->
-    <!-- <form action="../USER-PROFILE" method="get" id="hiddenForm">
-      <input type="hidden" name="selectedUserId" id="selectedUser">
-    </form> -->
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>

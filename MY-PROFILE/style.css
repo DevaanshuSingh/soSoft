@@ -25,7 +25,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* background-color: rgba(255, 0, 0, 0.323); */
+    background-color: rgba(107, 219, 191, 0.323);
     padding: 0 2%;
     font-size: clamp(1rem, 2vmin, 2.5rem);
     z-index: 100;
