@@ -1,4 +1,3 @@
-
 let buttonClicked = null;
 function btnClicked(btn) {
     buttonClicked = btn.value;
@@ -7,10 +6,10 @@ function btnClicked(btn) {
     $.ajax({
         type: 'POST',
         url: `../GET-CONTENTS/content${buttonClicked}.php`,
-        success: function(response) {
+        success: function (response) {
             $('.get-contents').html(response);
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             console.error("AJAX Error: ", error);
         }
     });
