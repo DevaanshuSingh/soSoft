@@ -204,7 +204,7 @@ body {
     border: 1px solid rgb(94, 255, 0);
     font-weight: 500;
 }.get-contents{
-    border: 1px solid GOLD;
+    /* border: 1px solid GOLD; */
     width: 100%;
     max-height: 100vh;
     display: flex;
@@ -342,4 +342,86 @@ body {
     height: 100%;
     width: 40%;
     border: 1px solid GREEN;
+}
+
+
+
+/*Content-About*/
+.about-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: rgba(245, 245, 245, 0.493);
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    font-family: Georgia, serif;
+}
+
+.about-title {
+    text-align: center;
+    color: #4b0082;
+}
+/* 
+.about-user {
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+    background-color: rgb(84 253 161 / 51%);
+}
+
+.about-user-flex {
+    display: flex;
+    align-items: center;
+}
+
+.about-user-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.about-user-name {
+    margin: 0;
+    color: #2e8b57;
+} */
+
+.about-user {
+    border-bottom: 1px dashed #999;
+    padding: 25px;
+    margin-bottom: 25px;
+    /* background: linear-gradient(to right, rgba(173, 255, 189, 0.4), rgba(194, 255, 244, 0.5)); */
+    background-color: rgb(84 253 161 / 51%);
+
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.about-user:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.about-user-flex {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.about-user-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-right: 20px;
+    /* border: 3px solid #11e40a; */
+    border: 3px solid rgb(84 253 161 / 51%);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.about-user-name {
+    margin: 0 0 10px 0;
+    color: #146c43;
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
 }

@@ -12,7 +12,6 @@ if (isset($_COOKIE['selectedUserId'])) {
     $stmt->execute([]);
     $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
-    // print_r($user);
     if ($user) {
 
 ?>
