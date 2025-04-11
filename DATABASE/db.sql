@@ -26,6 +26,12 @@ CREATE TABLE `myFeatures` (
   `featureName` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 );
+INSERT INTO myFeatures(featureName)VALUES
+('Friends')
+,('Posts')
+,('About')
+,('Be Friends');
+
 CREATE TABLE `myFriends` (
   `id` BIGINT(11) NOT NULL AUTO_INCREMENT,
   `myId` BIGINT NOT NULL,
