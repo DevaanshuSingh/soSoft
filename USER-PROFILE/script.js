@@ -6,6 +6,9 @@ function btnClicked(btn) {
     $.ajax({
         type: 'POST',
         url: `../GET-CONTENTS/content${buttonClicked}.php`,
+        data: {
+            my: false
+        },
         success: function (response) {
             $('.get-contents').html(response);
         },

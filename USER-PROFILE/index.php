@@ -107,8 +107,6 @@ if (isset($_COOKIE['selectedUserId'])) {
                     });
                 });
 
-
-
                 $(".product-name .goToMain").on("click", function() {
                     location.href = "../MAIN";
                 });

@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 
 require_once '../CONNECTION/config.php';
 // print_r($_GET);
@@ -35,7 +35,7 @@ if ($me) {
 
         <div class="product-name">
             <!-- <button class="goToMain btn btn-info" data-user-id="<?php echo  $myId; ?>">View Socity</button> -->
-            <button class="goToMain btn btn-info" >View Socity</button>
+            <button class="goToMain btn btn-info">View Socity</button>
             <div class="software-name">CNAT's SoSOFT</div>
         </div>
 
@@ -75,7 +75,7 @@ if ($me) {
                             <header>Full Name</header>
                             <main><span><?php echo $me['fullName']; ?></span></main>
 
-                            </div>
+                        </div>
 
                         <div class="bio name">
                             <header>Bio</header>
@@ -88,7 +88,7 @@ if ($me) {
                     $x = 0;
                     foreach ($allFeatures as $feature) {
                         ++$x;
-                        if($feature['featureName'] == "Be Friends")
+                        if ($feature['featureName'] == "Be Friends")
                             continue;
                         echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                     }
@@ -121,6 +121,28 @@ if ($me) {
                     });
                 });
             });
+
+            let buttonClicked = null;
+
+            function btnClicked(btn) {
+
+                buttonClicked = btn.value;
+                console.log(buttonClicked);
+
+                $.ajax({
+                    type: 'POST',
+                    url: `../GET-CONTENTS/content${buttonClicked}.php`,
+                    data: {
+                        my: true
+                    },
+                    success: function(response) {
+                        $('.get-contents').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("AJAX Error: ", error);
+                    }
+                });
+            }
         </script>
     </body>
 
