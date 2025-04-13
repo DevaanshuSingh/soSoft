@@ -133,7 +133,7 @@ if ($me) {
                     type: 'POST',
                     url: `../GET-CONTENTS/content${buttonClicked}.php`,
                     data: {
-                        my: true
+                        showAbout: '<?php echo $myId;?>'
                     },
                     success: function(response) {
                         $('.get-contents').html(response);

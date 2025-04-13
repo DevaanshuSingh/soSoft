@@ -1,17 +1,12 @@
 <?php
 $userId=0;
-session_start();
-if ($_POST['my']) {
-    $userId = $_SESSION['myId'];
+if ($_POST['showAbout']) {
+    $userId=$_POST['showAbout'];
 }
-elseif(!$_POST['my']) {
-    $userId = $_COOKIE['selectedUserId'];
-}
-elseif(empty($_POST['my'])){
-    echo "SBSR";
+else{
+    echo "Please Select User";
     die();
 }
-
 
 require_once '../CONNECTION/config.php';
 
@@ -19,7 +14,6 @@ $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$userId]);
 $about = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// echo $userId;echo '<link rel="stylesheet" type="text/css" href="about-style.css">';
 echo '<div class="about-container">
 <h2 class="about-title">🌼 About 🌼</h2>';
 

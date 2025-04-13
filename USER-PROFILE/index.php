@@ -143,6 +143,27 @@ if (isset($_COOKIE['selectedUserId'])) {
                         $(".full-image img").attr("src", "");
                     });
                 });
+
+                let buttonClicked = null;
+
+                function btnClicked(btn) {
+                    buttonClicked = btn.value;
+                    console.log(buttonClicked);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: `../GET-CONTENTS/content${buttonClicked}.php`,
+                        data: {
+                            showAbout: '<?php echo $userId;?>'
+                        },
+                        success: function(response) {
+                            $('.get-contents').html(response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("AJAX Error: ", error);
+                        }
+                    });
+                }
             </script>
         </body>
 
