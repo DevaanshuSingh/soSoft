@@ -1,18 +1,18 @@
 <?php
 session_start();
 // print_r($_SESSION);
-  require_once '../CONNECTION/config.php';
-  $myId = $_SESSION['myId'];
+require_once '../CONNECTION/config.php';
+$myId = $_SESSION['myId'];
 // print_r($_POST);
 
-  $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
-  $stmt->execute([$myId]);
-  $me = $stmt->fetch();
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
+$stmt->execute([$myId]);
+$me = $stmt->fetch();
 
-  $get = $pdo->prepare("SELECT * FROM users;");
-  $get->execute();
-  $allUsers = $get->fetchAll();
-  if ($me && $allUsers) {
+$get = $pdo->prepare("SELECT * FROM users;");
+$get->execute();
+$allUsers = $get->fetchAll();
+if ($me && $allUsers) {
 ?>
 
   <!doctype html>
@@ -35,10 +35,61 @@ session_start();
       <div class="menu-button">
         <i id="menuToggler" onclick="toggleMenu()" class="ri-arrow-right-circle-line menu-icon"></i>
       </div>
-
       <div class="inside-menu">
-        <div class="menu-heading">Codernaccotax</div>
-        <div class="menu-body"></div>
+        <div class="menu-heading"><span class="name"><u>Codernaccotax</u></span></div>
+        <div class="menu-body">
+          <div class="menu-options">
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+            <div class="menu-option">My Profile</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -117,6 +168,13 @@ session_start();
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('.menu-option').on('click',function(){
+          alert($(this).html());
+        });
+      });
+    </script>
   </body>
 
   </html>
