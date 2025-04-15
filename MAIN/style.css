@@ -15,12 +15,12 @@ body::-webkit-scrollbar {
     /* transition: all 2s cubic-bezier(0.6, -0.28, 0.74, 0.05); */
     scrollbar-width: none;       /* Firefox हेतु */
     -ms-overflow-style: none;    /* Internet Explorer हेतु */
-
 }
 
 *::selection {
     background-color: rgba(0, 0, 255, 0.13);
 }
+
 
 body {
     height: 100vh;
@@ -100,7 +100,6 @@ body {
 }
 
 .menu-options {
-    /* border: 1px solid BLUE; */
     height: 100%;
     width: 100%;
     display: flex;
@@ -110,10 +109,17 @@ body {
     overflow: scroll;
 }
 .menu-option{
+    border-top: 1px solid rgba(0, 0, 255, 0.295);
     height: 5vh;
     width: 100%;
     margin-top: 5%;
     cursor: pointer;
+    padding: 0 0 0 50%;
+    &>a{
+        text-decoration: none;
+        color: black;
+        text-transform: uppercase;
+    }
 }
 .menu-option:hover{
     background-color: rgba(127, 255, 212, 0.295);

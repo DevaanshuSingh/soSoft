@@ -39,55 +39,9 @@ if ($me && $allUsers) {
         <div class="menu-heading"><span class="name"><u>Codernaccotax</u></span></div>
         <div class="menu-body">
           <div class="menu-options">
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
-            <div class="menu-option">My Profile</div>
+            <div class="menu-option mt-5"><a href="../MY-PROFILE/">My Profile</a></div>
+            <div class="menu-option"><a href="../MY-PROFILE/">My Profile</a></div>
+            <div class="menu-option"><a href="../MY-PROFILE/">My Profile</a></div>
           </div>
         </div>
       </div>
@@ -169,9 +123,9 @@ if ($me && $allUsers) {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script>
-      $(document).ready(function(){
-        $('.menu-option').on('click',function(){
-          alert($(this).html());
+      $(document).ready(function() {
+        $('.menu-option').on('click', function() {
+          console.log($(this).html());
         });
       });
     </script>
