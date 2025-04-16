@@ -56,7 +56,10 @@ if ($me) {
                         <p><i>NEW UPDATES COMING SOON.......</i></p>
                     </div>
                 </div>
-                <main class="d-flex align-items-center"></main>
+                <main class="d-flex align-items-center ">
+                    <form>
+                    </form>
+                </main>
                 <div class="side-bars right-bar">
                     <div class="right-bar-content inside-side-bar d-flex flex-column align-items-center justify-content-center">
                         <strong><i>USE THIS SOFTWARE TO LET IT GROW,</i></strong>
