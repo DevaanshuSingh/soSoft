@@ -57,7 +57,14 @@ if ($me) {
                     </div>
                 </div>
                 <main class="d-flex align-items-center ">
-                    <form>
+                    <form id="post-form">
+                        <div class="form-field">
+                            <label for="postText">Enter POST Content</label>
+                            <input type="textbox" id="postText">
+                        </div>
+                        <div class="form-field">
+                            <button>SEND SOCIAL</button>
+                        </div>
                     </form>
                 </main>
                 <div class="side-bars right-bar">
