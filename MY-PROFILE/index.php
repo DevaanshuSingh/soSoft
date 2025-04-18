@@ -59,11 +59,11 @@ if ($me) {
                 <main class="d-flex align-items-center ">
                     <form id="post-form">
                         <div class="form-field">
-                            <label for="postText">Enter POST Content</label>
-                            <input type="textbox" id="postText">
+                            <label class="col-12 text-center" for="postText">Enter POST Content</label>
+                            <input class="col-12" type="textbox" id="postText">
                         </div>
                         <div class="form-field">
-                            <button>SEND SOCIAL</button>
+                            <button class="h-10 w-80">SEND SOCIAL</button>
                         </div>
                     </form>
                 </main>
