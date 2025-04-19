@@ -25,11 +25,19 @@ if ($me && $allUsers) {
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
   </head>
 
   <body>
-    <div class="product-name"><strong class="text-primary">CNAT's SOSOFT</strong></div>
+    <div class="product-name"><strong class="text-primary">
+        <!-- <div class="product-name"><strong class="text-primary"><i class="ri-arrow-right-s-line"></i> -->
+        <!-- <div class="product-name"><strong class="text-primary"><i class="ri-arrow-right-line"></i> -->
+
+        CNAT's SOSOFT</strong></div>
 
     <div class="menu">
       <div class="menu-button">
@@ -39,9 +47,12 @@ if ($me && $allUsers) {
         <div class="menu-heading"><span class="name"><u>Codernaccotax</u></span></div>
         <div class="menu-body">
           <div class="menu-options">
-            <div class="menu-option mt-5"><a href="../MY-PROFILE/">My Profile</a></div>
-            <div class="menu-option"><a href="../MY-PROFILE/">My Profile</a></div>
-            <div class="menu-option"><a href="../MY-PROFILE/">My Profile</a></div>
+            <div class="menu-option mt-5"><span class="arrow"><i class="ri-arrow-right-line"></i>
+              </span><span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span></div>
+            <div class="menu-option"><span class="arrow"><i class="ri-arrow-right-line"></i>
+              </span><span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span></div>
+            <div class="menu-option"><span class="arrow"><i class="ri-arrow-right-line"></i>
+              </span><span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span></div>
           </div>
         </div>
       </div>
