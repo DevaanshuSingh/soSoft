@@ -47,12 +47,18 @@ if ($me && $allUsers) {
         <div class="menu-heading"><span class="name"><u>Codernaccotax</u></span></div>
         <div class="menu-body">
           <div class="menu-options">
-            <div class="menu-option mt-5"><span class="arrow"><i class="ri-arrow-right-line"></i>
-              </span><span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span></div>
-            <div class="menu-option"><span class="arrow"><i class="ri-arrow-right-line"></i>
-              </span><span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span></div>
-            <div class="menu-option"><span class="arrow"><i class="ri-arrow-right-line"></i>
-              </span><span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span></div>
+            <div class="menu-option mt-5">
+              <span class="arrow"><i class="ri-arrow-right-line"></i></span>
+              <span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span>
+            </div>
+            <div class="menu-option">
+              <span class="arrow"><i class="ri-arrow-right-line"></i></span>
+              <span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span>
+            </div>
+            <div class="menu-option">
+              <span class="arrow"><i class="ri-arrow-right-line"></i></span>
+              <span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span>
+            </div>
           </div>
         </div>
       </div>
