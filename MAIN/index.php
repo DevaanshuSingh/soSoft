@@ -9,9 +9,13 @@ $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$myId]);
 $me = $stmt->fetch();
 
-$get = $pdo->prepare("SELECT * FROM users;");
-$get->execute();
-$allUsers = $get->fetchAll();
+$users = $pdo->prepare("SELECT * FROM users;");
+$users->execute();
+$allUsers = $users->fetchAll();
+
+$posts = $pdo->prepare("SELECT * FROM posts;");
+$posts->execute();
+$posts = $posts->fetchAll();
 if ($me && $allUsers) {
 ?>
 
@@ -47,17 +51,17 @@ if ($me && $allUsers) {
         <div class="menu-heading"><span class="name"><u>Codernaccotax</u></span></div>
         <div class="menu-body">
           <div class="menu-options">
-            <div class="menu-option mt-5">
+            <div onclick="location.href='../MY-PROFILE/'" class="menu-option mt-5">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
-              <span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span>
+              <span class="setting-option ms-2">My Profile</span>
             </div>
-            <div class="menu-option">
+            <div onclick="location.href='../ABOUT/'" class="menu-option">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
-              <span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span>
+              <span class="setting-option ms-2">About</span>
             </div>
-            <div class="menu-option">
+            <div onclick="location.href='../CONTACT/'" class="menu-option">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
-              <span class="setting-option"><a href="../MY-PROFILE/">My Profile</a></span>
+              <span class="setting-option ms-2">Contact</span>
             </div>
           </div>
         </div>
@@ -97,6 +101,7 @@ if ($me && $allUsers) {
         <div class="my-section">Self_Section</div>
 
         <div class="content m-1">
+          <div class="owner"></div>
           <div class="post">
             <div class="main-post">
               <span>
@@ -133,6 +138,28 @@ if ($me && $allUsers) {
             </div>
           </div>
         </div>
+
+        <?php
+
+        foreach($posts as $post){
+          echo '<div class="content m-1">
+          <div class="post">
+            <div class="main-post">
+              <span>'.$post['content'].'</span>
+            </div>
+            <div class="interact-with-post">
+              <span class="interact-icons border-end border-1 border-dark ">
+                <i class="reaction-icons ri-heart-fill text-danger"></i>
+              </span>
+
+              <span class="interact-icons border-start border-1 border-dark">
+                <i class="reaction-icons ri-chat-upload-fill"></i>
+              </span>
+            </div>
+          </div>
+        </div>';
+        }
+        ?>
 
       </div>
     </div>

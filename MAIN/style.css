@@ -85,15 +85,14 @@ body {
 }.inside-menu>.menu-heading >.name{
     text-decoration: underline;
     text-decoration-thickness: thin;
-    width: vw;
+    width: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: "Roboto Condensed", sans-serif;
     font-optical-sizing: auto;
     font-weight: 394;
     font-style: normal;
-    /* background-color: black; */
-    /* border-bottom: .5px solid black; */
-    /* border-bottom-left-radius: 20%;
-    border-bottom-right-radius: 20%; */
 }
   
 
@@ -120,18 +119,23 @@ body {
     overflow: scroll;
 }
 .menu-option{
-    border-top: 1px solid rgba(0, 0, 255, 0.295);
+    /* border-bottom: .4px solid rgba(251, 255, 0, 0.438); */
     height: 5vh;
     width: 100%;
     margin-top: 5%;
     cursor: pointer;
     padding: 0 0 0 50%;
-    /* background-color: blue; */
     display: flex;
     align-items: center;
     padding-left: 50%;
+    gap: 5%;
 }
-.menu-option>.setting-option{
+.menu-option>.arrow{
+    display: none;
+    /* transition: all 2s ease !important; */
+    transition: display 2s ease, visibility 0.2s ease;
+
+}.menu-option>.setting-option{
     &>a{
         text-decoration: none;
         color: black;
@@ -139,8 +143,12 @@ body {
     }
 }
 .menu-option:hover{
-    background-color: rgba(127, 255, 212, 0.295);
     transition: all .1s ease;
+    background-color: rgba(127, 255, 212, 0.295);
+
+    &>.arrow{
+        display: flex !important;
+    }
 }
 
 .menu-options::-webkit-scrollbar {
@@ -206,10 +214,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* font-size:larger; */
     font-family: 'Times New Roman', Times, serif;
     font-size: 3.5vmin;
-    /* background-color: red; */
 }
 
 .users {
@@ -220,6 +226,8 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    scroll-snap-type: x mandatory;
+    -webkit-mouse-wheel:horizontal;
 }
 
 .show-user-profile-section {
