@@ -101,7 +101,11 @@ if ($me && $allUsers) {
         <div class="my-section">Self_Section</div>
 
         <div class="content m-1">
-          <div class="owner"></div>
+          <div class="post-owner">
+            <div class="post-owner-name">Post By: SBSR</div>
+            <div class="post-owner-profile"> <button>Visit Profile</button> </div>
+          </div>
+
           <div class="post">
             <div class="main-post">
               <span>
@@ -121,6 +125,11 @@ if ($me && $allUsers) {
           </div>
         </div>
         <div class="content m-1">
+          <div class="post-owner">
+            <div class="post-owner-name">Post By: SBSR</div>
+            <div class="post-owner-profile"> <button>Visit Profile</button> </div>
+          </div>
+
           <div class="post">
             <div class="main-post">
               <span>
@@ -141,11 +150,17 @@ if ($me && $allUsers) {
 
         <?php
 
-        foreach($posts as $post){
+        foreach ($posts as $post) {
           echo '<div class="content m-1">
+
+          <div class="post-owner">
+            <div class="post-owner-name">Post By: '.$post['user_name'].'</div>
+            <div class="post-owner-profile"> <button data-profile-value="'.$post['id'].'">Visit Profile</button> </div>
+          </div>
+          
           <div class="post">
             <div class="main-post">
-              <span>'.$post['content'].'</span>
+              <span>' . $post['content'] . '</span>
             </div>
             <div class="interact-with-post">
               <span class="interact-icons border-end border-1 border-dark ">

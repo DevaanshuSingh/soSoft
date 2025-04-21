@@ -153,6 +153,10 @@ if ($me) {
                     }
                 });
             }
+
+            $('#post-form').on("sibmit",function(){
+                
+            });
         </script>
     </body>
 
