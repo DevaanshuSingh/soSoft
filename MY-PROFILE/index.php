@@ -60,10 +60,11 @@ if ($me) {
                     <form id="post-form">
                         <div class="form-field">
                             <label class="col-12 text-center" for="postText">Enter POST Content</label>
-                            <input class="col-12" type="textbox" id="postText">
+                            <textarea value="sbsr" class="col-12 form-control h-10" id="postText"></textarea>
+
                         </div>
                         <div class="form-field">
-                            <button class="h-10 w-80">SEND SOCIAL</button>
+                            <button class="h-10 w-80 post-btn">SEND SOCIAL</button>
                         </div>
                     </form>
                 </main>
@@ -143,7 +144,7 @@ if ($me) {
                     type: 'POST',
                     url: `../GET-CONTENTS/content${buttonClicked}.php`,
                     data: {
-                        showAbout: '<?php echo $myId;?>'
+                        showAbout: '<?php echo $myId; ?>'
                     },
                     success: function(response) {
                         $('.get-contents').html(response);
@@ -154,8 +155,37 @@ if ($me) {
                 });
             }
 
-            $('#post-form').on("sibmit",function(){
-                
+            $('#postText').on('input', function() {
+                if ($('#postText').val().trim() !== "") {
+                    $('.post-btn').prop('disabled', false);
+                    $('.post-btn').css('opacity', '1');
+                    // $('.post-btn').css('border', 'none');
+                    $('.post-btn').css('border', '1px solid green');
+                } else {
+                    $('.post-btn').prop('disabled', true);
+                    $('.post-btn').css('opacity', '0.2');
+                    $('.post-btn').css('border', '1px solid red');
+                }
+            });
+            $('#post-form').on("submit", function(event) {
+                event.preventDefault();
+                postMessage = $('#postText').val();
+                let id = <?php echo $_SESSION['myId']; ?>;
+                $.ajax({
+                    url: 'updatePost.php',
+                    type: 'post',
+                    data: {
+                        id: <?php echo $_SESSION['myId']; ?>,
+                        postValue: postMessage
+                    },
+                    success: function(response) {
+                        response = JSON.parse(response);
+                        alert(`Response: ${response.message}`);
+                    },
+                    error: function(response) {
+                        alert(`Error: ${response}`);
+                    }
+                });
             });
         </script>
     </body>
