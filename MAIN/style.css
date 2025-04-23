@@ -440,10 +440,27 @@ body {
     font-size: 2rem !important;
 }
 
-.my-section {
-    /* background-color: rgba(77, 153, 104, 0.664); */
+/* .my-section {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    background: linear-gradient(45deg, rgba(252, 211, 77, 0.2), rgba(252, 165, 165, 0.2), rgba(165, 243, 252, 0.2));
+    border: 01px solid rgba(248, 113, 113, 0.475);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1% .5% 1% .5%;
+} */
+
+
+.my-section {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(45deg, rgba(252, 211, 77, 0.2), rgba(252, 165, 165, 0.2), rgba(165, 243, 252, 0.2));
+    border: 1px solid rgba(248, 113, 113, 0.475);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1% 0.5%;
+    /* height: fit-content; */
+    margin-top: 2rem;
+    transition: height 0.4s ease;
 }

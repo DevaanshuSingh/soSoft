@@ -3,8 +3,12 @@
 if (isset($_POST['id'], $_POST['postValue'])) {
     require_once '../CONNECTION/config.php';
 
-    $stmt = $pdo->prepare("INSERT INTO posts(user_id, content)VALUES(?,?)");
-    $stmt->execute([$_POST['id'], $_POST['postValue']]);
+    $stmt = $pdo->prepare("SELECT userName FROM users WHERE id= ?");
+    $stmt->execute([$_POST['id']]);
+    $userName = $stmt->fetchColumn();
+
+    $stmt = $pdo->prepare("INSERT INTO posts(user_id, user_name,content)VALUES(?,?,?)");
+    $stmt->execute([$_POST['id'], $userName, $_POST['postValue']]);
 
     $returnResponse = array();
     if ($stmt) {

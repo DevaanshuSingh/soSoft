@@ -41,10 +41,15 @@
                 die("No file uploaded or there was an upload error.");
             }
 
-            $stmt = $pdo->prepare("INSERT INTO users (fullName, userName, userPassword, bio, location, dob, interests, profile_picture,email) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)");
+            $stmt = $pdo->prepare("SELECT COUNT(id) FROM users;");
+            $stmt->execute();
+            $userRegSeriolNo = $stmt->fetchColumn();
+            
+            $stmt = $pdo->prepare("INSERT INTO users (userRegSeriolNo, fullName, userName, userPassword, bio, location, dob, interests, profile_picture,email) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)");
 
-            if ($stmt->execute([$fullName, $userName, $userPassword, $bio, $location, $dob, $intrests, $imagePath, $email])) {
-                echo "<script>alert('Registration successful " . $email . "')
+            if ($stmt->execute([$userRegSeriolNo, $fullName, $userName, $userPassword, $bio, $location, $dob, $intrests, $imagePath, $email])) {
+                echo "<script>
+                        alert('Registration successful " . $email . "');
                         window.location.href = 'index.php';
                     </script>";
             } else {

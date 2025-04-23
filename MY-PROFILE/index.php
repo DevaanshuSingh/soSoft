@@ -47,7 +47,7 @@ if ($me) {
                 <img src="" alt="">
             </div>
 
-            <button tabindex="0" role="button" class="postNow" id="goSocialBtn">Go Social</button>
+            <button tabindex="0" role="button" class="postNow" id="goSocialBtn"><span class="text-primary"><i class="ri-arrow-up-box-line"></i></span></button>
             <section class="post-section">
                 <span class="text-white closePostSection" tabindex="0" role="button">X</span>
                 <div class="side-bars left-bar">
@@ -60,7 +60,7 @@ if ($me) {
                     <form id="post-form">
                         <div class="form-field">
                             <label class="col-12 text-center" for="postText">Enter POST Content</label>
-                            <textarea value="sbsr" class="col-12 form-control h-10" id="postText"></textarea>
+                            <textarea class="col-12 form-control h-10" id="postText"></textarea>
 
                         </div>
                         <div class="form-field">
@@ -114,6 +114,39 @@ if ($me) {
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="script.js"></script>
         <script>
+            // $('#postText').on('input', function() {
+            if ($('#postText').val().trim() !== "") {
+                $('.post-btn').prop('disabled', false);
+                $('.post-btn').css('opacity', '1');
+                // $('.post-btn').css('border', 'none');
+                $('.post-btn').css('border', '1px solid green');
+            } else {
+                $('.post-btn').prop('disabled', true);
+                $('.post-btn').css('opacity', '0.2');
+                $('.post-btn').css('border', '1px solid red');
+            }
+            //  });
+
+            $('#post-form').on("submit", function(event) {
+                event.preventDefault();
+                postMessage = $('#postText').val();
+                let id = <?php echo $_SESSION['myId']; ?>;
+                $.ajax({
+                    url: 'updatePost.php',
+                    type: 'post',
+                    data: {
+                        id: <?php echo $_SESSION['myId']; ?>,
+                        postValue: postMessage
+                    },
+                    success: function(response) {
+                        response = JSON.parse(response);
+                        alert(`Response: ${response.message}`);
+                    },
+                    error: function(response) {
+                        alert(`Error: ${response}`);
+                    }
+                });
+            });
             let selectedUsers = null;
             document.querySelectorAll("header .btn").forEach(button => {
                 button.addEventListener("click", function() {
@@ -134,7 +167,6 @@ if ($me) {
             });
 
             let buttonClicked = null;
-
             function btnClicked(btn) {
 
                 buttonClicked = btn.value;
@@ -155,18 +187,6 @@ if ($me) {
                 });
             }
 
-            $('#postText').on('input', function() {
-                if ($('#postText').val().trim() !== "") {
-                    $('.post-btn').prop('disabled', false);
-                    $('.post-btn').css('opacity', '1');
-                    // $('.post-btn').css('border', 'none');
-                    $('.post-btn').css('border', '1px solid green');
-                } else {
-                    $('.post-btn').prop('disabled', true);
-                    $('.post-btn').css('opacity', '0.2');
-                    $('.post-btn').css('border', '1px solid red');
-                }
-            });
             $('#post-form').on("submit", function(event) {
                 event.preventDefault();
                 postMessage = $('#postText').val();
@@ -180,7 +200,10 @@ if ($me) {
                     },
                     success: function(response) {
                         response = JSON.parse(response);
-                        alert(`Response: ${response.message}`);
+                        if (response.success === true) {
+                            $('#postText').val("");
+                            alert(`Response: ${response.message}`);
+                        }
                     },
                     error: function(response) {
                         alert(`Error: ${response}`);
