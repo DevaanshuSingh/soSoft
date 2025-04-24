@@ -114,18 +114,18 @@ if ($me) {
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="script.js"></script>
         <script>
-            // $('#postText').on('input', function() {
-            if ($('#postText').val().trim() !== "") {
-                $('.post-btn').prop('disabled', false);
-                $('.post-btn').css('opacity', '1');
-                // $('.post-btn').css('border', 'none');
-                $('.post-btn').css('border', '1px solid green');
-            } else {
-                $('.post-btn').prop('disabled', true);
-                $('.post-btn').css('opacity', '0.2');
-                $('.post-btn').css('border', '1px solid red');
-            }
-            //  });
+            $('#postText').on('input', function() {
+                if ($('#postText').val().trim() !== "") {
+                    $('.post-btn').prop('disabled', false);
+                    $('.post-btn').css('opacity', '1');
+                    // $('.post-btn').css('border', 'none');
+                    $('.post-btn').css('border', '1px solid green');
+                } else {
+                    $('.post-btn').prop('disabled', true);
+                    $('.post-btn').css('opacity', '0.2');
+                    $('.post-btn').css('border', '1px solid red');
+                }
+            });
 
             $('#post-form').on("submit", function(event) {
                 event.preventDefault();
@@ -147,6 +147,7 @@ if ($me) {
                     }
                 });
             });
+
             let selectedUsers = null;
             document.querySelectorAll("header .btn").forEach(button => {
                 button.addEventListener("click", function() {
@@ -167,6 +168,7 @@ if ($me) {
             });
 
             let buttonClicked = null;
+
             function btnClicked(btn) {
 
                 buttonClicked = btn.value;
