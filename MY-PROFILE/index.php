@@ -118,7 +118,6 @@ if ($me) {
                 if ($('#postText').val().trim() !== "") {
                     $('.post-btn').prop('disabled', false);
                     $('.post-btn').css('opacity', '1');
-                    // $('.post-btn').css('border', 'none');
                     $('.post-btn').css('border', '1px solid green');
                 } else {
                     $('.post-btn').prop('disabled', true);
@@ -126,45 +125,16 @@ if ($me) {
                     $('.post-btn').css('border', '1px solid red');
                 }
             });
-
-            $('#post-form').on("submit", function(event) {
-                event.preventDefault();
-                postMessage = $('#postText').val();
-                let id = <?php echo $_SESSION['myId']; ?>;
-                $.ajax({
-                    url: 'updatePost.php',
-                    type: 'post',
-                    data: {
-                        id: <?php echo $_SESSION['myId']; ?>,
-                        postValue: postMessage
-                    },
-                    success: function(response) {
-                        response = JSON.parse(response);
-                        alert(`Response: ${response.message}`);
-                    },
-                    error: function(response) {
-                        alert(`Error: ${response}`);
-                    }
-                });
-            });
-
-            let selectedUsers = null;
-            document.querySelectorAll("header .btn").forEach(button => {
-                button.addEventListener("click", function() {
-                    selectedUsers = this.value;
-                    // alert("Button Clicked "+selectedUsers);
-                    $.ajax({
-                        type: 'POST',
-                        url: 'get-info.php',
-                        data: {
-                            user: selectedUsers
-                        },
-                        success: function(response) {
-                            $('table tbody').html("Response Is: " + response);
-                            $('#myTable').DataTable();
-                        }
-                    });
-                });
+            $('.post-btn').on('click', function() {
+                if ($('#postText').val().trim() !== "") {
+                    $('.post-btn').prop('disabled', false);
+                    $('.post-btn').css('opacity', '1');
+                    $('.post-btn').css('border', '1px solid green');
+                } else {
+                    $('.post-btn').prop('disabled', true);
+                    $('.post-btn').css('opacity', '0.2');
+                    $('.post-btn').css('border', '1px solid red');
+                }
             });
 
             let buttonClicked = null;
@@ -214,7 +184,7 @@ if ($me) {
             });
         </script>
     </body>
-
+    
     </html>
 <?php
 } else {

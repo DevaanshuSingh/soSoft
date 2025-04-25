@@ -105,12 +105,9 @@ try {
         if ($userInfo) {
             $_SESSION["myId"] =$userInfo['id'];
 
-            echo "<form id='submitTheForm' action='../MY-PROFILE' method='POST'>
-                    </form>";
             echo "<script>
                     correctInput();
-                    // alert(" . $loggedId . ");
-                    document.querySelector('#submitTheForm').submit();
+                    location.href='../MY-PROFILE';
                 </script>";
         } else {
             echo "<script>

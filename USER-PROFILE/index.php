@@ -89,23 +89,24 @@ if (isset($_COOKIE['selectedUserId'])) {
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
             <script>
-                //Should Be In Script.js File:
-
+   
                 $('.be-friend-btn').on("click", function() {
-                    $.ajax({
-                        type: 'post',
-                        url: '../BE-FRIENDS',
-                        data: {
-                            user: buttonClicked
-                        },
-                        success: function(response) {
-                            alert(response);
-                        },
-                        // error: function(xhr, status, error) {
-                        //     alert("त्रुटि हुई: " + error);
-                        // }
-                    });
+                        $.ajax({
+                            type: 'POST',
+                            url: '../BE-FRIENDS',
+                            data: {
+                                user: buttonClicked
+                            },
+                            contentType: 'application/x-www-form-urlencoded',
+                            success: function(response) {
+                                alert(response);
+                            },
+                            error: function(xhr, status, error) {
+                                alert("त्रुटि हुई: " + error);
+                            }
+                        });
                 });
+
 
                 $(".product-name .goToMain").on("click", function() {
                     location.href = "../MAIN";
@@ -145,7 +146,6 @@ if (isset($_COOKIE['selectedUserId'])) {
                 });
 
                 let buttonClicked = null;
-
                 function btnClicked(btn) {
                     buttonClicked = btn.value;
                     console.log(buttonClicked);
@@ -154,7 +154,7 @@ if (isset($_COOKIE['selectedUserId'])) {
                         type: 'POST',
                         url: `../GET-CONTENTS/content${buttonClicked}.php`,
                         data: {
-                            showAbout: '<?php echo $userId;?>'
+                            showAbout: '<?php echo $userId; ?>'
                         },
                         success: function(response) {
                             $('.get-contents').html(response);
