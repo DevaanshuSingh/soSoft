@@ -27,6 +27,7 @@ if ($me && $allUsers) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SoSoft</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../MEDIA/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,6 +69,10 @@ if ($me && $allUsers) {
             <div onclick="openContactSection()" class="menu-option">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
               <span class="setting-option ms-2">Contact</span>
+            </div>
+            <div onclick="showSettings()" class="menu-option">
+              <span class="arrow"><i class="ri-arrow-right-line"></i></span>
+              <span class="setting-option ms-2">Settings</span>
             </div>
           </div>
         </div>

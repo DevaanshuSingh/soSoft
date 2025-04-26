@@ -13,7 +13,6 @@ if (isset($_COOKIE['selectedUserId'])) {
     $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
     if ($user) {
-
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -29,12 +28,10 @@ if (isset($_COOKIE['selectedUserId'])) {
         </head>
 
         <body>
-
             <div class="product-name">
                 <button class="goToMain btn btn-info">View Socity</button>
                 <div class="software-name">CNAT's SoSOFT</div>
             </div>
-
             <div class="main-container ">
                 <div class="full-image">
                     <div class="cross-part text-white position-absolute">
@@ -46,7 +43,6 @@ if (isset($_COOKIE['selectedUserId'])) {
                 <section class="about-user m-0 mb-5">
                     <div class="infos">
                         <div class="first-col info-cols">
-                            <!-- <img src="../MEDIA/c.jpg" alt=""> -->
                             <img src="<?php
                                         echo $user[0]['profile_picture'];
                                         ?>" alt="">
@@ -85,28 +81,30 @@ if (isset($_COOKIE['selectedUserId'])) {
                 <section class="get-contents mt-5"></section>
             </div>
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
             <script src="script.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
             <script>
-   
-                $('.be-friend-btn').on("click", function() {
-                        $.ajax({
-                            type: 'POST',
-                            url: '../BE-FRIENDS',
-                            data: {
-                                user: buttonClicked
-                            },
-                            contentType: 'application/x-www-form-urlencoded',
-                            success: function(response) {
-                                alert(response);
-                            },
-                            error: function(xhr, status, error) {
-                                alert("त्रुटि हुई: " + error);
-                            }
-                        });
-                });
+                let buttonClicked = null;
 
+                $('.be-friend-btn').on("click", function() {
+                    buttonClicked = String(buttonClicked);
+                    const secret="'SomethingMakeSecretKey";
+
+                    let encrypt=CryptoJS.AES.encrypt(buttonClicked,secret).toString();
+                    alert(encrypt);
+                    document.cookie = `friendId=${encrypt}; path=/BE-FRIENDS;`;
+                    $.ajax({
+                        url: '../BE-FRIENDS',
+                        success: function(response){
+                            alert(`Response: `);
+                        },
+                        error: function(){
+                            alert(error());
+                        }
+                    });
+                });
 
                 $(".product-name .goToMain").on("click", function() {
                     location.href = "../MAIN";
@@ -145,7 +143,6 @@ if (isset($_COOKIE['selectedUserId'])) {
                     });
                 });
 
-                let buttonClicked = null;
                 function btnClicked(btn) {
                     buttonClicked = btn.value;
                     console.log(buttonClicked);

@@ -26,9 +26,7 @@ function toggleMenu() {
     document.querySelector(".inside-menu").style.transition = "opacity 1.5s ease-in-out";
     isMenuOpen = true;
   }
-}
-
-let isMySectionOpen = true;
+} let isMySectionOpen = true;
 function toggleMySection() {
   if (isMenuOpen === true) {
     document.querySelector(".my-section").style.height = "0";
@@ -44,13 +42,16 @@ function toggleMySection() {
     isMenuOpen = true;
   }
 
-}
-
-function selecteduser(user) {
+} function selecteduser(user) {
   document.cookie = `selectedUserId = ${user}; path=/`;
   location.href = '../USER-PROFILE';
+} function openContactSection() {
+  $('.contact-section').toggle();
 }
 
-function openContactSection(){
-  $('.contact-section').toggle();
+
+function showSettings() {
+  alert(`SBSR`);
+  var offcanvas = new bootstrap.Offcanvas(document.getElementById('#settingsOffcanvas'));
+  offcanvas.show();
 }

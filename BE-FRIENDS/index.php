@@ -1,6 +1,13 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    print_r($_POST);
+
+if (isset($_COOKIE['friendId'])) {
+
+    $cookieValue = $_COOKIE['friendId'];
+    echo "Cookie value: " . $cookieValue;
+
+    // if (setcookie("friendId", "", time() - 3600, "/BE-FRIENDS")) {}
+    echo $_COOKIE['friendId'];
 } else {
-    echo "No POST data received.".$_SERVER['REQUEST_METHOD'];
+    echo "Cookie not found.";
 }
+?>

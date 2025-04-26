@@ -59,7 +59,7 @@ if ($me) {
                 <main class="d-flex align-items-center ">
                     <form id="post-form">
                         <div class="form-field">
-                            <label class="col-12 text-center" for="postText">Enter POST Content</label>
+                            <label class="col-12 text-center" for="postText">What You Want To Post Socially,</label>
                             <textarea class="col-12 form-control h-10" id="postText"></textarea>
 
                         </div>
