@@ -1,4 +1,3 @@
-
 let isMenuOpen = true;
 function toggleMenu() {
   if (isMenuOpen === true) {
@@ -48,8 +47,6 @@ function toggleMySection() {
 } function openContactSection() {
   $('.contact-section').toggle();
 }
-
-
 function showSettings() {
   alert(`SBSR`);
   var offcanvas = new bootstrap.Offcanvas(document.getElementById('#settingsOffcanvas'));

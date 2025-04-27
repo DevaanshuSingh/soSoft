@@ -105,7 +105,6 @@ if ($me && $allUsers) {
             ?>
           </div>
         </div>
-
         <div class="my-section">Self_Section</div>
 
         <div class="allposts">
@@ -119,7 +118,7 @@ if ($me && $allUsers) {
                 <div class="post-owner-name">Post By: ' . $post['user_name'] . '</div>
                 <div class="post-owner-profile" > <button onclick="selecteduser(' . $post['user_id'] . ')" data-user-id="' . $post['user_id'] . '">Visit Profile</button> </div>
               </div>
-              
+
               <div class="post">
                 <div class="main-post">
                   <span>' . $post['content'] . '</span>

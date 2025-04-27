@@ -69,6 +69,7 @@ if (isset($_COOKIE['selectedUserId'])) {
                         foreach ($allFeatures as $feature) {
                             ++$x;
                             if ($feature['featureName'] == "Be Friends") {
+                                // echo "<button class='more-me be-friend-btn' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                                 echo "<button class='more-me be-friend-btn' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                             } else {
                                 echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
@@ -80,6 +81,20 @@ if (isset($_COOKIE['selectedUserId'])) {
 
                 <section class="get-contents mt-5"></section>
             </div>
+            <button type="hidden" class="btn btn-primary d-none" id="liveToastBtn">Show live toast</button>
+
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast bg-primary" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
+                    <div class="toast-header bg-transparent">
+                        <strong class="me-auto">SBSR</strong>
+                        <small>SBSR</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        SBSR
+                    </div>
+                </div>
+            </div>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
             <script src="script.js"></script>
@@ -88,23 +103,26 @@ if (isset($_COOKIE['selectedUserId'])) {
             <script>
                 let buttonClicked = null;
 
-                $('.be-friend-btn').on("click", function() {
-                    buttonClicked = String(buttonClicked);
-                    const secret="'SomethingMakeSecretKey";
+                function reqSuccess(msg) {
+                    let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+                    toast.show();
+                }
 
-                    let encrypt=CryptoJS.AES.encrypt(buttonClicked,secret).toString();
-                    alert(encrypt);
-                    document.cookie = `friendId=${encrypt}; path=/BE-FRIENDS;`;
+                function beFriends() {
                     $.ajax({
+                        type: 'GET',
                         url: '../BE-FRIENDS',
-                        success: function(response){
-                            alert(`Response: `);
+                        success: function(response) {
+                            response = JSON.parse(response);
+                            if (response.success === true) {
+                                reqSuccess(response.message);
+                            }
                         },
-                        error: function(){
+                        error: function() {
                             alert(error());
                         }
                     });
-                });
+                }
 
                 $(".product-name .goToMain").on("click", function() {
                     location.href = "../MAIN";
@@ -146,6 +164,9 @@ if (isset($_COOKIE['selectedUserId'])) {
                 function btnClicked(btn) {
                     buttonClicked = btn.value;
                     console.log(buttonClicked);
+                    if (buttonClicked == 4) {
+                        beFriends();
+                    }
 
                     $.ajax({
                         type: 'POST',
@@ -160,6 +181,8 @@ if (isset($_COOKIE['selectedUserId'])) {
                             console.error("AJAX Error: ", error);
                         }
                     });
+
+                    return;
                 }
             </script>
         </body>

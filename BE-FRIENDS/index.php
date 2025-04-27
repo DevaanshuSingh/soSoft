@@ -1,13 +1,32 @@
 <?php
+session_start();
 
-if (isset($_COOKIE['friendId'])) {
+if (isset($_COOKIE['selectedUserId'])) {
 
-    $cookieValue = $_COOKIE['friendId'];
-    echo "Cookie value: " . $cookieValue;
+    $requestedFriendId = $_COOKIE['selectedUserId'];
+    $myId = $_SESSION["myId"];
 
-    // if (setcookie("friendId", "", time() - 3600, "/BE-FRIENDS")) {}
-    echo $_COOKIE['friendId'];
+    try {
+        require_once '../CONNECTION/config.php';
+        
+            $stmt = $pdo->prepare("INSERT INTO friend_requests (requested_from_id, requested_to_id) 
+            VALUES (?, ?);");
+            $returnArray=Array();
+            if($stmt->execute([$myId,$requestedFriendId])){
+                $returnArray['success']=true;
+                $returnArray['message']="Requested Succesfully";
+            }
+            else{
+                $returnArray['success']=false;
+                $returnArray['message']="Failed To Requesting For Becoming Friend";
+            }
+
+            echo json_encode($returnArray);
+    } catch (PDOException $e) {
+        echo "Error While Requestiong To Be Friend:<br>" . $e->getMessage();
+    }
+    
+    setcookie("selectedUserId", "", time() - 3600, "/BE-FRIENDS");
 } else {
     echo "Cookie not found.";
 }
-?>
