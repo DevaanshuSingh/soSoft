@@ -28,6 +28,7 @@ body {
     display: grid;
     grid-template-columns: 20% 80%;
     overscroll-behavior: none;
+    background-color: gold;
 }
 
 .product-name {
@@ -181,6 +182,88 @@ body {
     display: inline-block;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
+
+
+.all-settings {
+    height: 100vh;
+    width: 100vw;
+    /* border: 1px solid blue; */
+    background-color: rgba(0, 0, 0, 0.489);
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 200;
+    display: flex;
+}
+
+.all-settings>.settings-list {
+    max-height: 80%;
+    min-height: 40%;
+    width: 80%;
+    /* background-color: rgba(255, 217, 0, 0.234); */
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 2vh !important;
+    border: 2px solid black;
+    background-color: rgba(0, 0, 0, 0.62);
+
+
+}
+.setting{
+    margin: 1% 0 1% 0 !important;
+    background-color: rgba(255, 255, 255, 0.173);
+    color: GOLD;
+}
+
+.all-settings > .settings-list > .theme {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.theme .header {
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.theme .boxes {
+    /* flex: 1; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 0.5rem;
+    background-color: rgba(0, 0, 255, 0);
+    overflow: scroll;
+    max-height: 20vh;
+}
+
+.theme .box {
+    border-radius: 4px;
+    height: 5vh;
+}
+
+.shortcuts.setting {
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.shortcuts.setting table.shortcuts {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+
+
+
 
 .menu-option>.arrow {
     display: none;

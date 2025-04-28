@@ -1,19 +1,41 @@
-<div class="content m-1">
-    <div class="post">
-        <div class="main-post">
-            <span>
-                <img src="../MEDIA/codernaccotax.png">
-                <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, qui recusandae eligendi pariatur molestiae veritatis adipisci magnam ad saepe voluptate nostrum necessitatibus sint culpa. Quisquam, rerum dignissimos iste asperiores incidunt laborum natus facere commodi deleniti? Mollitia cumque eveniet dolorum quaerat ducimus, voluptate molestias quas dolore minima officia nesciunt eligendi magni nam quibusdam earum expedita magnam? Officia inventore necessitatibus nobis sint sed, laudantium sequi accusamus consectetur odit labore vel hic, ab mollitia nihil corrupti. Odio doloremque molestiae aperiam, officiis, obcaecati ipsum suscipit distinctio libero recusandae perferendis inventore sapiente quisquam aliquid cum nam iste pariatur optio eligendi similique sunt labore deserunt exercitationem? Sit nisi similique, commodi magni voluptatem repellat ullam labore temporibus necessitatibus, quos perspiciatis voluptate fuga a excepturi. Provident, eaque? Cum, iusto! Dolorum modi cum laborum tempora, ad odit molestiae aliquam vitae amet laudantium quisquam quaerat optio! Corporis veritatis, dolor velit aut earum excepturi doloremque alias iusto, ducimus, molestias recusandae impedit in modi! Cumque voluptatum labore, molestiae praesentium sit aut repudiandae sint ex dolorum dolore laboriosam saepe nisi quos eaque dolores. Officiis inventore, explicabo eos cum natus incidunt possimus, soluta rerum veritatis repellendus voluptate eveniet nam vel perspiciatis aperiam perferendis? Exercitationem aperiam sapiente doloribus quo ad mollitia laudantium possimus pariatur distinctio, nulla quis. In quis suscipit deleniti sit cum, tempora similique nesciunt impedit recusandae eveniet rem laborum neque alias deserunt. Molestiae error labore nulla vero! Tempora esse iste id eum ducimus alias voluptate, ipsam ad tenetur itaque! Similique placeat rerum temporibus aspernatur vero sunt tempora asperiores, nostrum saepe architecto cum est dignissimos veniam voluptatem! Nobis incidunt, odio id fugiat nesciunt doloremque accusamus blanditiis iure obcaecati voluptatem in enim quaerat veniam quae sint. Fugit totam dolore iste odit perspiciatis architecto accusantium odio aperiam, nemo perferendis ex, error corrupti tempore necessitatibus cum quidem saepe dolores quisquam similique in. Perferendis minima at alias, vitae porro deserunt illo asperiores ut adipisci ipsa dolorem explicabo sed possimus ipsam maiores optio placeat dolores sint dignissimos. Magnam facilis nulla maxime quae praesentium nostrum iure quos, laborum dignissimos eius, error fuga qui. Atque architecto delectus dolorem quam quisquam fugit. Dignissimos nesciunt rem ad recusandae, illum, modi dolore magni veritatis vel omnis impedit doloremque architecto, delectus ut ea eum explicabo quod ipsum! Saepe molestiae quis alias aliquam repudiandae quas ab illo. Tenetur cupiditate, odio dolor accusamus ratione saepe temporibus a itaque modi impedit neque nostrum vel dignissimos velit reiciendis, quidem sit suscipit iure? Dolores nesciunt sit, optio iusto labore, rem voluptatum quae deleniti aperiam ea ipsam ipsum impedit recusandae accusantium minima adipisci corporis fuga. Illum atque nemo provident adipisci itaque ratione deleniti non repellat rerum tenetur doloribus, laudantium vero ipsa enim vitae autem obcaecati soluta sit. A inventore dolorum quia excepturi, ipsum ut, totam reprehenderit eveniet necessitatibus quis enim non unde qui modi doloremque, corporis velit laboriosam quos expedita temporibus! Fuga, debitis. Quae laboriosam rem sed veritatis laborum accusantium perferendis asperiores aspernatur exercitationem voluptatum eum, aliquid excepturi dolorum totam ut soluta aperiam, dolorem quis suscipit eveniet fugit quisquam? Vel, harum temporibus facilis quia dignissimos fugit illo magnam eveniet deleniti. Placeat. -->
-            </span>
-        </div>
-        <div class="interact-with-post">
-            <span class="interact-icons border-end border-1 border-dark ">
-                <i class="reaction-icons ri-heart-fill text-danger"></i>
-            </span>
+<?php
 
-            <span class="interact-icons border-start border-1 border-dark">
-                <i class="reaction-icons ri-chat-upload-fill"></i>
-            </span>
-        </div>
-    </div>
-</div>
+if (isset($_POST['showAbout'])) {
+  require_once '../CONNECTION/config.php';
+
+  $userId = $_POST['showAbout'];
+  $stmt = $pdo->prepare("SELECT * FROM posts WHERE user_Id =?;");
+  $stmt->execute([$userId]);
+  $userPosts = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
+?>
+  <?php
+  if (empty($userPosts)) {
+    echo "<span style='width: 80vw; position:relative; top: 5%; left: 5%;'>No Posts Yet Please <a href='../MY-PROFILE/' class='text-success'><b>POST</b></a></span>";
+  } else {
+    foreach ($userPosts as $post) {
+      echo '<div class="content mt-2">
+                <div class="post-owner">
+                    <div class="post-owner-name">Post By: ' . $post['user_name'] . '</div>
+                </div>
+                <div class="post">
+                    <div class="main-post">
+                        <span>' . $post['content'] . '</span>
+                      </div>
+                    <div class="interact-with-post">
+                          <span class="interact-icons border-end border-1 border-dark ">
+                              <i class="reaction-icons ri-heart-fill text-danger"></i>
+                          </span>
+                          <span class="interact-icons border-start border-1 border-dark">
+                              <i class="reaction-icons ri-chat-upload-fill"></i>
+                          </span>   
+                    </div>
+                </div>
+            </div>';
+    }
+  }
+  ?>
+
+<?php
+} else {
+  echo "Pleaes Select Correct User";
+}

@@ -23,7 +23,9 @@ if (isset($_COOKIE['selectedUserId'])) {
                     <title>User Profile</title>
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
                     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
-
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,394;1,394&family=Tagesschrift&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
                     <link rel="stylesheet" href="style.css">
         </head>
 
@@ -40,7 +42,7 @@ if (isset($_COOKIE['selectedUserId'])) {
                     <img src="" alt="">
                 </div>
 
-                <section class="about-user m-0 mb-5">
+                <section class="about-user mb-5">
                     <div class="infos">
                         <div class="first-col info-cols">
                             <img src="<?php
@@ -78,20 +80,21 @@ if (isset($_COOKIE['selectedUserId'])) {
                         ?>
                     </div>
                 </section>
-
-                <section class="get-contents mt-5"></section>
+            
+                <section class="get-contents ">
+                    <div class="allposts"> </div>
+                </section>
             </div>
             <button type="hidden" class="btn btn-primary d-none" id="liveToastBtn">Show live toast</button>
 
             <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="liveToast" class="toast bg-primary" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
                     <div class="toast-header bg-transparent">
-                        <strong class="me-auto">SBSR</strong>
-                        <small>SBSR</small>
+                        <strong class="me-auto text-danger">SUCCESSFULL</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                        SBSR
+                        Friend Request Sent Successfully
                     </div>
                 </div>
             </div>
@@ -172,7 +175,7 @@ if (isset($_COOKIE['selectedUserId'])) {
                         type: 'POST',
                         url: `../GET-CONTENTS/content${buttonClicked}.php`,
                         data: {
-                            showAbout: '<?php echo $userId; ?>'
+                            showAbout: '<?php echo $userId; ?>',
                         },
                         success: function(response) {
                             $('.get-contents').html(response);
@@ -185,6 +188,12 @@ if (isset($_COOKIE['selectedUserId'])) {
                     return;
                 }
             </script>
+
+        </body>
+
+        </html>
+
+        </script>
         </body>
 
         </html>

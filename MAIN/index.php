@@ -50,6 +50,81 @@ if ($me && $allUsers) {
         <span>example@gmail.com</span>
       </div>
     </div>
+
+    <div class="all-settings">
+      <div class="settings-list">
+
+        <div class="theme setting">
+          <div class="header">Theme</div>
+          <div class="boxes">
+            <div class="box setTheme" value="Yellow" style="background-color:rgb(221, 237, 46);"></div>
+            <div class="box setTheme" value="Skyblue" style="background-color:rgb(52, 152, 219);"></div>
+            <div class="box setTheme" value="Orange" style="background-color:rgb(241, 196, 15);"></div>
+            <div class="box setTheme" value="Light Green" style="background-color:rgb(46, 204, 113);"></div>
+            <div class="box setTheme" value="Violet" style="background-color:rgb(155, 89, 182);"></div>
+          </div>
+        </div>
+
+
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+          <div id="liveToast" class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
+            <div class="toast-header bg-transparent">
+              <strong class="me-auto text-danger">Theme Changed</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              <span id="theme-name"></span> Theme,
+            </div>
+          </div>
+        </div>
+
+        <div class="shortcuts setting">
+          <table class="shortcuts">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Shortcut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Open new chat</td>
+                <td>Ctrl + Shift + O</td>
+              </tr>
+              <tr>
+                <td>Focus chat input</td>
+                <td>Shift + Esc</td>
+              </tr>
+              <tr>
+                <td>Copy last code block</td>
+                <td>Ctrl + Shift + ;</td>
+              </tr>
+              <tr>
+                <td>Copy last response</td>
+                <td>Ctrl + Shift + C</td>
+              </tr>
+              <tr>
+                <td>Set custom instructions</td>
+                <td>Ctrl + Shift + I</td>
+              </tr>
+              <tr>
+                <td>Toggle sidebar</td>
+                <td>Ctrl + Shift + S</td>
+              </tr>
+              <tr>
+                <td>Delete chat</td>
+                <td>Ctrl + Shift + (Envelope Icon)</td>
+              </tr>
+              <tr>
+                <td>Show shortcuts</td>
+                <td>Ctrl + /</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
     <div class="menu">
       <div class="menu-button">
         <i id="menuToggler" onclick="toggleMenu()" class="ri-arrow-right-circle-line menu-icon"></i>
@@ -62,10 +137,10 @@ if ($me && $allUsers) {
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
               <span class="setting-option ms-2">My Profile</span>
             </div>
-            <div onclick="location.href='../ABOUT/'" class="menu-option">
+            <!-- <div onclick="location.href='../ABOUT/'" class="menu-option">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
               <span class="setting-option ms-2">About</span>
-            </div>
+            </div> -->
             <div onclick="openContactSection()" class="menu-option">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
               <span class="setting-option ms-2">Contact</span>
@@ -140,9 +215,20 @@ if ($me && $allUsers) {
       </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script>
+      $(document).ready(function() {
+        $('.setTheme').on('click', function() {
+          var selectedValue = $(this).attr('value');
+          var backgroundColor = $(this).css('background-color');
+          $('#theme-name').html(selectedValue);
+          var toast = new bootstrap.Toast($('#liveToast')[0]);
+          toast.show();
+        });
+      });
+
       $(document).ready(function() {
         let expanded = false;
         $('.my-section').on('click', function() {
@@ -164,6 +250,11 @@ if ($me && $allUsers) {
           console.log($(this).html());
         });
       });
+
+      // function reqSuccess(msg) {
+      //   let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+      //   toast.show();
+      // }
     </script>
   </body>
 
