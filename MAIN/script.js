@@ -1,3 +1,5 @@
+// document.querySelector('.menu').backgroundColor = "GOLD";
+
 let isMenuOpen = true;
 function toggleMenu() {
   if (isMenuOpen === true) {

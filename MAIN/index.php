@@ -16,6 +16,10 @@ $allUsers = $users->fetchAll();
 $posts = $pdo->prepare("SELECT * FROM posts;");
 $posts->execute();
 $posts = $posts->fetchAll();
+setcookie('bcg', 'blue', time() + (86400 * 30), "/");
+
+$bcg_value = isset($_COOKIE['bcg']) ? $_COOKIE['bcg'] : 'BLACK';
+
 if ($me && $allUsers) {
 ?>
 
@@ -52,78 +56,76 @@ if ($me && $allUsers) {
     </div>
 
     <div class="all-settings">
-      <div class="settings-list">
-
-        <div class="theme setting">
-          <div class="header">Theme</div>
-          <div class="boxes">
-            <div class="box setTheme" value="Yellow" style="background-color:rgb(221, 237, 46);"></div>
-            <div class="box setTheme" value="Skyblue" style="background-color:rgb(52, 152, 219);"></div>
-            <div class="box setTheme" value="Orange" style="background-color:rgb(241, 196, 15);"></div>
-            <div class="box setTheme" value="Light Green" style="background-color:rgb(46, 204, 113);"></div>
-            <div class="box setTheme" value="Violet" style="background-color:rgb(155, 89, 182);"></div>
-          </div>
-        </div>
-
-
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-          <div id="liveToast" class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
-            <div class="toast-header bg-transparent">
-              <strong class="me-auto text-danger">Theme Changed</strong>
-              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-              <span id="theme-name"></span> Theme,
+      <header>X</header>
+      <main>
+        <div class="settings-list">
+          <div class="theme setting">
+            <div class="header">Theme</div>
+            <div class="boxes">
+              <div class="box setTheme" value="None" onclick="sbsr(this)" style="background-color:rgba(255, 255, 255, 0.48);"></div>
+              <div class="box setTheme" value="Yellow" onclick="sbsr(this)" style="background-color:rgb(221, 237, 46);"></div>
+              <div class="box setTheme" value="Skyblue"  onclick="sbsr(this)"style="background-color:rgb(52, 152, 219);"></div>
+              <div class="box setTheme" value="Red"  onclick="sbsr(this)"style="background-color:rgb(255, 0, 0);"></div>
+              <div class="box setTheme" value="Light Green" onclick="sbsr(this)" style="background-color:rgb(46, 204, 113);"></div>
+              <div class="box setTheme" value="Black" onclick="sbsr(this)" style="background-color:rgb(0, 0, 0);"></div>
+              <div class="box setTheme" value="Violet"  onclick="sbsr(this)"style="background-color:rgb(155, 89, 182);"></div>
             </div>
           </div>
-        </div>
+
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
+              <div class="toast-header bg-transparent">
+                <strong class="me-auto text-danger">Theme Changed</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                <span id="theme-name"></span> Theme,
+              </div>
+            </div>
+          </div>
 
         <div class="shortcuts setting">
           <table class="shortcuts">
-            <thead>
-              <tr>
-                <th>Action</th>
-                <th>Shortcut</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Open new chat</td>
-                <td>Ctrl + Shift + O</td>
-              </tr>
-              <tr>
-                <td>Focus chat input</td>
-                <td>Shift + Esc</td>
-              </tr>
-              <tr>
-                <td>Copy last code block</td>
-                <td>Ctrl + Shift + ;</td>
-              </tr>
-              <tr>
-                <td>Copy last response</td>
-                <td>Ctrl + Shift + C</td>
-              </tr>
-              <tr>
-                <td>Set custom instructions</td>
-                <td>Ctrl + Shift + I</td>
-              </tr>
-              <tr>
-                <td>Toggle sidebar</td>
-                <td>Ctrl + Shift + S</td>
-              </tr>
-              <tr>
-                <td>Delete chat</td>
-                <td>Ctrl + Shift + (Envelope Icon)</td>
-              </tr>
-              <tr>
-                <td>Show shortcuts</td>
-                <td>Ctrl + /</td>
-              </tr>
-            </tbody>
-          </table>
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Shortcut</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Open new chat</td>
+                  <td>Ctrl + Shift + O</td>
+                </tr>
+                <tr>
+                  <td>Focus chat input</td>
+                  <td>Shift + Esc</td>
+                </tr>
+                <tr>
+                  <td>Copy last code block</td>
+                  <td>Ctrl + Shift + ;</td>
+                </tr>
+                <tr>
+                  <td>Copy last response</td>
+                  <td>Ctrl + Shift + C</td>
+                </tr>
+                <tr>
+                  <td>Set custom instructions</td>
+                  <td>Ctrl + Shift + I</td>
+                </tr>
+                <tr>
+                  <td>Toggle sidebar</td>
+                  <td>Ctrl + Shift + S</td>
+                </tr>
+                <tr>
+                  <td>Delete chat</td>
+                  <td>Ctrl + Shift + (Envelope Icon)</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
-
-      </div>
+        </div>
+      </main>
     </div>
     <div class="menu">
       <div class="menu-button">
@@ -138,9 +140,9 @@ if ($me && $allUsers) {
               <span class="setting-option ms-2">My Profile</span>
             </div>
             <!-- <div onclick="location.href='../ABOUT/'" class="menu-option">
-              <span class="arrow"><i class="ri-arrow-right-line"></i></span>
-              <span class="setting-option ms-2">About</span>
-            </div> -->
+                                <span class="arrow"><i class="ri-arrow-right-line"></i></span>
+                                <span class="setting-option ms-2">About</span>
+                              </div> -->
             <div onclick="openContactSection()" class="menu-option">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
               <span class="setting-option ms-2">Contact</span>
@@ -219,15 +221,23 @@ if ($me && $allUsers) {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script>
-      $(document).ready(function() {
-        $('.setTheme').on('click', function() {
-          var selectedValue = $(this).attr('value');
-          var backgroundColor = $(this).css('background-color');
+      if (bcgFromPhp) {
+        console.log(bcgFromPhp);
+        $('body').css('background-color', bcgFromPhp);
+      } else {
+        alert("bcgFromPhp Not Found");
+      }
+
+        function sbsr(colorBox) {
+          var selectedValue = $(colorBox).attr('value');
+          var backgroundColor = $(colorBox).css('background-color');
           $('#theme-name').html(selectedValue);
           var toast = new bootstrap.Toast($('#liveToast')[0]);
           toast.show();
-        });
-      });
+          document.cookie = "bcg=" + encodeURIComponent(backgroundColor) + "; path=/";
+          $('body').css('background-color', backgroundColor);
+        }
+      
 
       $(document).ready(function() {
         let expanded = false;

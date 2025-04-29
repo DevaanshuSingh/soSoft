@@ -4,7 +4,6 @@ html {
 
 body::-webkit-scrollbar {
     display: none;
-
 }
 
 * {
@@ -28,7 +27,7 @@ body {
     display: grid;
     grid-template-columns: 20% 80%;
     overscroll-behavior: none;
-    background-color: gold;
+    /* background-color: rgb(155, 89, 182) !important; */
 }
 
 .product-name {
@@ -50,7 +49,7 @@ body {
 
 .menu {
     height: 100vh;
-    background-color: rgba(131, 112, 112, 0.5);
+    background-color: rgba(131, 112, 112, 0.815);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -133,7 +132,7 @@ body {
     height: 100vh;
     width: 100vw;
     border: 1px solid black;
-    background-color: rgba(0, 0, 0, 0.634);
+    background-color: rgba(0, 0, 0, 0.512);
     position: fixed;
     align-items: center;
     justify-content: center;
@@ -183,9 +182,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-
-
 .all-settings {
     height: 100vh;
     width: 100vw;
@@ -199,11 +195,29 @@ body {
     display: flex;
 }
 
-.all-settings>.settings-list {
+.all-settings>header {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+    color: red;
+}
+
+.all-settings>main {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.all-settings>main>.settings-list {
     max-height: 80%;
     min-height: 40%;
     width: 80%;
-    /* background-color: rgba(255, 217, 0, 0.234); */
     overflow: scroll;
     display: flex;
     align-items: center;
@@ -215,13 +229,14 @@ body {
 
 
 }
-.setting{
+
+.setting {
     margin: 1% 0 1% 0 !important;
     background-color: rgba(255, 255, 255, 0.173);
     color: GOLD;
 }
 
-.all-settings > .settings-list > .theme {
+.all-settings>main>.settings-list>.theme {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -259,11 +274,6 @@ body {
     width: 100%;
     border-collapse: collapse;
 }
-
-
-
-
-
 
 .menu-option>.arrow {
     display: none;
@@ -317,7 +327,7 @@ body {
 .main-container {
     height: 100%;
     width: 100%;
-    background-color: rgba(131, 112, 112, 0.226);
+    background-color: rgba(131, 112, 112, 0.834);
 }
 
 .menu>.menu-button {
