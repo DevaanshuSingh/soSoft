@@ -16,9 +16,9 @@ $allUsers = $users->fetchAll();
 $posts = $pdo->prepare("SELECT * FROM posts;");
 $posts->execute();
 $posts = $posts->fetchAll();
-setcookie('bcg', 'blue', time() + (86400 * 30), "/");
+// setcookie('bcg', 'blue', time() + (86400 * 30), "/");
 
-$bcg_value = isset($_COOKIE['bcg']) ? $_COOKIE['bcg'] : 'BLACK';
+// $bcg_value = isset($_COOKIE['bcg']) ? $_COOKIE['bcg'] : 'BLACK';
 
 if ($me && $allUsers) {
 ?>
@@ -56,19 +56,19 @@ if ($me && $allUsers) {
     </div>
 
     <div class="all-settings">
-      <header>X</header>
+      <header><span onclick="toggleSettings(true)">X</span></header>
       <main>
         <div class="settings-list">
           <div class="theme setting">
             <div class="header">Theme</div>
             <div class="boxes">
-              <div class="box setTheme" value="None" onclick="sbsr(this)" style="background-color:rgba(255, 255, 255, 0.48);"></div>
-              <div class="box setTheme" value="Yellow" onclick="sbsr(this)" style="background-color:rgb(221, 237, 46);"></div>
-              <div class="box setTheme" value="Skyblue"  onclick="sbsr(this)"style="background-color:rgb(52, 152, 219);"></div>
-              <div class="box setTheme" value="Red"  onclick="sbsr(this)"style="background-color:rgb(255, 0, 0);"></div>
-              <div class="box setTheme" value="Light Green" onclick="sbsr(this)" style="background-color:rgb(46, 204, 113);"></div>
-              <div class="box setTheme" value="Black" onclick="sbsr(this)" style="background-color:rgb(0, 0, 0);"></div>
-              <div class="box setTheme" value="Violet"  onclick="sbsr(this)"style="background-color:rgb(155, 89, 182);"></div>
+              <div class="box setTheme" value="None" onclick="updateBcg(this)" style="background-color:rgba(255, 255, 255, 0.48);"></div>
+              <div class="box setTheme" value="Yellow" onclick="updateBcg(this)" style="background-color:rgb(221, 237, 46);"></div>
+              <div class="box setTheme" value="Skyblue" onclick="updateBcg(this)" style="background-color:rgb(52, 152, 219);"></div>
+              <div class="box setTheme" value="Red" onclick="updateBcg(this)" style="background-color:rgb(255, 0, 0);"></div>
+              <div class="box setTheme" value="Light Green" onclick="updateBcg(this)" style="background-color:rgb(46, 204, 113);"></div>
+              <div class="box setTheme" value="Black" onclick="updateBcg(this)" style="background-color:rgb(0, 0, 0);"></div>
+              <div class="box setTheme" value="Violet" onclick="updateBcg(this)" style="background-color:rgb(155, 89, 182);"></div>
             </div>
           </div>
 
@@ -84,8 +84,8 @@ if ($me && $allUsers) {
             </div>
           </div>
 
-        <div class="shortcuts setting">
-          <table class="shortcuts">
+          <div class="shortcuts setting">
+            <table class="shortcuts">
               <thead>
                 <tr>
                   <th>Action</th>
@@ -123,7 +123,7 @@ if ($me && $allUsers) {
                 </tr>
               </tbody>
             </table>
-        </div>
+          </div>
         </div>
       </main>
     </div>
@@ -139,15 +139,11 @@ if ($me && $allUsers) {
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
               <span class="setting-option ms-2">My Profile</span>
             </div>
-            <!-- <div onclick="location.href='../ABOUT/'" class="menu-option">
-                                <span class="arrow"><i class="ri-arrow-right-line"></i></span>
-                                <span class="setting-option ms-2">About</span>
-                              </div> -->
             <div onclick="openContactSection()" class="menu-option">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
               <span class="setting-option ms-2">Contact</span>
             </div>
-            <div onclick="showSettings()" class="menu-option">
+            <div onclick="toggleSettings(false)" class="menu-option">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
               <span class="setting-option ms-2">Settings</span>
             </div>
@@ -182,7 +178,7 @@ if ($me && $allUsers) {
             ?>
           </div>
         </div>
-        <div class="my-section">Self_Section</div>
+        <div class="my-section" onclick="showSelfSection()">Self_Section</div>
 
         <div class="allposts">
           <?php
@@ -221,6 +217,29 @@ if ($me && $allUsers) {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script>
+      $('body').css('background-color', colorFromCookie);//Getting From Previous Save 
+
+
+
+      function updateBcg(colorBox) {
+        var selectedValue = $(colorBox).attr('value');
+        var backgroundColor = $(colorBox).css('background-color');
+        $('#theme-name').html(selectedValue);
+        var toast = new bootstrap.Toast($('#liveToast')[0]);
+        toast.show();
+        document.cookie = "bcg=" + encodeURIComponent(selectedValue) + "; path=/";
+
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var parts = cookies[i].split('=');
+          if (parts[0].trim() === 'bcg') {
+            var colorFromCookie = decodeURIComponent(parts[1]);
+            $('body').css('background-color', colorFromCookie);
+            break;
+          }
+        }
+      }
+
       if (bcgFromPhp) {
         console.log(bcgFromPhp);
         $('body').css('background-color', bcgFromPhp);
@@ -228,43 +247,28 @@ if ($me && $allUsers) {
         alert("bcgFromPhp Not Found");
       }
 
-        function sbsr(colorBox) {
-          var selectedValue = $(colorBox).attr('value');
-          var backgroundColor = $(colorBox).css('background-color');
-          $('#theme-name').html(selectedValue);
-          var toast = new bootstrap.Toast($('#liveToast')[0]);
-          toast.show();
-          document.cookie = "bcg=" + encodeURIComponent(backgroundColor) + "; path=/";
-          $('body').css('background-color', backgroundColor);
-        }
-      
+      let expanded = false;
 
-      $(document).ready(function() {
-        let expanded = false;
-        $('.my-section').on('click', function() {
-          if (!expanded) {
-            $(this).animate({
-              height: '200px'
-            }, 400);
-          } else {
-            $(this).css({
-              height: 'fit-content'
-            }, 400);
-          }
-          expanded = !expanded;
-        });
-      });
+      function showSelfSection() {
+        alert("SBSR");
+        if (!expanded) {
+          $(this).animate({
+            height: '200px'
+          }, 400);
+        } else {
+          $(this).css({
+            height: 'fit-content'
+          }, 400);
+        }
+        expanded = !expanded;
+        return;
+      }
 
       $(document).ready(function() {
         $('.menu-option').on('click', function() {
           console.log($(this).html());
         });
       });
-
-      // function reqSuccess(msg) {
-      //   let toast = new bootstrap.Toast(document.getElementById('liveToast'));
-      //   toast.show();
-      // }
     </script>
   </body>
 

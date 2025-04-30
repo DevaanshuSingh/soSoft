@@ -48,9 +48,11 @@ function toggleMySection() {
   location.href = '../USER-PROFILE';
 } function openContactSection() {
   $('.contact-section').toggle();
-}
-function showSettings() {
-  alert(`SBSR`);
-  var offcanvas = new bootstrap.Offcanvas(document.getElementById('#settingsOffcanvas'));
-  offcanvas.show();
+}function toggleSettings(isOpen) {
+  if(isOpen){
+    $(".all-settings").css("display","none");
+  }
+  else{
+    $(".all-settings").css("display","flex");
+  }
 }
