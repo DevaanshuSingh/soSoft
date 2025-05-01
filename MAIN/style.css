@@ -213,6 +213,19 @@ body {
 }.theme .box {
     border-radius: 4px;
     height: 5vh;
+}#liveToast{
+    background-color: rgba(83, 77, 77, 0.411);
+    border: 2px solid white;
+    color: white !important;
+    backdrop-filter: blur(5px);
+}.toast-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}.toast-body{
+    /* background: linear-gradient(to right, red, orange, yellow, rgb(0, 255, 0), blue, rgb(149, 0, 255), rgb(255, 0, 255)); */
+    -webkit-background-clip: text;
+    /* color: transparent; */
 }.shortcuts.setting {
     padding: 2rem;
     border-radius: 12px;

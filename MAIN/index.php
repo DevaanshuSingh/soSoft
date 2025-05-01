@@ -16,9 +16,6 @@ $allUsers = $users->fetchAll();
 $posts = $pdo->prepare("SELECT * FROM posts;");
 $posts->execute();
 $posts = $posts->fetchAll();
-// setcookie('bcg', 'blue', time() + (86400 * 30), "/");
-
-// $bcg_value = isset($_COOKIE['bcg']) ? $_COOKIE['bcg'] : 'BLACK';
 
 if ($me && $allUsers) {
 ?>
@@ -73,13 +70,13 @@ if ($me && $allUsers) {
           </div>
 
           <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
               <div class="toast-header bg-transparent">
-                <strong class="me-auto text-danger">Theme Changed</strong>
+                <strong class="me-auto">Theme Changed</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
               </div>
               <div class="toast-body">
-                <span id="theme-name"></span> Theme,
+                <strong><span id="theme-name"></span> Theme,</strong>
               </div>
             </div>
           </div>
@@ -217,27 +214,20 @@ if ($me && $allUsers) {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script>
-      $('body').css('background-color', colorFromCookie);//Getting From Previous Save 
-
-
+      var color = localStorage.getItem('bcg');
+      document.body.style.backgroundColor = color;
 
       function updateBcg(colorBox) {
         var selectedValue = $(colorBox).attr('value');
         var backgroundColor = $(colorBox).css('background-color');
         $('#theme-name').html(selectedValue);
+        $('#theme-name').css("color", backgroundColor);
         var toast = new bootstrap.Toast($('#liveToast')[0]);
         toast.show();
-        document.cookie = "bcg=" + encodeURIComponent(selectedValue) + "; path=/";
 
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-          var parts = cookies[i].split('=');
-          if (parts[0].trim() === 'bcg') {
-            var colorFromCookie = decodeURIComponent(parts[1]);
-            $('body').css('background-color', colorFromCookie);
-            break;
-          }
-        }
+        localStorage.setItem('bcg', backgroundColor);
+        color = localStorage.getItem('bcg');
+        document.body.style.backgroundColor = color;
       }
 
       if (bcgFromPhp) {
