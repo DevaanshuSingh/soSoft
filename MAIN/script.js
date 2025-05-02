@@ -56,3 +56,40 @@ function toggleMySection() {
     $(".all-settings").css("display","flex");
   }
 }
+
+var color = localStorage.getItem('bcg');
+document.body.style.backgroundColor = color;
+function updateBcg(colorBox) {
+  var selectedValue = $(colorBox).attr('value');
+  var backgroundColor = $(colorBox).css('background-color');
+  $('#theme-name').html(selectedValue);
+  $('#theme-name').css("color", backgroundColor);
+  var toast = new bootstrap.Toast($('#liveToast')[0]);
+  toast.show();
+
+  localStorage.setItem('bcg', backgroundColor);
+  color = localStorage.getItem('bcg');
+  document.body.style.backgroundColor = color;
+}
+
+if (bcgFromPhp) {
+  alert(bcgFromPhp);
+  $('body').css('background-color', bcgFromPhp);
+} else {
+  alert("bcgFromPhp Not Found");
+}
+let expanded = false;
+function showSelfSection() {
+  alert("SBSR");
+  if (!expanded) {
+    $(this).animate({
+      height: '200px'
+    }, 400);
+  } else {
+    $(this).css({
+      height: 'fit-content'
+    }, 400);
+  }
+  expanded = !expanded;
+  return;
+}

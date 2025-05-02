@@ -52,6 +52,18 @@ if ($me && $allUsers) {
       </div>
     </div>
 
+    <div class="toast-container w-100 position-fixed bottom-0 start-0 mb-2">
+      <div id="liveToast" class="toast position-relative ms-auto me-5" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
+        <div class="toast-header d-flex justify-content-center bg-transparent">
+          <strong class="bg-primary h-100 me-auto color-success"><strong>Theme Changed</strong></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          <strong>Theme <span id="theme-name"></span>,</strong>
+        </div>
+      </div>
+    </div>
+
     <div class="all-settings">
       <header><span onclick="toggleSettings(true)">X</span></header>
       <main>
@@ -69,20 +81,8 @@ if ($me && $allUsers) {
             </div>
           </div>
 
-          <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
-              <div class="toast-header bg-transparent">
-                <strong class="me-auto">Theme Changed</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-              <div class="toast-body">
-                <strong><span id="theme-name"></span> Theme,</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="shortcuts setting">
-            <table class="shortcuts">
+          <div class="shortcuts setting bg-warning">
+            <table class="col-12 bg-dark">
               <thead>
                 <tr>
                   <th>Action</th>
@@ -91,32 +91,12 @@ if ($me && $allUsers) {
               </thead>
               <tbody>
                 <tr>
-                  <td>Open new chat</td>
-                  <td>Ctrl + Shift + O</td>
+                  <td>View Society</td>
+                  <td>Alt + Ctrl + S</td>
                 </tr>
                 <tr>
-                  <td>Focus chat input</td>
-                  <td>Shift + Esc</td>
-                </tr>
-                <tr>
-                  <td>Copy last code block</td>
-                  <td>Ctrl + Shift + ;</td>
-                </tr>
-                <tr>
-                  <td>Copy last response</td>
-                  <td>Ctrl + Shift + C</td>
-                </tr>
-                <tr>
-                  <td>Set custom instructions</td>
-                  <td>Ctrl + Shift + I</td>
-                </tr>
-                <tr>
-                  <td>Toggle sidebar</td>
-                  <td>Ctrl + Shift + S</td>
-                </tr>
-                <tr>
-                  <td>Delete chat</td>
-                  <td>Ctrl + Shift + (Envelope Icon)</td>
+                  <td>My Profile</td>
+                  <td>Alt + Ctrl + P</td>
                 </tr>
               </tbody>
             </table>
@@ -214,51 +194,11 @@ if ($me && $allUsers) {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script>
-      var color = localStorage.getItem('bcg');
-      document.body.style.backgroundColor = color;
-
-      function updateBcg(colorBox) {
-        var selectedValue = $(colorBox).attr('value');
-        var backgroundColor = $(colorBox).css('background-color');
-        $('#theme-name').html(selectedValue);
-        $('#theme-name').css("color", backgroundColor);
-        var toast = new bootstrap.Toast($('#liveToast')[0]);
-        toast.show();
-
-        localStorage.setItem('bcg', backgroundColor);
-        color = localStorage.getItem('bcg');
-        document.body.style.backgroundColor = color;
-      }
-
-      if (bcgFromPhp) {
-        console.log(bcgFromPhp);
-        $('body').css('background-color', bcgFromPhp);
-      } else {
-        alert("bcgFromPhp Not Found");
-      }
-
-      let expanded = false;
-
-      function showSelfSection() {
-        alert("SBSR");
-        if (!expanded) {
-          $(this).animate({
-            height: '200px'
-          }, 400);
-        } else {
-          $(this).css({
-            height: 'fit-content'
-          }, 400);
-        }
-        expanded = !expanded;
-        return;
-      }
-
-      $(document).ready(function() {
-        $('.menu-option').on('click', function() {
-          console.log($(this).html());
-        });
-      });
+      // $(document).ready(function() {
+      //   $('.menu-option').on('click', function() {
+      //     console.log($(this).html());
+      //   });
+      // });
     </script>
   </body>
 
