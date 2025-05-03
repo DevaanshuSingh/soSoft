@@ -217,21 +217,20 @@ body {
     height: 5vh;
 }.toast-container{
     /* padding: 0 50% 0 0; */
-    height: 20vh;
+    /* background-color: #1e3a8a; */
+    height: 10vh;
 }#liveToast{
     background-color: rgba(83, 77, 77, 0.411);
     border: 2px solid white;
     color: white !important;
     backdrop-filter: blur(5px);
     height: 100%;
-    width: 50%;
+    /* width: 100%; */
 }.toast-header{
     display: flex;
     align-items: center;
     justify-content: center;
     color: white !important;
-    border: 1px solid GOLD;
-    height: 50%;
 }.toast-body{
     color: white !important;
     /* background: linear-gradient(to right, red, orange, yellow, rgb(0, 255, 0), blue, rgb(149, 0, 255), rgb(255, 0, 255));

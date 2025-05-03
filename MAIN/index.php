@@ -53,9 +53,9 @@ if ($me && $allUsers) {
     </div>
 
     <div class="toast-container w-100 position-fixed bottom-0 start-0 mb-2">
-      <div id="liveToast" class="toast position-relative ms-auto me-5" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
+      <div id="liveToast" class="toast position-relative ms-auto me-1" role="alert" aria-live="assertive" aria-atomic="false" data-bs-autohide="false">
         <div class="toast-header d-flex justify-content-center bg-transparent">
-          <strong class="bg-primary h-100 me-auto color-success"><strong>Theme Changed</strong></strong>
+          <strong class="h-100 me-auto color-success"><strong>Theme Changed</strong></strong>
           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
