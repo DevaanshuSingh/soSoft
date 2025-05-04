@@ -81,8 +81,8 @@ if ($me && $allUsers) {
             </div>
           </div>
 
-          <div class="shortcuts setting bg-warning">
-            <table class="col-12 bg-dark">
+          <div class="shortcuts setting">
+            <table class="col-12">
               <thead>
                 <tr>
                   <th>Action</th>
