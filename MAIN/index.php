@@ -85,8 +85,8 @@ if ($me && $allUsers) {
             <table class="col-12">
               <thead>
                 <tr>
-                  <th>Action</th>
-                  <th>Shortcut</th>
+                  <th><u>ACTIONS</u></th>
+                  <th><u>SHORTCUTS</u></th>
                 </tr>
               </thead>
               <tbody>
@@ -123,6 +123,10 @@ if ($me && $allUsers) {
             <div onclick="toggleSettings(false)" class="menu-option">
               <span class="arrow"><i class="ri-arrow-right-line"></i></span>
               <span class="setting-option ms-2">Settings</span>
+            </div>
+            <div onclick="logout()" class="menu-option">
+              <span class="arrow"><i class="ri-arrow-right-line"></i></span>
+              <span class="setting-option ms-2">Logout</span>
             </div>
           </div>
         </div>
@@ -163,26 +167,49 @@ if ($me && $allUsers) {
             echo "<span style='width: 80vw; position:relative; top: 5%; left: 5%;'>No Posts Yet Please <a href='../MY-PROFILE/' class='text-success'><b>POST</b></a></span>";
           } else {
             foreach ($posts as $post) {
-              echo '<div class="content">
-              <div class="post-owner">
-                <div class="post-owner-name">Post By: ' . $post['user_name'] . '</div>
-                <div class="post-owner-profile" > <button onclick="selecteduser(' . $post['user_id'] . ')" data-user-id="' . $post['user_id'] . '">Visit Profile</button> </div>
-              </div>
+              if ($post['id'] != $myId) {
+                echo '<div class="content">
+                    <div class="post-owner">
+                      <div class="post-owner-name">Post By: ' . $post['user_name'] . '</div>
 
-              <div class="post">
-                <div class="main-post">
-                  <span>' . $post['content'] . '</span>
-                </div>
-                <div class="interact-with-post">
-                  <span class="interact-icons border-end border-1 border-dark ">
-                    <i class="reaction-icons ri-heart-fill text-danger"></i>
-                  </span>
-                  <span class="interact-icons border-start border-1 border-dark">
-                    <i class="reaction-icons ri-chat-upload-fill"></i>
-                  </span>   
-                </div>
-              </div>
-            </div>';
+                      <div class="post-owner-profile" > <button onclick="selecteduser(' . $post['user_id'] . ')" data-user-id="' . $post['user_id'] . '">Visit Profile</button> </div>
+                    </div>
+
+                    <div class="post">
+                      <div class="main-post">
+                        <span>' . $post['content'] . '</span>
+                      </div>
+                      <div class="interact-with-post">
+                        <span class="interact-icons border-end border-1 border-dark ">
+                          <i class="reaction-icons ri-heart-fill text-danger"></i>
+                        </span>
+                        <span class="interact-icons border-start border-1 border-dark">
+                          <i class="reaction-icons ri-chat-upload-fill"></i>
+                        </span>   
+                      </div>
+                    </div>
+                  </div>';
+              } else {
+                echo '<div class="content">
+                    <div class="post-owner">
+                      <div class="post-owner-name">Post By: You</div>
+                    </div>
+
+                    <div class="post">
+                      <div class="main-post">
+                        <span>' . $post['content'] . '</span>
+                      </div>
+                      <div class="interact-with-post">
+                        <span class="interact-icons border-end border-1 border-dark ">
+                          <i class="reaction-icons ri-heart-fill text-danger"></i>
+                        </span>
+                        <span class="interact-icons border-start border-1 border-dark">
+                          <i class="reaction-icons ri-chat-upload-fill"></i>
+                        </span>   
+                      </div>
+                    </div>
+                  </div>';
+              }
             }
           }
           ?>
@@ -194,11 +221,11 @@ if ($me && $allUsers) {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script>
-      // $(document).ready(function() {
-      //   $('.menu-option').on('click', function() {
-      //     console.log($(this).html());
-      //   });
-      // });
+      document.addEventListener("keydown", function(event) {
+        if (event.altKey && event.key.toLowerCase() === "p") {
+          location.href = '../MY-PROFILE/';
+        }
+      });
     </script>
   </body>
 

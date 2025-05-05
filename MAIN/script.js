@@ -48,12 +48,12 @@ function toggleMySection() {
   location.href = '../USER-PROFILE';
 } function openContactSection() {
   $('.contact-section').toggle();
-}function toggleSettings(isOpen) {
-  if(isOpen){
-    $(".all-settings").css("display","none");
+} function toggleSettings(isOpen) {
+  if (isOpen) {
+    $(".all-settings").css("display", "none");
   }
-  else{
-    $(".all-settings").css("display","flex");
+  else {
+    $(".all-settings").css("display", "flex");
   }
 }
 
@@ -80,7 +80,7 @@ if (bcgFromPhp) {
 }
 let expanded = false;
 function showSelfSection() {
-  alert("SBSR");
+  // alert("SBSR");
   if (!expanded) {
     $(this).animate({
       height: '200px'
@@ -92,4 +92,14 @@ function showSelfSection() {
   }
   expanded = !expanded;
   return;
+}
+
+function logout() {
+  if(cookie.getItem('myId')) {
+    // sessionStorage.removeItem('myId');
+    alert(`Session Removed`);
+  }
+  else{
+    alert(`Item Not Found In Session`);
+  }
 }
