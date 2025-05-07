@@ -148,7 +148,8 @@ if ($me) {
                     type: 'POST',
                     url: `../GET-CONTENTS/content${buttonClicked}.php`,
                     data: {
-                        showAbout: '<?php echo $myId; ?>'
+                        showAbout: '<?php echo $myId; ?>',
+                        fromMyProfile: true
                     },
                     success: function(response) {
                         $('.get-contents').html(response);
