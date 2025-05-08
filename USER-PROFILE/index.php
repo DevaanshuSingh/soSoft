@@ -116,9 +116,13 @@ if (isset($_COOKIE['selectedUserId'])) {
                         type: 'GET',
                         url: '../BE-FRIENDS',
                         success: function(response) {
+                            console.log(response);
                             response = JSON.parse(response);
                             if (response.success === true) {
                                 reqSuccess(response.message);
+                            }
+                            else{
+                                alert(response);
                             }
                         },
                         error: function() {
