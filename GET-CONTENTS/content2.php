@@ -1,9 +1,14 @@
 <?php
-
+session_start();
 if (isset($_POST['showAbout'])) {
   require_once '../CONNECTION/config.php';
 
   $userId = $_POST['showAbout'];
+  $fromMyProfile = false;
+  if (isset($_POST['fromMyProfile'])) {
+    $fromMyProfile = $_POST['fromMyProfile'];
+  }
+
   $stmt = $pdo->prepare("SELECT * FROM posts WHERE user_Id =?;");
   $stmt->execute([$userId]);
   $userPosts = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
@@ -12,10 +17,32 @@ if (isset($_POST['showAbout'])) {
   if (empty($userPosts)) {
     echo "<span style='width: 80vw; position:relative; top: 5%; left: 5%;'>No Posts Yet Please <a href='../MY-PROFILE/' class='text-success'><b>POST</b></a></span>";
   } else {
-    foreach ($userPosts as $post) {
-      echo '<div class="content mt-2">
+    if ($fromMyProfile) {
+      foreach ($userPosts as $post) {
+        echo '<div class="content mt-2">
+                  <div class="post-owner">
+                      <div class="post-owner-name"><strong>Post By: You</strong></div>
+                  </div>
+                  <div class="post">
+                      <div class="main-post">
+                          <span>' . $post['content'] . '</span>
+                        </div>
+                      <div class="interact-with-post">
+                            <span class="interact-icons border-end border-1 border-dark ">
+                                <i class="reaction-icons ri-heart-fill text-danger"></i>
+                            </span>
+                            <span class="interact-icons border-start border-1 border-dark">
+                                <i class="reaction-icons ri-chat-upload-fill"></i>
+                            </span>   
+                      </div>
+                  </div>
+              </div>';
+      }
+    } else {
+      foreach ($userPosts as $post) {
+        echo '<div class="content mt-2">
                 <div class="post-owner">
-                    <div class="post-owner-name">Post By: ' . $post['user_name'] . '</div>
+                    <div class="post-owner-name"><strong>Post By: ' . $post['user_name'] . '</strong></div>
                 </div>
                 <div class="post">
                     <div class="main-post">
@@ -31,6 +58,7 @@ if (isset($_POST['showAbout'])) {
                     </div>
                 </div>
             </div>';
+      }
     }
   }
   ?>
