@@ -95,11 +95,5 @@ function showSelfSection() {
 }
 
 function logout() {
-  if(cookie.getItem('myId')) {
-    // sessionStorage.removeItem('myId');
-    alert(`Session Removed`);
-  }
-  else{
-    alert(`Item Not Found In Session`);
-  }
+  location.href="../index.php";
 }
