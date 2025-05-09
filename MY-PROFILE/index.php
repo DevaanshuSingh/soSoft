@@ -42,7 +42,7 @@ if ($me) {
             </div>
             <div class="request-info">
                 <div class="requested-profile-name">
-                    <h1>this user has sent you a friend request</h1>
+                    <h1><span id="requested-friend-name"></span> user has sent you a friend request</h1>
                 </div>
                 <div class="requested-profile-actions">
                     <button type="button" class="accept-btn">Accept</button>
@@ -231,11 +231,12 @@ if ($me) {
             },
             success: function(response) {
                 response=JSON.parse(response); 
-                // console.log(response);
+                console.log(response);
                 // console.log(response.requestedData[0].requested_from_id);
                 if(response.status==true){
                     $(".New-friend-request").fadeIn(1000).css("display", "flex");
-
+                    // $("#requested-profile-name").html(response.requestedData[0].userName);
+                    $("#requested-friend-name").html(response.requestedData[0].userName);
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
