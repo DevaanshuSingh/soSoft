@@ -16,7 +16,6 @@ body::-webkit-scrollbar {
 * {
     margin: 0;
     padding: 0;
-    /* font-size: 2vmin !important; */
 }
 
 body {
@@ -27,13 +26,12 @@ body {
 .New-friend-request{
     height: 20vh;
     width: 80vw;
-    /* background-color: #4b0082; */
     position: absolute;
     z-index: 101;
     left: 10vw;
     display: none;
-     /* clip-path: polygon(0 1%, 100% 0, 100% 30%, 100% 57%, 92% 89%, 10% 90%, 0 61%, 0 30%); */ 
 }
+
 .New-friend-request>.request-data{
     height: 100%;
     width: 100%;
@@ -55,8 +53,6 @@ body {
     height: 100%;
     width: 90%;
     border: 1px solid blue;
-
-
 }
 .request-info>.requested-profile-name{
     height: 50%;
@@ -76,28 +72,24 @@ body {
     color:skyblue;
     padding: 1%;
     border-radius: 25%;
-    
 }
 .requested-profile-actions>.decline-btn{
     background: linear-gradient(rgba(151, 46, 148, 0.842));
     color:skyblue;
     padding: 1%;
     border-radius: 25%;
-    
 }
 .requested-profile-actions>.all-requests-btn{
     background: linear-gradient(rgba(81, 159, 42, 0.733));
     color:skyblue;
     padding: 1%;
-    border-radius: 25%;
-    
+    border-radius: 25%; 
 }
 
 
 
 .product-name {
     position: fixed;
-    /* position: absolute; */
     top: 0;
     left: 0;
     width: 100vw;
@@ -181,7 +173,6 @@ body {
     bottom: 5%;
     right: 2%;
     background-color: rgba(255, 217, 0, 0.459);
-    /* outline: 1px solid rgba(0, 0, 0, 0.76); */
     box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3),
             -2px -2px 5px rgba(255, 255, 255, 0.6);
 
@@ -205,13 +196,7 @@ body {
 }
 .ri-arrow-up-box-line {
     font-size: 5vh;
-    /* filter: drop-shadow( 2px 2px 5px rgba(0, 0, 0, 0.3),
-    -2px -2px 5px rgba(0, 0, 0, 0.6)); */
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
-
-    /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3),
-    -2px -2px 5px rgba(0, 0, 0, 0.6); */
-
 }
 
 .post-section {
@@ -224,7 +209,6 @@ body {
     visibility: hidden;
     align-items: center;
     justify-content: space-between;
-    /* border: 1px solid red; */
 }
 
 .closePostSection {
@@ -374,7 +358,6 @@ body {
 .name {
     height: 50%;
     width: 100%;
-    /* border: 1px solid black; */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -505,7 +488,6 @@ body {
 .interact-icons:hover .reaction-icons {
     transform: scale(1.8);
     filter: drop-shadow(5px 0px 15px GOLD)
-        /* box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.897); */
 }
 
 /*For Content2(Friends)*/
@@ -554,37 +536,11 @@ body {
     color: #4b0082;
 }
 
-/* 
-.about-user {
-    border-bottom: 1px solid #ccc;
-    padding: 15px 0;
-    background-color: rgb(84 253 161 / 51%);
-}
-
-.about-user-flex {
-    display: flex;
-    align-items: center;
-}
-
-.about-user-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 20px;
-}
-
-.about-user-name {
-    margin: 0;
-    color: #2e8b57;
-} */
-
 .about-user {
     border-bottom: 1px dashed #999;
     padding: 25px;
     margin-bottom: 25px;
-    /* background: linear-gradient(to right, rgba(173, 255, 189, 0.4), rgba(194, 255, 244, 0.5)); */
     background-color: rgb(84 253 161 / 51%);
-
     border-radius: 20px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -606,7 +562,6 @@ body {
     height: 90px;
     border-radius: 50%;
     margin-right: 20px;
-    /* border: 3px solid #11e40a; */
     border: 3px solid rgb(84 253 161 / 51%);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
