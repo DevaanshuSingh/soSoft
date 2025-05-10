@@ -72,12 +72,6 @@ function updateBcg(colorBox) {
   document.body.style.backgroundColor = color;
 }
 
-if (bcgFromPhp) {
-  alert(bcgFromPhp);
-  $('body').css('background-color', bcgFromPhp);
-} else {
-  alert("bcgFromPhp Not Found");
-}
 let expanded = false;
 function showSelfSection() {
   // alert("SBSR");
