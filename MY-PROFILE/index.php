@@ -38,7 +38,7 @@ if ($me) {
     <div class="New-friend-request">
         <div class="request-data">
             <div class="request-image">
-                <img src="../MEDIA/image.png" alt="here is the image">
+                <img src="" alt="here is the image" class="image">
             </div>
             <div class="request-info">
                 <div class="requested-profile-name">
@@ -224,6 +224,16 @@ if ($me) {
     });
     $(document).ready(function() {
         let myFriendId;
+        let deleteFriendRequests;
+
+        function hexToAscii(hex) {
+            let str = '';
+            for (let i = 0; i < hex.length; i += 2) {
+                str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+            }
+            return str;
+        }
+        // Checking friend requests
         $.ajax({
             type: 'get',
             url: './MY-FRIEND-REQUESTS',
@@ -231,15 +241,19 @@ if ($me) {
                 myId: <?php echo $_SESSION['myId'] ?>
             },
             success: function(response) {
-                response=JSON.parse(response); 
-                myFriendId=response.requestedData[0].requested_from_id;
-                console.log(myFriendId);
+                response = JSON.parse(response);
+                console.log(deleteFriendRequests);
                 console.log(response);
-                // console.log(response.requestedData[0].requested_from_id);
-                if(response.status==true){
+                if (response.status == true) {
+                    myFriendId = response.requestedData[0].requested_from_id;
+                    deleteFriendRequests=response.requestedData[0].id;
                     $(".New-friend-request").fadeIn(1000).css("display", "flex");
                     // $("#requested-profile-name").html(response.requestedData[0].userName);
                     $("#requested-friend-name").html(response.requestedData[0].userName);
+                    const hexString = response.requestedData[0].profile_picture.replace(/^src="/,
+                        '');
+                    const imagePath = hexToAscii(hexString);
+                    $('.request-image > .image').attr('src', imagePath);
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -247,21 +261,35 @@ if ($me) {
                 alert('Something went wrong: ' + textStatus);
             }
         });
-        $('.accept-btn').on('click', function(){
+        $('.accept-btn').on('click', function() {
             // alert('hey');
+            // Delete friend request row 
+            function friendRequestAccept(){
+                $.ajax({
+                    type: "post",
+                    url: './MY-FRIEND-REQUESTS/friendRequestAccept.php',
+                    data: {deleteFriendRequests:deleteFriendRequests},
+                    success:function(response){
+                        console.log(response);
+                    }
+                });
+            }
+            // adding friends
             $.ajax({
                 type: 'get',
                 url: './MY-FRIENDS',
-                data:{myFriendId:myFriendId},
-                success: function(response){
-                    response=JSON.parse(response);
+                data: {
+                    myFriendId: myFriendId
+                },
+                success: function(response) {
+                    response = JSON.parse(response);
                     console.log(response);
-                    if(response.success==true){
-                        let msg= `<span>${response.message}</span>`;
-                        let cross= `<button class="cross">x</button>`;
+                    if (response.success == true) {
+                        let msg = `<span>${response.message}</span>`;
+                        let cross = `<button class="cross">x</button>`;
                         $('.New-friend-request').html(msg);
                         $('.New-friend-request').append(cross);
-                        $('.cross').on('click', function(){
+                        $('.cross').on('click', function() {
                             $('.New-friend-request').hide();
                         });
                         $('.cross').css({
@@ -272,26 +300,27 @@ if ($me) {
                             "height": "fit-content",
                             "width": "40vw",
                             "display": "flex",
-                             "align-item": "center", 
-                             "justify-content": "space-between",
-                             "background-color": "blue",
-                             "color": "gold",
-                             "border": "2px solid green",
-                             "margin-top": "2vh",
-                             "padding": "2vh"
+                            "align-item": "center",
+                            "justify-content": "space-between",
+                            "background-color": "blue",
+                            "color": "gold",
+                            "border": "2px solid green",
+                            "margin-top": "2vh",
+                            "padding": "2vh"
 
                         });
+                        friendRequestAccept();
                     }
                 }
-                
-                
+
+
             })
-            
+
+
         });
-        
-         
+
+
     });
-   
     </script>
 </body>
 

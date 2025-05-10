@@ -4,7 +4,7 @@
         require_once('../../CONNECTION/config.php');
         try {
             $myId=$_GET['myId'];
-            $stmt = $pdo->prepare("select friend_requests.requested_from_id,friend_requests.requested_to_id,
+            $stmt = $pdo->prepare("select friend_requests.id, friend_requests.requested_from_id,friend_requests.requested_to_id,
             friend_requests.created_at, friend_requests.updated_at,users.userName,
             HEX(users.profile_picture) AS profile_picture 
             from friend_requests
