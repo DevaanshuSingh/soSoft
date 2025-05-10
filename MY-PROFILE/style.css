@@ -30,7 +30,8 @@ body {
     /* background-color: #4b0082; */
     position: absolute;
     z-index: 101;
-    left: 10vw;
+    left: 50%;
+    transform: translateX(-50%);
     display: none;
      /* clip-path: polygon(0 1%, 100% 0, 100% 30%, 100% 57%, 92% 89%, 10% 90%, 0 61%, 0 30%); */ 
 }

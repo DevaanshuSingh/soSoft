@@ -223,6 +223,7 @@ if ($me) {
         });
     });
     $(document).ready(function() {
+        let myFriendId;
         $.ajax({
             type: 'get',
             url: './MY-FRIEND-REQUESTS',
@@ -231,6 +232,8 @@ if ($me) {
             },
             success: function(response) {
                 response=JSON.parse(response); 
+                myFriendId=response.requestedData[0].requested_from_id;
+                console.log(myFriendId);
                 console.log(response);
                 // console.log(response.requestedData[0].requested_from_id);
                 if(response.status==true){
@@ -243,8 +246,52 @@ if ($me) {
                 console.error('AJAX Error:', textStatus, errorThrown);
                 alert('Something went wrong: ' + textStatus);
             }
-         });
+        });
+        $('.accept-btn').on('click', function(){
+            // alert('hey');
+            $.ajax({
+                type: 'get',
+                url: './MY-FRIENDS',
+                data:{myFriendId:myFriendId},
+                success: function(response){
+                    response=JSON.parse(response);
+                    console.log(response);
+                    if(response.success==true){
+                        let msg= `<span>${response.message}</span>`;
+                        let cross= `<button class="cross">x</button>`;
+                        $('.New-friend-request').html(msg);
+                        $('.New-friend-request').append(cross);
+                        $('.cross').on('click', function(){
+                            $('.New-friend-request').hide();
+                        });
+                        $('.cross').css({
+                            "margin": "1vh",
+                            "padding": "1vh"
+                        });
+                        $('.New-friend-request').css({
+                            "height": "fit-content",
+                            "width": "40vw",
+                            "display": "flex",
+                             "align-item": "center", 
+                             "justify-content": "space-between",
+                             "background-color": "blue",
+                             "color": "gold",
+                             "border": "2px solid green",
+                             "margin-top": "2vh",
+                             "padding": "2vh"
+
+                        });
+                    }
+                }
+                
+                
+            })
+            
+        });
+        
+         
     });
+   
     </script>
 </body>
 
