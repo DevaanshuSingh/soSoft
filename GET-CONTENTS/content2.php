@@ -21,7 +21,7 @@ if (isset($_POST['showAbout'])) {
       foreach ($userPosts as $post) {
         echo '<div class="content mt-2">
                   <div class="post-owner">
-                      <div class="post-owner-name"><strong>Post By: You</strong></div>
+                      <div class="post-owner-name"><strong>You</strong></div>
                   </div>
                   <div class="post">
                       <div class="main-post">
@@ -42,7 +42,7 @@ if (isset($_POST['showAbout'])) {
       foreach ($userPosts as $post) {
         echo '<div class="content mt-2">
                 <div class="post-owner">
-                    <div class="post-owner-name"><strong>Post By: ' . $post['user_name'] . '</strong></div>
+                    <div class="post-owner-name"><strong>' . $post['user_name'] . '</strong></div>
                 </div>
                 <div class="post">
                     <div class="main-post">

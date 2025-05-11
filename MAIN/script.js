@@ -72,22 +72,40 @@ function updateBcg(colorBox) {
   document.body.style.backgroundColor = color;
 }
 
+let aalu = 0;
 let expanded = false;
 function showSelfSection() {
-  // alert("SBSR");
-  if (!expanded) {
-    $(this).animate({
-      height: '200px'
-    }, 400);
-  } else {
-    $(this).css({
-      height: 'fit-content'
-    }, 400);
-  }
-  expanded = !expanded;
-  return;
+  let apiArray =
+  {
+    "id": 1,
+    "sbsr": "SBSR",
+    "email": "sbsr@gmail.com"
+  };
+
+  $.ajax({
+    // url: 'http://127.0.0.1:8000/sbsrMail/SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR',
+    url: `http://127.0.0.1:8000/api/getPlaces/${apiArray}`,
+    type: 'POST',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function (data) {
+      console.log(data);
+    },
+    error: function (xhr, status, error) {
+      console.error('त्रुटि:', error);
+    }
+  });
 }
 
 function logout() {
-  location.href="../index.php";
+  location.href = "../index.php";
 }
+
+
+
+document.addEventListener("keydown", function (event) {
+  if (event.altKey && event.key.toLowerCase() === "p") {
+    location.href = '../MY-PROFILE/';
+  }
+});

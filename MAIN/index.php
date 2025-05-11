@@ -35,11 +35,16 @@ if ($me && $allUsers) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
-    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
   </head>
 
   <body>
-    <div class="product-name">
+    <div class="product-name" onclick="sbsr()">
       <strong class="text-primary">CNAT's SOSOFT</strong>
     </div>
 
@@ -96,7 +101,7 @@ if ($me && $allUsers) {
                 </tr>
                 <tr>
                   <td>My Profile</td>
-                  <td>Alt + Ctrl + P</td>
+                  <td>Alt + P</td>
                 </tr>
               </tbody>
             </table>
@@ -170,7 +175,7 @@ if ($me && $allUsers) {
               if ($post['id'] != $myId) {
                 echo '<div class="content">
                     <div class="post-owner">
-                      <div class="post-owner-name">Post By: ' . $post['user_name'] . '</div>
+                      <div class="post-owner-name">' . $post['user_name'] . '</div>
 
                       <div class="post-owner-profile" > <button onclick="selecteduser(' . $post['user_id'] . ')" data-user-id="' . $post['user_id'] . '">Visit Profile</button> </div>
                     </div>
@@ -192,7 +197,7 @@ if ($me && $allUsers) {
               } else {
                 echo '<div class="content">
                     <div class="post-owner">
-                      <div class="post-owner-name">Post By: You</div>
+                      <div class="post-owner-name">You</div>
                     </div>
 
                     <div class="post">
@@ -217,15 +222,21 @@ if ($me && $allUsers) {
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
     <script>
-      document.addEventListener("keydown", function(event) {
-        if (event.altKey && event.key.toLowerCase() === "p") {
-          location.href = '../MY-PROFILE/';
-        }
-      });
+      function sbsr() {
+        alert('Welcome to SoSoft, a product of CNAT');
+        // $.ajax({
+        //   url: '127.0.0.1:8000/sbsrMail/SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR', // API का सच्चा मार्ग
+        //   type: 'GET',
+        //   success: function(data) {
+        //     console.log(data); // श्री Users की महिमा Console में प्रकट होगी
+        //   },
+        //   error: function(xhr, status, error) {
+        //     console.error('त्रुटि:', error); // यदि कुछ विघ्न पड़े
+        //   }
+        // });
+
+      }
     </script>
   </body>
 

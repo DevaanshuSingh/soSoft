@@ -80,7 +80,7 @@ if (isset($_COOKIE['selectedUserId'])) {
                         ?>
                     </div>
                 </section>
-            
+
                 <section class="get-contents ">
                     <div class="allposts"> </div>
                 </section>
@@ -119,8 +119,7 @@ if (isset($_COOKIE['selectedUserId'])) {
                             response = JSON.parse(response);
                             if (response.success === true) {
                                 reqSuccess(response.message);
-                            }
-                            else{
+                            } else {
                                 alert(response);
                             }
                         },
@@ -190,6 +189,18 @@ if (isset($_COOKIE['selectedUserId'])) {
 
                     return;
                 }
+
+                //Shortcuts 
+                document.addEventListener("keydown", function(event) {
+                    if (event.altKey && event.key.toLowerCase() === "p") {
+                        location.href = '../MY-PROFILE/';
+                    }
+                });
+                document.addEventListener("keydown", function(event) {
+                    if (event.altKey && event.key.toLowerCase() === "m") {
+                        location.href = '../MAIN/';
+                    }
+                });
             </script>
 
         </body>
