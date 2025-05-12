@@ -53,7 +53,19 @@ if ($me && $allUsers) {
         <span onclick="openContactSection()"><i class="ri-close-circle-line"></i></span>
       </header>
       <div class="contact-info">
-        <span>example@gmail.com</span>
+        <h1 class="text-warning">Please Leave Your Feedback Here:</h1>
+        <form id="feedback">
+          <div style="max-width: 500px; margin: auto; padding: 1rem; font-family: 'Segoe UI', sans-serif;">
+            <textarea id="txt"></textarea>
+
+            <button
+              type="submit"
+              class="btn p-2"
+              style="margin-top: 1rem; padding: 0.75rem 1.5rem; background-color: #4CAF50; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.15); transition: background-color 0.3s;">
+              Send
+            </button>
+          </div>
+
       </div>
     </div>
 
@@ -235,8 +247,14 @@ if ($me && $allUsers) {
         //     console.error('त्रुटि:', error); // यदि कुछ विघ्न पड़े
         //   }
         // });
-
       }
+
+      $('#feedback').on('submit', function(e) {
+        e.preventDefault();
+        var feedback = $('#txt').val();
+        showSelfSection(feedback);
+        $('#txt').val()='';
+      });
     </script>
   </body>
 

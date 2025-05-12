@@ -161,6 +161,7 @@ body {
 }
 
 .contact-section>.contact-info {
+    /* background-color: gold; */
     border-radius: 10px;
     height: 90%;
     width: 100vw;
@@ -170,6 +171,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+#txt {
+    background-color: rgba(0, 0, 0, 0.336);
+    color: GOLD;
+    border: 1px solid black;
+    border-radius: 12px;
+    width: 50vw;
+    height: 20vh;
 }
 
 .contact-section>.contact-info>span {

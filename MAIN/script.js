@@ -72,9 +72,9 @@ function updateBcg(colorBox) {
   document.body.style.backgroundColor = color;
 }
 
-let aalu = 0;
+//Using API,
 let expanded = false;
-function showSelfSection() {
+function showSelfSection(feedback) {
   let apiArray =
   {
     "id": 1,
@@ -84,8 +84,9 @@ function showSelfSection() {
 
   $.ajax({
     // url: 'http://127.0.0.1:8000/sbsrMail/SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR',
-    url: `http://127.0.0.1:8000/api/getPlaces/${apiArray}`,
-    type: 'POST',
+    // url: `http://127.0.0.1:8000/api/getPlaces/${apiArray}`,
+    url: `http://127.0.0.1:8000/api/sendEmail/${feedback}`,
+    type: 'get',
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
@@ -101,8 +102,6 @@ function showSelfSection() {
 function logout() {
   location.href = "../index.php";
 }
-
-
 
 document.addEventListener("keydown", function (event) {
   if (event.altKey && event.key.toLowerCase() === "p") {
