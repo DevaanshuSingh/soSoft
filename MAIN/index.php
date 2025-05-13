@@ -235,24 +235,13 @@ if ($me && $allUsers) {
     </div>
 
     <script>
-      function sbsr() {
-        alert('Welcome to SoSoft, a product of CNAT');
-        // $.ajax({
-        //   url: '127.0.0.1:8000/sbsrMail/SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR', // API का सच्चा मार्ग
-        //   type: 'GET',
-        //   success: function(data) {
-        //     console.log(data); // श्री Users की महिमा Console में प्रकट होगी
-        //   },
-        //   error: function(xhr, status, error) {
-        //     console.error('त्रुटि:', error); // यदि कुछ विघ्न पड़े
-        //   }
-        // });
-      }
-
-      $('#feedback').on('submit', function(e) {
+      
+      var color = localStorage.getItem('bcg');
+      document.body.style.backgroundColor = color;
+       $('#feedback').on('submit', function(e) {
         e.preventDefault();
         var feedback = $('#txt').val();
-        showSelfSection(feedback);
+        sendFeedback(feedback);
         $('#txt').val()='';
       });
     </script>

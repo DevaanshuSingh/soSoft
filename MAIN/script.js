@@ -1,5 +1,3 @@
-// document.querySelector('.menu').backgroundColor = "GOLD";
-
 let isMenuOpen = true;
 function toggleMenu() {
   if (isMenuOpen === true) {
@@ -28,6 +26,7 @@ function toggleMenu() {
     isMenuOpen = true;
   }
 } let isMySectionOpen = true;
+
 function toggleMySection() {
   if (isMenuOpen === true) {
     document.querySelector(".my-section").style.height = "0";
@@ -42,13 +41,18 @@ function toggleMySection() {
     document.querySelector(".menu-icon").style.transition = "2s ease";
     isMenuOpen = true;
   }
+}
 
-} function selecteduser(user) {
+function selecteduser(user) {
   document.cookie = `selectedUserId = ${user}; path=/`;
   location.href = '../USER-PROFILE';
-} function openContactSection() {
+}
+
+function openContactSection() {
   $('.contact-section').toggle();
-} function toggleSettings(isOpen) {
+}
+
+function toggleSettings(isOpen) {
   if (isOpen) {
     $(".all-settings").css("display", "none");
   }
@@ -57,8 +61,6 @@ function toggleMySection() {
   }
 }
 
-var color = localStorage.getItem('bcg');
-document.body.style.backgroundColor = color;
 function updateBcg(colorBox) {
   var selectedValue = $(colorBox).attr('value');
   var backgroundColor = $(colorBox).css('background-color');
@@ -74,17 +76,8 @@ function updateBcg(colorBox) {
 
 //Using API,
 let expanded = false;
-function showSelfSection(feedback) {
-  let apiArray =
-  {
-    "id": 1,
-    "sbsr": "SBSR",
-    "email": "sbsr@gmail.com"
-  };
-
+function sendFeedback(feedback) {
   $.ajax({
-    // url: 'http://127.0.0.1:8000/sbsrMail/SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR_SBSR',
-    // url: `http://127.0.0.1:8000/api/getPlaces/${apiArray}`,
     url: `http://127.0.0.1:8000/api/sendEmail/${feedback}`,
     type: 'get',
     headers: {
