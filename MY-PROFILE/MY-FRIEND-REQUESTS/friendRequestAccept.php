@@ -19,5 +19,8 @@ if(isset($_POST)){
         echo "Error While Requestiong To Be Friend:<br>" . $e->getMessage();
     }
 }
+else{
+    echo 'data not found';
+}
 
             

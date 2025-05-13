@@ -402,12 +402,13 @@ body {
 }
 
 .get-contents {
-    width: 100%;
-    max-height: 100vh;
+    width: fit-content;
+    /* max-height: 100vh; */
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
+    /* background-color: #15ff00; */
 }
 
 .content {
@@ -417,6 +418,46 @@ body {
     flex-direction: column;
     overflow: hidden;
     margin: 5vmin;
+    background-color: red;
+}
+
+.get-contents>.friendList{
+    width: 100vw;
+    /* background-color: #4b0082; */
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px; */
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    gap: 5vmin;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin-top: 1vh;
+}
+.get-contents>.friendList>.friend{
+    height: 25vmin;
+    width: 25vmin;        
+}
+.friend>.friend-contents{
+    height: 100%;
+    width: 100%;
+    background-color: #4b0082;
+}
+.friend-contents>.profile-photo{
+    height: 50%;
+    width: 100%;
+    background-color: #ff416c;
+    >img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+.friend-contents>.profile-name{
+    height: 50%;
+    width: 100%;
+    background-color: #5141ff;
 }
 
 .post {

@@ -130,7 +130,9 @@ if ($me) {
                 </div>
             </section>
 
-            <section class="get-contents mt-5"></section>
+            <section class="get-contents mt-5">
+                
+            </section>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -171,13 +173,15 @@ if ($me) {
                 console.log(buttonClicked);
 
                 $.ajax({
-                    type: 'POST',
+                    type: 'post',
                     url: `../GET-CONTENTS/content${buttonClicked}.php`,
                     data: {
                         showAbout: '<?php echo $myId; ?>'
                     },
                     success: function(response) {
-                        $('.get-contents').html(response);
+                        //response=JSON.parse(response);
+                         console.log(response);
+                         $('.get-contents').html(response);
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error: ", error);
@@ -189,6 +193,7 @@ if ($me) {
                                 fromMyProfile: true
                             },
                             success: function(response) {
+                                console.log(response);
                                 $('.get-contents').html(response);
                             },
                             error: function(xhr, status, error) {
@@ -225,7 +230,6 @@ if ($me) {
             $(document).ready(function() {
                 let myFriendId;
                 let deleteFriendRequests;
-
                 function hexToAscii(hex) {
                     let str = '';
                     for (let i = 0; i < hex.length; i += 2) {
@@ -319,6 +323,20 @@ if ($me) {
                     })
 
 
+                });
+                $('.decline-btn').on('click', function(){
+                    $.ajax({
+                        type:'post',
+                        url:'./MY-FRIEND-REQUESTS/friendRequestAccept.php',
+                        data:{deleteFriendRequests:deleteFriendRequests},
+                        success:function(response){
+                            response=JSON.parse(response)
+                            console.log(response);
+                            if(response.success==true){
+                                $('.New-friend-request').css("display", "none");
+                            }
+                        }
+                    })
                 });
 
 
