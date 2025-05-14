@@ -39,7 +39,8 @@ INSERT INTO
 VALUES ('Friends'),
     ('Posts'),
     ('About'),
-    ('Be Friends');
+    ('Be Friends')
+    ('Friend Rqeuest');
 
 
 CREATE TABLE friend_requests (
