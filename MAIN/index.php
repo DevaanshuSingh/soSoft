@@ -50,22 +50,21 @@ if ($me && $allUsers) {
 
     <div class="contact-section">
       <header class="contact-section-header">
-        <span onclick="openContactSection()"><i class="ri-close-circle-line"></i></span>
+        <span class="" onclick="openContactSection()"><i class="ri-close-circle-line"></i></span>
       </header>
       <div class="contact-info">
-        <h1 class="text-warning">Please Leave Your Feedback Here:</h1>
-        <form id="feedback">
-          <div style="max-width: 500px; margin: auto; padding: 1rem; font-family: 'Segoe UI', sans-serif;">
-            <textarea id="txt"></textarea>
-
-            <button
-              type="submit"
-              class="btn p-2"
-              style="margin-top: 1rem; padding: 0.75rem 1.5rem; background-color: #4CAF50; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.15); transition: background-color 0.3s;">
-              Send
-            </button>
-          </div>
-
+        <div class="about">Please Send Feedbacks Us,</div>
+        <div class="user-feedback">
+          <textarea id="txt"></textarea>
+          <button
+          id="feedbackSendBtn"
+            type="submit"
+            class="btn p-2"
+            style="margin-top: 1rem; padding: 0.75rem 1.5rem; background-color: #4CAF50; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.15); transition: background-color 0.3s;">
+            Send
+          </button>
+        </div>
+        <!-- <div style="max-width: 500px; margin: auto; padding: 1rem; font-family: 'Segoe UI', sans-serif;"></div>  -->
       </div>
     </div>
 
@@ -235,14 +234,13 @@ if ($me && $allUsers) {
     </div>
 
     <script>
-      
       var color = localStorage.getItem('bcg');
       document.body.style.backgroundColor = color;
-       $('#feedback').on('submit', function(e) {
+      $('#feedbackSendBtn').on('click', function(e) {
         e.preventDefault();
         var feedback = $('#txt').val();
         sendFeedback(feedback);
-        $('#txt').val()='';
+        $('#txt').val('');
       });
     </script>
   </body>

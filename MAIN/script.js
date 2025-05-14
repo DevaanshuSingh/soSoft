@@ -76,6 +76,23 @@ function updateBcg(colorBox) {
 
 //Using API,
 let expanded = false;
+// function sendFeedback(feedback) {
+//   $.ajax({
+//     url: `http://127.0.0.1:8000/api/sendEmail/${feedback}`,
+//     type: 'get',
+//     headers: {
+//       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     },
+//     success: function (response) {
+//         console.log('सफलता:', response);
+//         $('#txt').val('');
+//         alert("Feedback Sent Successfully");
+//     },
+//     error: function (xhr, status, error) {
+//       console.error('त्रुटि:', error);
+//     }
+//   });
+// }
 function sendFeedback(feedback) {
   $.ajax({
     url: `http://127.0.0.1:8000/api/sendEmail/${feedback}`,
