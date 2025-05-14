@@ -16,7 +16,7 @@ $allUsers = $users->fetchAll();
 $posts = $pdo->prepare("SELECT * FROM posts;");
 $posts->execute();
 $posts = $posts->fetchAll();
-
+// echo $me['email'];
 if ($me && $allUsers) {
 ?>
 
@@ -53,11 +53,11 @@ if ($me && $allUsers) {
         <span class="" onclick="openContactSection()"><i class="ri-close-circle-line"></i></span>
       </header>
       <div class="contact-info">
-        <div class="about">Please Send Feedbacks Us,</div>
+        <div class="about">PLEASE SEND UP FEEDBACK,</div>
         <div class="user-feedback">
           <textarea id="txt"></textarea>
           <button
-          id="feedbackSendBtn"
+            id="feedbackSendBtn"
             type="submit"
             class="btn p-2"
             style="margin-top: 1rem; padding: 0.75rem 1.5rem; background-color: #4CAF50; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.15); transition: background-color 0.3s;">
@@ -233,14 +233,26 @@ if ($me && $allUsers) {
       </div>
     </div>
 
+    <div id="loader" style="display: none;">
+      <div class="spinner"></div>
+    </div>
+
+
     <script>
-      var color = localStorage.getItem('bcg');
+      let color = localStorage.getItem('bcg');
       document.body.style.backgroundColor = color;
       $('#feedbackSendBtn').on('click', function(e) {
         e.preventDefault();
-        var feedback = $('#txt').val();
-        sendFeedback(feedback);
-        $('#txt').val('');
+        let getEmail = "<?php echo $me['email']; ?>";
+        let getName = "<?php echo $me['userName']; ?>";
+        let feedback = $('#txt').val();
+        let data = {
+          email: getEmail,
+          name: getName,
+          feedback: feedback,
+          feedbackAt: new Date()
+        };
+        sendFeedback(data);
       });
     </script>
   </body>
