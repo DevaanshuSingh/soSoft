@@ -1,6 +1,5 @@
 <?php
     session_start();
-    // print_r($_GET);
     if(isset($_GET)){
         try {
             $myId=$_SESSION['myId'];

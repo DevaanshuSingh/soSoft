@@ -266,7 +266,6 @@ body {
 }
 
 .content {
-    /* background-color: rgba(59, 35, 28, 0); */
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -345,7 +344,6 @@ body {
     align-items: center;
     justify-content: space-around;
     box-shadow: 5px 0px 15px rgba(255, 0, 0, 0.897);
-    /* background-color: orange; */
 }
 
 .interact-with-post span {
@@ -448,7 +446,6 @@ body {
     background: linear-gradient(to right, rgba(198, 153, 69, 0.701), rgba(255, 255, 255, 0.376), rgba(0, 128, 0, 0.376));
     color: rgb(0, 0, 0);
     box-shadow: 0 4px 15px rgb(0, 0, 0);
-    /* font-family: "Tektur", sans-serif; */
     font-family: "Tagesschrift", system-ui;
 
 }

@@ -1,10 +1,9 @@
 <?php
 session_start();
 
-// check friend request table's re
+// check friend request table's requests
 
 require_once '../CONNECTION/config.php';
-// print_r($_GET);
 $myId = $_SESSION["myId"];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$myId]);
@@ -17,7 +16,6 @@ $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
 $_SESSION['myId'] = $myId;
 if ($me) {
-    // print_r($me);
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -54,7 +52,6 @@ if ($me) {
         </div>
 
         <div class="product-name">
-            <!-- <button class="goToMain btn btn-info" data-user-id="<?php echo  $myId; ?>">View Socity</button> -->
             <button class="goToMain btn btn-info">View Socity</button>
             <div class="software-name">CNAT's SoSOFT</div>
         </div>
@@ -179,7 +176,6 @@ if ($me) {
                         showAbout: '<?php echo $myId; ?>'
                     },
                     success: function(response) {
-                        //response=JSON.parse(response);
                          console.log(response);
                          $('.get-contents').html(response);
                     },
@@ -252,7 +248,6 @@ if ($me) {
                             myFriendId = response.requestedData[0].requested_from_id;
                             deleteFriendRequests = response.requestedData[0].id;
                             $(".New-friend-request").fadeIn(1000).css("display", "flex");
-                            // $("#requested-profile-name").html(response.requestedData[0].userName);
                             $("#requested-friend-name").html(response.requestedData[0].userName);
                             const hexString = response.requestedData[0].profile_picture.replace(/^src="/,
                                 '');
@@ -266,7 +261,6 @@ if ($me) {
                     }
                 });
                 $('.accept-btn').on('click', function() {
-                    // alert('hey');
                     // Delete friend request row 
                     function friendRequestAccept() {
                         $.ajax({

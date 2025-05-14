@@ -36,11 +36,9 @@ $(document).ready(function () {
         if (currentWidthVW < 19) {
             $(this).css("width", "20vw");
             $(this).find("*").css("display", "flex");
-            // console.log(elem.currentTarget.className + "++");
         } else {
             $(this).css("width", "2vw");
             $(this).find("*").css("display", "none");
-            // console.log(elem.currentTarget.className + "--");
         }
     });
 });

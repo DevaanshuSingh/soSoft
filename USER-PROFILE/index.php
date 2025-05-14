@@ -71,7 +71,6 @@ if (isset($_COOKIE['selectedUserId'])) {
                         foreach ($allFeatures as $feature) {
                             ++$x;
                             if ($feature['featureName'] == "Be Friends") {
-                                // echo "<button class='more-me be-friend-btn' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                                 echo "<button class='more-me be-friend-btn' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                             } else {
                                 echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
@@ -136,7 +135,6 @@ if (isset($_COOKIE['selectedUserId'])) {
                 document.querySelectorAll("header .btn").forEach(button => {
                     button.addEventListener("click", function() {
                         selectedUsers = this.value;
-                        // alert("Button Clicked "+selectedUsers);
                         $.ajax({
                             type: 'POST',
                             url: 'get-info.php',

@@ -1,6 +1,5 @@
 <?php
-    // print_r($_GET);
-    if(isset($_GET['myId'])){
+if(isset($_GET['myId'])){
         require_once('../../CONNECTION/config.php');
         try {
             $myId=$_GET['myId'];

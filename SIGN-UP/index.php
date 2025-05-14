@@ -88,33 +88,6 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
-        // $(document).ready(function() {
-        //     $("#user-form").on("submit", function(e) {
-        //         e.preventDefault();
-
-        //         let formData = new FormData(this);
-
-        //         $.ajax({
-        //             type: "POST",
-        //             url: "register.php",
-        //             data: formData,
-        //             processData: false, // ❌ Don't process data
-        //             contentType: false, // ❌ Don't set content-type
-        //             success: function(response) {
-        //                 console.log(response); // Debugging
-        //                 alert(response.message);
-        //                 if (response.status === "success") {
-        //                     window.location.href = "index.php";
-        //                 }
-        //             },
-        //             error: function(xhr) {
-        //                 alert("An error occurred. " + xhr.responseText);
-        //             }
-        //         });
-        //     });
-        // });
-    </script>
 </body>
 
 </html>
