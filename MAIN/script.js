@@ -25,22 +25,6 @@ function toggleMenu() {
     document.querySelector(".inside-menu").style.transition = "opacity 1.5s ease-in-out";
     isMenuOpen = true;
   }
-} let isMySectionOpen = true;
-
-function toggleMySection() {
-  if (isMenuOpen === true) {
-    document.querySelector(".my-section").style.height = "0";
-    document.querySelector(".my-section").style.transition = "all 5s ease";
-    isMenuOpen = false;
-  } else {
-    document.querySelector(".menu").style.display = "flex";
-    document.querySelector(".menu").style.transition = "2s ease-in";
-    document.querySelector("body").style.gridTemplateColumns = "20% 80%";
-    document.querySelector("body").style.transition = "2s ease";
-    document.querySelector(".menu-icon").style.transform = "rotate(180deg)";
-    document.querySelector(".menu-icon").style.transition = "2s ease";
-    isMenuOpen = true;
-  }
 }
 
 function selecteduser(user) {
@@ -50,6 +34,17 @@ function selecteduser(user) {
 
 function openContactSection() {
   $('.contact-section').toggle('fast');
+}
+
+let isMySectionOpen = false;
+function toggleMySection() {
+  if (isMySectionOpen) {
+    $('.my-section').css('height', 'fit-content');
+    isMySectionOpen = false;
+  } else {
+    $('.my-section').css('height', '10vh');
+    isMySectionOpen = true;
+  }
 }
 
 function toggleSettings(isOpen) {
@@ -93,7 +88,7 @@ function sendFeedback(feedbackData) {
     success: function (response) {
       console.log(response);
       $('#loader').css('display', 'none');
-      $('#txt').val('');
+      // $('#txt').val('');
       alert("Feedback Sent Successfully");
 
     },

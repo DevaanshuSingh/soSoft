@@ -175,7 +175,7 @@ if ($me && $allUsers) {
             ?>
           </div>
         </div>
-        <div class="my-section" onclick="showSelfSection()">Self_Section</div>
+        <div class="my-section" onclick="toggleMySection()">Self_Section</div>
 
         <div class="allposts">
           <?php
@@ -237,7 +237,6 @@ if ($me && $allUsers) {
       <div class="spinner"></div>
     </div>
 
-
     <script>
       let color = localStorage.getItem('bcg');
       document.body.style.backgroundColor = color;
@@ -247,13 +246,14 @@ if ($me && $allUsers) {
         let getName = "<?php echo $me['userName']; ?>";
         let feedback = $('#txt').val();
         let data = {
-          email: getEmail,
           name: getName,
+          email: getEmail,
           feedback: feedback,
           feedbackAt: new Date()
         };
         sendFeedback(data);
       });
+      
     </script>
   </body>
 
