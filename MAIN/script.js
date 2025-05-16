@@ -94,8 +94,8 @@ function sendFeedback(feedbackData) {
     },
     error: function (xhr, status, error) {
       $('#loader').css('display', 'none');
+      alert("Feedback Not Sent");
       console.error('त्रुटि:', error);
-
     }
   });
 }
