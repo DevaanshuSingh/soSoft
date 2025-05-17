@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 index.css created need to do more.....(1-01-2025 ,12:40am)
 
 //Day 2
@@ -17,11 +16,9 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL UNIQUE, -- Username, must be unique
     password VARCHAR(255) NOT NULL      -- Password (hashed for security)
 );
-=======
 index.css created need to do more.....(1-01-2025 ,12:40am)(OLD_LINE)
 
 -> Face Color Changed In (Index.php) For Better UI,(NEW_LINE), Next What??
->>>>>>> 92b8e0a931d8a044fdbbb089d4b2dd1717ae5d1d
 
 **************************************************************************************************
 //Thrusday

@@ -183,11 +183,10 @@ if ($me && $allUsers) {
             echo "<span style='width: 80vw; position:relative; top: 5%; left: 5%;'>No Posts Yet Please <a href='../MY-PROFILE/' class='text-success'><b>POST</b></a></span>";
           } else {
             foreach ($posts as $post) {
-              if ($post['id'] != $myId) {
+              if ($post['user_id'] != $myId) {
                 echo '<div class="content">
                     <div class="post-owner">
                       <div class="post-owner-name">' . $post['user_name'] . '</div>
-
                       <div class="post-owner-profile" > <button onclick="selecteduser(' . $post['user_id'] . ')" data-user-id="' . $post['user_id'] . '">Visit Profile</button> </div>
                     </div>
 
@@ -196,10 +195,10 @@ if ($me && $allUsers) {
                         <span>' . $post['content'] . '</span>
                       </div>
                       <div class="interact-with-post">
-                        <span class="interact-icons border-end border-1 border-dark ">
+                        <span onclick="interaction(`like`,'.$myId.','.$post['user_id'].','.$post['id'].',this)" class="interact-icons border-end border-1 border-dark ">
                           <i class="reaction-icons ri-heart-fill text-danger"></i>
                         </span>
-                        <span class="interact-icons border-start border-1 border-dark">
+                        <span onclick="interaction(`comment`,'.$myId.','.$post['user_id'].','.$post['id'].',this)" class="interact-icons border-start border-1 border-dark">
                           <i class="reaction-icons ri-chat-upload-fill"></i>
                         </span>   
                       </div>
@@ -216,10 +215,10 @@ if ($me && $allUsers) {
                         <span>' . $post['content'] . '</span>
                       </div>
                       <div class="interact-with-post">
-                        <span class="interact-icons border-end border-1 border-dark ">
+                        <span onclick="interaction(`like`,'.$myId.','.$post['user_id'].','.$post['id'].',this)" class="interact-icons border-end border-1 border-dark ">
                           <i class="reaction-icons ri-heart-fill text-danger"></i>
                         </span>
-                        <span class="interact-icons border-start border-1 border-dark">
+                        <span onclick="interaction(`comment`,'.$myId.','.$post['user_id'].','.$post['id'].',this)" class="interact-icons border-start border-1 border-dark">
                           <i class="reaction-icons ri-chat-upload-fill"></i>
                         </span>   
                       </div>

@@ -88,7 +88,7 @@ function sendFeedback(feedbackData) {
     success: function (response) {
       console.log(response);
       $('#loader').css('display', 'none');
-      // $('#txt').val('');
+      $('#txt').val('');
       alert("Feedback Sent Successfully");
 
     },
@@ -109,3 +109,54 @@ document.addEventListener("keydown", function (event) {
     location.href = '../MY-PROFILE/';
   }
 });
+
+function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedeEmelement) {
+
+  $(clickedeEmelement).css("transform", "scale(2)");
+  if (interactionIdentifier === "like") {
+    $.ajax({
+      url: `../INTERACTIONS/post-like.php`,
+      type: 'POST',
+      data: {
+        myId: myId,
+        postOwnerId: postOwnerId,
+        postId: postId
+      },
+      success: function (response) {
+        response = JSON.parse(response);
+        if (response.status === "true") {
+          $(clickedeEmelement).css("color", "gold");
+          $(clickedeEmelement).css("transform", "scale(1)");
+
+        }
+      },
+      error: function (xhr, status, error) {
+        alert("Like Not Sent");
+        console.error('त्रुटि:', error);
+      }
+    });
+  }
+  else if (interactionIdentifier === "comment") {
+    $.ajax({
+      url: `../INTERACTIONS/post-comment.php`,
+      type: 'POST',
+      data: {
+        myId: myId,
+        postOwnerId: postOwnerId,
+        postId: postId
+      },
+      success: function (response) {
+        response = JSON.parse(response);
+        if (response.status === "false") {
+          $(clickedeEmelement).css("color", "red");
+          $(clickedeEmelement).css("transform", "scale(1)");
+
+        }
+      },
+      error: function (xhr, status, error) {
+        alert("Comment Not Sent");
+        console.error('त्रुटि:', error);
+      }
+    });
+  }
+}

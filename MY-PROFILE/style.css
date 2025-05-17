@@ -456,7 +456,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #15ff00;
     flex-wrap: wrap;
 }
 
@@ -682,12 +681,21 @@ body {
     left: 0;
     /* background-color: rgba(0, 0, 0, 0.356); */
     background: #09793b;
-background: linear-gradient(161deg, rgba(9, 121, 59, 0.281) 35%, rgba(225, 95, 245, 0.253) 62%, rgba(0, 213, 255, 0.349) 98%);
+    background: linear-gradient(161deg, rgba(9, 121, 59, 0.281) 35%, rgba(225, 95, 245, 0.253) 62%, rgba(0, 213, 255, 0.349) 98%);
     z-index: 200;
     backdrop-filter: blur(5px);
     display: none;
     align-items: center;
     justify-content: center;
+}
+
+.feature-column {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .mike-animation {
@@ -709,9 +717,7 @@ background: linear-gradient(161deg, rgba(9, 121, 59, 0.281) 35%, rgba(225, 95, 2
     align-items: center !important;
     justify-content: center !important;
     color: rgb(255, 255, 255);
-}
-
-@keyframes pulse {
+}@keyframes pulse {
     0% {
         transform: scale(1);
     }
@@ -723,4 +729,21 @@ background: linear-gradient(161deg, rgba(9, 121, 59, 0.281) 35%, rgba(225, 95, 2
     100% {
         transform: scale(1);
     }
+}
+
+.stopListening {
+    height: 10vmin;
+    width: 10vmin;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: xx-large;
+}
+
+.stopListening:hover {
+    background-color: black;
+    color: red
 }

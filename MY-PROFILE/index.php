@@ -34,8 +34,13 @@ if ($me) {
 
     <body>
         <div class="listening">
-            <div class="mike-animation">
-                <strong><i class=" text-light ri-volume-up-line"></i></strong>
+            <div class="feature-column">
+                <div class="mike-animation">
+                    <strong><i class=" text-light ri-volume-up-line"></i></strong>
+                </div>
+                <div class="stopListening" onclick="stopListening()">
+                    <strong><i class=" text-light ri-close-large-fill"></i></strong>
+                </div>
             </div>
         </div>
         <div class="New-friend-request">
@@ -146,50 +151,6 @@ if ($me) {
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="script.js"></script>
         <script>
-            function voiceCommand() {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-                if (!SpeechRecognition) {
-                    alert("SpeechRecognition is not supported in this browser");
-                } else {
-                    const r = new SpeechRecognition();
-                    r.continuous = false;
-                    r.interimResults = false;
-                    r.maxAlternatives = 1;
-
-
-                    r.onstart = function() {
-                        $('.listening').toggle('slow');
-                        $('.listening').css('display', 'flex');
-                    };
-                    r.onend = function() {
-                        $('.listening').toggle('slow');
-                    };
-
-
-                    r.onresult = async function(event) {
-                        const transcript = event.results[0][0].transcript;
-                        $('textarea').html(transcript);
-                    };
-
-                    r.onerror = function(event) {
-                        console.error('Error occurred in recognition: ' + event.error);
-                        alert('Error occurred in recognition Please Check Console ');
-                        $('.listening').toggle('slow');
-                    };
-
-                    r.start();
-
-                }
-            }
-            // Optional
-            document.getElementById('sound-bars').onclick = function() {
-                this.classList.toggle('paused');
-            }
-
-
-
-
             $('#postText').on('input', function() {
                 if ($('#postText').val().trim() !== "") {
                     $('.post-btn').prop('disabled', false);
@@ -201,6 +162,7 @@ if ($me) {
                     $('.post-btn').css('border', '1px solid red');
                 }
             });
+
             $('.post-btn').on('click', function() {
                 if ($('#postText').val().trim() !== "") {
                     $('.post-btn').prop('disabled', false);
@@ -213,12 +175,63 @@ if ($me) {
                 }
             });
 
+
+
+            let r = null;
+
+            function voiceCommand() {
+
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+                if (!SpeechRecognition) {
+                    alert("SpeechRecognition is not supported in this browser");
+                } else {
+                    r = new SpeechRecognition();
+
+                    r.continuous = false;
+                    r.interimResults = false;
+                    r.maxAlternatives = 1;
+                    let stopListening = false;
+
+                    r.onstart = function() {
+                        $('.listening').toggle('slow');
+                        $('.listening').css('display', 'flex');
+                    };
+                    r.onend = function() {
+                        if (!stopListening) {
+                            $('.listening').toggle('slow');
+                        }
+                        stopListening = false;
+                    };
+                    r.onresult = async function(event) {
+                        const transcript = event.results[0][0].transcript;
+                        $('textarea').html(transcript);
+                    };
+                    r.onerror = function(event) {
+                        stopListening = true;
+                        console.error('Error occurred in recognition: ' + event.error);
+                        console.log('Please Try To Say,');
+                        $('.listening').toggle('slow');
+                    };
+                    r.start();
+                    return 0;
+
+                }
+            }
+
+            function stopListening() {
+                if (!r) {
+                    return;
+                }
+                r.stop();
+            }
+
+
             let buttonClicked = null;
 
             function btnClicked(btn) {
 
                 buttonClicked = btn.value;
-                console.log(buttonClicked);
 
                 $.ajax({
                     type: 'post',
@@ -416,4 +429,5 @@ if ($me) {
 
     </html>
 
-<?php }
+<?php
+}
