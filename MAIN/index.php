@@ -64,7 +64,6 @@ if ($me && $allUsers) {
             Send
           </button>
         </div>
-        <!-- <div style="max-width: 500px; margin: auto; padding: 1rem; font-family: 'Segoe UI', sans-serif;"></div>  -->
       </div>
     </div>
 
@@ -90,7 +89,7 @@ if ($me && $allUsers) {
               <div class="box setTheme" value="None" onclick="updateBcg(this)" style="background-color:rgba(255, 255, 255, 0.48);"></div>
               <div class="box setTheme" value="Yellow" onclick="updateBcg(this)" style="background-color:rgb(221, 237, 46);"></div>
               <div class="box setTheme" value="Skyblue" onclick="updateBcg(this)" style="background-color:rgb(52, 152, 219);"></div>
-              <div class="box setTheme" value="Red" onclick="updateBcg(this)" style="background-color:rgb(255, 0, 0);"></div>
+              <div class="box setTheme" value="Red" onclick="updateBcg(this)" style="background-color:rgba(255, 0, 0, 0.63);"></div>
               <div class="box setTheme" value="Light Green" onclick="updateBcg(this)" style="background-color:rgb(46, 204, 113);"></div>
               <div class="box setTheme" value="Black" onclick="updateBcg(this)" style="background-color:rgb(0, 0, 0);"></div>
               <div class="box setTheme" value="Violet" onclick="updateBcg(this)" style="background-color:rgb(155, 89, 182);"></div>
@@ -176,7 +175,6 @@ if ($me && $allUsers) {
           </div>
         </div>
         <div class="my-section" onclick="toggleMySection()">Self_Section</div>
-
         <div class="allposts">
           <?php
           if (empty($posts)) {
@@ -195,11 +193,15 @@ if ($me && $allUsers) {
                         <span>' . $post['content'] . '</span>
                       </div>
                       <div class="interact-with-post">
-                        <span onclick="interaction(`like`,'.$myId.','.$post['user_id'].','.$post['id'].',this)" class="interact-icons border-end border-1 border-dark ">
-                          <i class="reaction-icons ri-heart-fill text-danger"></i>
+                        <span class="interact-icons border-end border-1 border-dark ">
+                          <div onclick="interaction(`like`,' . $myId . ',' . $post['user_id'] . ',' . $post['id'] . ',this)"  class="main-icon icon-red">
+                            <i class="reaction-icons ri-heart-fill"></i>
+                          </div>
                         </span>
-                        <span onclick="interaction(`comment`,'.$myId.','.$post['user_id'].','.$post['id'].',this)" class="interact-icons border-start border-1 border-dark">
-                          <i class="reaction-icons ri-chat-upload-fill"></i>
+                        <span class="interact-icons border-start border-1 border-dark">
+                          <div onclick="interaction(`comment`,' . $myId . ',' . $post['user_id'] . ',' . $post['id'] . ',this)"  class="main-icon icon-blue">
+                            <i class="reaction-icons ri-chat-upload-fill"></i>
+                          </div>
                         </span>   
                       </div>
                     </div>
@@ -208,18 +210,43 @@ if ($me && $allUsers) {
                 echo '<div class="content">
                     <div class="post-owner">
                       <div class="post-owner-name">You</div>
+                      <div class="interaction-view">
+                        <span class="open-review" onclick="PostReviewToggler()" ><strong><i class="ri-more-2-line"></i></strong></span>
+                        <div class="my-post-interaction-view">
+                          <div class="review-heading">
+                          <span onclick="PostReviewToggler()" class="close-review"><i class="ri-close-circle-fill"></i></span>
+                          <span class="likes-heading" onclick="getInteractionsList('.$myId.',`like`)">
+                            <i class="ri-heart-fill"></i><span class="likes-count">80K</span>
+                          </span>
+                          <span class="comments-heading" onclick="getInteractionsList('.$myId.',`comment`)"> 
+                            <i class="ri-chat-4-fill"></i><span class="comments-count">80K</span>
+                          </span>
+                          </div>
+                          <div class="all-reviews">
+                            <div class="about-review">
+                              <u>Click Above</u>
+                            </div>
+                            <div class="review-list">
+                            <pre>HERE LIST WILL BE SHOWN</pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-
                     <div class="post">
                       <div class="main-post">
-                        <span>' . $post['content'] . '</span>
+                        <span>' . $post['content'].'</span>
                       </div>
                       <div class="interact-with-post">
-                        <span onclick="interaction(`like`,'.$myId.','.$post['user_id'].','.$post['id'].',this)" class="interact-icons border-end border-1 border-dark ">
-                          <i class="reaction-icons ri-heart-fill text-danger"></i>
+                        <span class="interact-icons border-end border-1 border-dark ">
+                          <div onclick="interaction(`like`,' . $myId . ',' . $post['user_id'] . ',' . $post['id'] . ',this)"  class="main-icon icon-red">
+                            <i class="reaction-icons ri-heart-fill"></i>
+                          </div>
                         </span>
-                        <span onclick="interaction(`comment`,'.$myId.','.$post['user_id'].','.$post['id'].',this)" class="interact-icons border-start border-1 border-dark">
-                          <i class="reaction-icons ri-chat-upload-fill"></i>
+                        <span class="interact-icons border-start border-1 border-dark">
+                          <div onclick="interaction(`comment`,' . $myId . ',' . $post['user_id'] . ',' . $post['id'] . ',this)"  class="main-icon icon-blue">
+                            <i class="reaction-icons ri-chat-upload-fill"></i>
+                          </div>
                         </span>   
                       </div>
                     </div>
@@ -252,7 +279,6 @@ if ($me && $allUsers) {
         };
         sendFeedback(data);
       });
-      
     </script>
   </body>
 

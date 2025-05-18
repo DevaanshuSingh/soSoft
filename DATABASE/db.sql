@@ -61,3 +61,15 @@ CREATE TABLE `myFriends` (
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `post_interactions` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `postId` bigint(20) NOT NULL,
+  `postOwnerId` bigint(20) NOT NULL,
+  `postInteractionType` varchar(20) NOT NULL,
+  `interactedUserId` bigint(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+

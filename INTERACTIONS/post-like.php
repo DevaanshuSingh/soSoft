@@ -6,11 +6,11 @@ if (empty($_POST['myId'] || $_POST['postOwnerId'] || $_POST['postId'])) {
     $postOwnerId = $_POST['postOwnerId'];
     $postId = $_POST['postId'];
     require_once '../CONNECTION/config.php';
-    $stmt = $pdo->prepare("INSERT INTO post_interactions (postId, postInteractionType, interactedUserId) VALUES (?,?,?)");
-    if ($stmt->execute([$postId, 'Like', $myId])) {
-        echo json_encode(array('status' => 'true', 'message' => 'Liked The Post Successfully'));
+    $stmt = $pdo->prepare("INSERT INTO post_interactions (postId, postOwnerId, postInteractionType, interactedUserId) VALUES (?,?,?,?)");
+    if ($stmt->execute([$postId, $postOwnerId, 'like', $myId])) {
+        echo json_encode(array('status' => 'true', 'message' => 'Commented The Post Successfully'));
     }
     else{
-        echo json_encode(array('status' => 'false', 'message' => 'Failed to like the post.')); 
+        echo json_encode(array('status' => 'false', 'message' => 'Failed to Comment the post.')); 
     }
 }

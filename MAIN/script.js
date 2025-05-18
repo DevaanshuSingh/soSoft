@@ -110,9 +110,9 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedeEmelement) {
+function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedElement) {
 
-  $(clickedeEmelement).css("transform", "scale(2)");
+  $(clickedElement).css("transform", "scale(2)");
   if (interactionIdentifier === "like") {
     $.ajax({
       url: `../INTERACTIONS/post-like.php`,
@@ -125,9 +125,17 @@ function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedeE
       success: function (response) {
         response = JSON.parse(response);
         if (response.status === "true") {
-          $(clickedeEmelement).css("color", "gold");
-          $(clickedeEmelement).css("transform", "scale(1)");
-
+          setTimeout(() => {
+            $(clickedElement).addClass("icon-green");
+            $(clickedElement).removeClass("icon-red");
+            $(clickedElement).css("transform", "scale(1)");
+          }, 2000);
+        }
+        else if (response.status === "false") {
+          console.log("Like Removed");
+          setTimeout(() => {
+            $(clickedElement).css("transform", "scale(1)");
+          }, 2000);
         }
       },
       error: function (xhr, status, error) {
@@ -147,10 +155,18 @@ function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedeE
       },
       success: function (response) {
         response = JSON.parse(response);
-        if (response.status === "false") {
-          $(clickedeEmelement).css("color", "red");
-          $(clickedeEmelement).css("transform", "scale(1)");
-
+        if (response.status === "true") {
+          setTimeout(() => {
+            $(clickedElement).addClass("icon-green");
+            $(clickedElement).removeClass("icon-blue");
+            $(clickedElement).css("transform", "scale(1)");
+          }, 2000);
+        }
+        else if (response.status === "false") {
+          console.log("Commente Removed");
+          setTimeout(() => {
+            $(clickedElement).css("transform", "scale(1)");
+          }, 2000);
         }
       },
       error: function (xhr, status, error) {
@@ -159,4 +175,37 @@ function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedeE
       }
     });
   }
+}
+
+function getInteractionsList(myId,getListOf) {
+  if (getListOf == '') {
+    alert('Please Provide Value');
+  }
+  else if (getListOf == 'like' || getListOf == 'comment') {
+    $.ajax({
+    url: `GET-POST-INTERACTIONS-LIST`,
+    type: 'get',
+    data: {
+      myId: myId,
+      getListOf: getListOf,
+    },
+    success: function (response) {
+        response = JSON.parse(response);
+        console.log(response);
+
+        if (response.status === 'true') {
+            $('.review-list').html(response.data);
+        } else {
+            $('.review-list').html('<div class="no-data">' + response.message + '</div>');
+        }
+    },
+    error: function (xhr, status, error) {
+      console.error('त्रुटि:', error);
+    }
+  });
+  }
+}
+
+function PostReviewToggler() {
+  $('.my-post-interaction-view').toggle('2000');
 }

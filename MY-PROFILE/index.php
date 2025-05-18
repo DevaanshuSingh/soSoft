@@ -175,14 +175,10 @@ if ($me) {
                 }
             });
 
-
-
             let r = null;
 
             function voiceCommand() {
-
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
                 if (!SpeechRecognition) {
                     alert("SpeechRecognition is not supported in this browser");
                 } else {

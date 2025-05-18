@@ -518,7 +518,6 @@ body {
 }
 
 .content {
-    /* height: 45vh; */
     gap: 2%;
     width: 100%;
     display: flex;
@@ -532,7 +531,7 @@ body {
     height: 15%;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: rgba(0, 47, 255, 0.418);
 }
 
@@ -542,6 +541,107 @@ body {
     justify-content: center;
     width: 50%;
     height: 100%;
+}
+
+.my-post-interaction-view {
+    height: 95vh;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(215, 219, 255, 0.356);
+    backdrop-filter: blur(5px);
+    top: 5% !important;
+    left: 0% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2000;
+}
+
+.interaction-view>.open-review {
+    cursor: pointer;
+}
+
+.close-review {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    font-size: 2rem;
+    color: red;
+    cursor: pointer;
+}
+
+.my-post-interaction-view>.review-heading {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.review-heading>.likes-heading {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 5%;
+}
+
+.review-heading>.likes-heading>i {
+    font-size: 2rem;
+    color: rgb(255, 108, 132);
+}
+
+.review-heading>.comments-heading {
+    height: 100%;
+    width: 50%;
+    border-left: 1px solid rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    /* justify-content: center; */
+    gap: 5%;
+}
+
+.review-heading>.comments-heading>i {
+    font-size: 2rem;
+    color: rgb(29, 135, 255);
+}
+
+.my-post-interaction-view>.all-reviews {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.my-post-interaction-view>.all-reviews>.about-review {
+    height: 5%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-post-interaction-view>.all-reviews>.review-list {
+    height: 95%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.my-post-interaction-view>.all-reviews>.review-list>.interacted-user{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gold;
+    margin: 2% 0 0 0;
 }
 
 .post-owner {
@@ -637,6 +737,35 @@ body {
     font-size: 2rem !important;
 }
 
+.interact-with-post span .main-icon {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1.2);
+}
+
+.icon-red {
+    color: red;
+}
+
+.icon-blue {
+    color: rgba(31, 31, 255, 0.813);
+}
+
+.icon-green {
+    color: green;
+}
+
+.interact-with-post span .main-icon .ri-heart-fill {
+    font-size: 2rem;
+}
+
+.interact-with-post span .main-icon .ri-chat-upload-fill {
+    font-size: 2rem;
+}
+
 .my-section {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     background: linear-gradient(45deg, rgba(252, 211, 77, 0.2), rgba(252, 165, 165, 0.2), rgba(165, 243, 252, 0.2));
@@ -651,33 +780,34 @@ body {
 
 
 #loader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.356);
-  backdrop-filter: blur(5px);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.356);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
 .spinner {
-  width: 60px;
-  height: 60px;
-  border: 6px solid #2370ff;
-  border-top-color: #ebf82e;
-  border-radius: 50%;
-  animation: ghumnaa 1s linear infinite;
+    width: 60px;
+    height: 60px;
+    border: 6px solid #2370ff;
+    border-top-color: #ebf82e;
+    border-radius: 50%;
+    animation: ghumnaa 1s linear infinite;
 }
 
 @keyframes ghumnaa {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
