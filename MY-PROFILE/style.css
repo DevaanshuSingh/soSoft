@@ -286,6 +286,7 @@ body {
     justify-content: center;
     align-items: center;
     border: none;
+    cursor:pointer;
 }
 
 .post-section main>form>.form-field>.input-section>.command:hover {

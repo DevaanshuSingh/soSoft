@@ -5,9 +5,10 @@ if (empty($_POST['myId'] || $_POST['postOwnerId'] || $_POST['postId'])) {
     $myId = $_POST['myId'];
     $postOwnerId = $_POST['postOwnerId'];
     $postId = $_POST['postId'];
+    $commentVal = $_POST['commentVal'];
     require_once '../CONNECTION/config.php';
-    $stmt = $pdo->prepare("INSERT INTO post_interactions (postId, postOwnerId, postInteractionType, interactedUserId) VALUES (?,?,?,?)");
-    if ($stmt->execute([$postId, $postOwnerId, 'comment', $myId])) {
+    $stmt = $pdo->prepare("INSERT INTO post_interactions (postId, postOwnerId, postInteractionType, interactedUserId,commentVal) VALUES (?,?,?,?,?)");
+    if ($stmt->execute([$postId, $postOwnerId, 'comment', $myId, $commentVal])) {
         echo json_encode(array('status' => 'true', 'message' => 'Commented The Post Successfully'));
     }
     else{

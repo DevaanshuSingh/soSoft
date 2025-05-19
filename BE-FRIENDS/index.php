@@ -16,6 +16,7 @@ if (isset($_COOKIE['selectedUserId'])) {
                 $returnArray['success']=true;
                 $returnArray['message']="Requested Succesfully";
             }
+
             else{
                 $returnArray['success']=false;
                 $returnArray['message']="Failed To Requesting For Becoming Friend";

@@ -527,6 +527,83 @@ body {
     border-radius: 10px;
 }
 
+.comment-section {
+    position: absolute;
+    top: calc((100vh - 60vmin)/2);
+    left: calc((100vw - 90vw)/2);
+    height: 60vmin;
+    width: 90vw;
+    background-color: rgb(241, 203, 159);
+    z-index: 199;
+    border-radius: 20px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 5px 5px 10px black, -5px -5px 10px rgba(0, 0, 0, 0.459);
+}
+
+.comment-section>.close-comment-section {
+    border-radius: 50%;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    padding: 0% 2% 0 0 !important;
+    font-size: x-large;
+}
+
+.comment-section>.comment-header {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-section>.comment-main-part {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.comment-section>.comment-main-part>.input-comment {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.comment-section>.comment-main-part>.input-comment>textarea {
+    height: 90%;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 30vh;
+}
+
+.comment-section>.comment-main-part>.send-comment {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-section>.comment-main-part>.send-comment>button {
+    height: 100%;
+    width: 50%;
+    background-color: gold;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px black, -5px -5px 10px rgba(252, 121, 121, 0.459);
+
+}
+
 .post-owner {
     height: 15%;
     width: 100%;
@@ -547,11 +624,13 @@ body {
     height: 95vh;
     width: 100%;
     position: fixed;
-    background-color: rgba(215, 219, 255, 0.356);
+    background-color: rgba(255, 255, 255, 0.911);
+    border-top: 1px solid black;
+    border-left: 1px solid black;
     backdrop-filter: blur(5px);
     top: 5% !important;
     left: 0% !important;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -587,6 +666,7 @@ body {
     align-items: center;
     justify-content: start;
     gap: 5%;
+    cursor: pointer;
 }
 
 .review-heading>.likes-heading>i {
@@ -601,8 +681,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: start;
-    /* justify-content: center; */
     gap: 5%;
+    cursor: pointer;
 }
 
 .review-heading>.comments-heading>i {
@@ -617,6 +697,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    overflow: scroll;
 }
 
 .my-post-interaction-view>.all-reviews>.about-review {
@@ -634,14 +715,43 @@ body {
     align-items: center;
     flex-direction: column;
 }
-.my-post-interaction-view>.all-reviews>.review-list>.interacted-user{
-    height: 10%;
+
+.my-post-interaction-view>.all-reviews>.review-list>.interacted-user {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid gold;
+    border-top: 1px solid gold;
+    border-bottom: 1px solid gold;
     margin: 2% 0 0 0;
+    cursor: pointer;
+    box-shadow: 2px 1px 2px rgb(0, 0, 0);
+}
+
+.my-post-interaction-view>.all-reviews>.review-list>.interacted-user>.interacted-user-image {
+    height: 100%;
+    width: 10%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.my-post-interaction-view>.all-reviews>.review-list>.interacted-user>.interacted-user-image>img {
+    height: 100%;
+    width: 100%;
+    max-height: 20vh;
+}
+
+.my-post-interaction-view>.all-reviews>.review-list>.interacted-user>.interacted-user-name {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-left: 1px solid black;
 }
 
 .post-owner {

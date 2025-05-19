@@ -110,9 +110,20 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedElement) {
+function openCommentSection() {
+  $('.contact-section').toggle('fast');
+}
 
+let sendData = {};
+let clickedInteractionIcon;
+function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedElement) {
   $(clickedElement).css("transform", "scale(2)");
+  clickedInteractionIcon=clickedElement;
+  sendData['myId'] = myId;
+  sendData['postOwnerId'] = postOwnerId;
+  sendData['postId'] = postId;
+  console.log("sendData:", sendData);
+
   if (interactionIdentifier === "like") {
     $.ajax({
       url: `../INTERACTIONS/post-like.php`,
@@ -129,13 +140,13 @@ function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedEl
             $(clickedElement).addClass("icon-green");
             $(clickedElement).removeClass("icon-red");
             $(clickedElement).css("transform", "scale(1)");
-          }, 2000);
+          }, 1000);
         }
         else if (response.status === "false") {
           console.log("Like Removed");
           setTimeout(() => {
             $(clickedElement).css("transform", "scale(1)");
-          }, 2000);
+          }, 1000);
         }
       },
       error: function (xhr, status, error) {
@@ -145,67 +156,114 @@ function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedEl
     });
   }
   else if (interactionIdentifier === "comment") {
+    sendComment(false);
+  }
+}
+
+function sendComment(isCheck) {
+  JSON.stringify(sendData, null, 2);
+  $('.comment-section').toggle('slow');
+  if (isCheck) {
+    let commentTxt = $('.comment-txt').val();
+    if (commentTxt == '') {
+      alert("Please Write, What You Want To Comment On This Post,");
+    }
+    else {
+      myId = sendData.myId;
+      postOwnerId = sendData.postOwnerId;
+      postId = sendData.postId;
+      $.ajax({
+        url: `../INTERACTIONS/post-comment.php`,
+        type: 'POST',
+        data: {
+          myId: myId,
+          postOwnerId: postOwnerId,
+          postId: postId,
+          commentVal: commentTxt
+        },
+        success: function (response) {
+          console.log(response);
+          response = JSON.parse(response);
+          if (response.status === "true") {
+            setTimeout(() => {
+              $(clickedInteractionIcon).addClass("icon-green");
+              $(clickedInteractionIcon).removeClass("icon-blue");
+              $(clickedInteractionIcon).css("transform", "scale(1)");
+            }, 1000);
+          }
+          else if (response.status === "false") {
+            console.log("Commente Removed");
+            setTimeout(() => {
+              $(clickedElement).css("transform", "scale(1)");
+            }, 1000);
+          }
+        },
+        error: function (xhr, status, error) {
+          alert("Comment Not Sent");
+          console.error('त्रुटि:', error);
+        }
+      });
+    }
+  }
+}
+
+function commentSectionToggler() {
+  $('.comment-section').toggle('slow');
+}
+
+function getInteractionsList(myId, getListOf) {
+  if (getListOf == '') {
+    alert('Please Provide Value');
+  }
+  else if (getListOf == 'like') {
     $.ajax({
-      url: `../INTERACTIONS/post-comment.php`,
-      type: 'POST',
+      url: `GET-POST-INTERACTIONS-LIST`,
+      type: 'get',
       data: {
         myId: myId,
-        postOwnerId: postOwnerId,
-        postId: postId
+        getListOf: getListOf,
       },
       success: function (response) {
         response = JSON.parse(response);
-        if (response.status === "true") {
-          setTimeout(() => {
-            $(clickedElement).addClass("icon-green");
-            $(clickedElement).removeClass("icon-blue");
-            $(clickedElement).css("transform", "scale(1)");
-          }, 2000);
-        }
-        else if (response.status === "false") {
-          console.log("Commente Removed");
-          setTimeout(() => {
-            $(clickedElement).css("transform", "scale(1)");
-          }, 2000);
+        console.log(response);
+        if (response.status === 'true') {
+          $('.review-list').html(response.data);
+        } else if (response.status === 'false') {
+          $('.review-list').html(`<strong>${response.message.toUpperCase()} In Your Post</strong>`);
         }
       },
       error: function (xhr, status, error) {
-        alert("Comment Not Sent");
+        console.error('त्रुटि:', error);
+      }
+    });
+  }
+  else if (getListOf == 'comment') {
+    $.ajax({
+      url: `GET-POST-INTERACTIONS-LIST`,
+      type: 'get',
+      data: {
+        myId: myId,
+        getListOf: getListOf,
+      },
+      success: function (response) {
+        response = JSON.parse(response);
+        console.log(response);
+        if (response.status === 'true') {
+          $('.review-list').html(response.data);
+        } else if (response.status === 'false') {
+          $('.review-list').html(`<strong>${response.message.toUpperCase()} In Your Post</strong>`);
+        }
+      },
+      error: function (xhr, status, error) {
         console.error('त्रुटि:', error);
       }
     });
   }
 }
 
-function getInteractionsList(myId,getListOf) {
-  if (getListOf == '') {
-    alert('Please Provide Value');
-  }
-  else if (getListOf == 'like' || getListOf == 'comment') {
-    $.ajax({
-    url: `GET-POST-INTERACTIONS-LIST`,
-    type: 'get',
-    data: {
-      myId: myId,
-      getListOf: getListOf,
-    },
-    success: function (response) {
-        response = JSON.parse(response);
-        console.log(response);
-
-        if (response.status === 'true') {
-            $('.review-list').html(response.data);
-        } else {
-            $('.review-list').html('<div class="no-data">' + response.message + '</div>');
-        }
-    },
-    error: function (xhr, status, error) {
-      console.error('त्रुटि:', error);
-    }
-  });
-  }
-}
-
 function PostReviewToggler() {
   $('.my-post-interaction-view').toggle('2000');
+}
+function showInteractedUser(interactedUser) {
+  selecteduser(interactedUser);
 }

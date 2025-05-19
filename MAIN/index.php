@@ -35,9 +35,7 @@ if ($me && $allUsers) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
-
-
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
@@ -53,7 +51,7 @@ if ($me && $allUsers) {
         <span class="" onclick="openContactSection()"><i class="ri-close-circle-line"></i></span>
       </header>
       <div class="contact-info">
-        <div class="about">PLEASE SEND UP FEEDBACK,</div>
+        <div class="about">Please Send Us Feedback</div>
         <div class="user-feedback">
           <textarea id="txt"></textarea>
           <button
@@ -148,6 +146,14 @@ if ($me && $allUsers) {
       </div>
     </div>
 
+    <div class="comment-section">
+      <span onclick="commentSectionToggler()" class="close-comment-section"><i class="ri-close-circle-line"></i></span>
+      <header class="comment-header">Comment On Post</header>
+      <main class="comment-main-part">
+        <div class="input-comment"><textarea class="comment-txt"></textarea></div>
+        <div class="send-comment"><button onclick="sendComment(true)" class="send-comment-btn">Comment</button></div>
+      </main>
+    </div>
     <div class="main-container">
       <div class="container-fluid">
 
@@ -215,10 +221,10 @@ if ($me && $allUsers) {
                         <div class="my-post-interaction-view">
                           <div class="review-heading">
                           <span onclick="PostReviewToggler()" class="close-review"><i class="ri-close-circle-fill"></i></span>
-                          <span class="likes-heading" onclick="getInteractionsList('.$myId.',`like`)">
+                          <span class="likes-heading" onclick="getInteractionsList(' . $myId . ',`like`)">
                             <i class="ri-heart-fill"></i><span class="likes-count">80K</span>
                           </span>
-                          <span class="comments-heading" onclick="getInteractionsList('.$myId.',`comment`)"> 
+                          <span class="comments-heading" onclick="getInteractionsList(' . $myId . ',`comment`)"> 
                             <i class="ri-chat-4-fill"></i><span class="comments-count">80K</span>
                           </span>
                           </div>
@@ -235,7 +241,7 @@ if ($me && $allUsers) {
                     </div>
                     <div class="post">
                       <div class="main-post">
-                        <span>' . $post['content'].'</span>
+                        <span>' . $post['content'] . '</span>
                       </div>
                       <div class="interact-with-post">
                         <span class="interact-icons border-end border-1 border-dark ">
