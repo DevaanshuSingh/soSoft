@@ -304,6 +304,40 @@ body {
     color: lime;
     font-size: x-large;
 }
+/* Voice Command*/
+
+.post-section main>form>.form-field>.input-section>.command {
+    width: 10%;
+    height: 100%;
+    background-color: rgba(255, 217, 0, 0.237);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor:pointer;
+}
+
+.post-section main>form>.form-field>.input-section>.command:hover {
+    background-color: rgba(2, 146, 110, 0.644);
+}
+
+.post-section main>form>.form-field>.input-section>.command>span {
+    border-radius: 50%;
+    /* padding: 2%; */
+    height: fit-content;
+    width: fit-content;
+}
+
+.post-section main>form>.form-field>.input-section>.command>span>i {
+    color: lime;
+    font-size: x-large;
+}
+
+
+
+
+
+
 
 
 
@@ -467,7 +501,6 @@ body {
     flex-direction: column;
     overflow: hidden;
     margin: 5vmin;
-    background-color: red;
 }
 
 .get-contents>.friendList {
@@ -531,7 +564,7 @@ body {
     overflow: scroll;
     flex-direction: column;
     padding: 1%;
-
+    
     &>span {
         margin-top: 2%;
         position: relative;

@@ -35,13 +35,24 @@ if ($me && $allUsers) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
   </head>
 
   <body>
+    <div class="listening">
+      <div class="feature-column">
+        <div class="mike-animation">
+          <strong><i class=" text-light ri-volume-up-line"></i></strong>
+        </div>
+        <div class="stopListening" onclick="stopListening()">
+          <strong><i class=" text-light ri-close-large-fill"></i></strong>
+        </div>
+      </div>
+    </div>
+
     <div class="product-name" onclick="sbsr()">
       <strong class="text-primary">CNAT's SOSOFT</strong>
     </div>
@@ -76,6 +87,26 @@ if ($me && $allUsers) {
         </div>
       </div>
     </div>
+
+    <div class="help-box">
+      <header>
+        <div class="header-left">SOFT_AI</div>
+        <div class="header-right">YOU</div>
+      </header>
+      <main>
+        <div class="about-soft-ai text-danger"><span>Soft_AI Cannot Memorize Chats,</span></div>
+        <div class="chats">
+          <div class="ai-reply"></div>
+          <div class="user-msg"></div>
+        </div>
+        <div class="message-to-ai">
+          <textarea id="sendToAi"></textarea>
+          <button>Ask</button>
+          <button class='voiceBtn' onclick="voiceCommand()"><span><i class="ri-speak-fill"></i></span></button>
+        </div>
+      </main>
+    </div>
+    <div class="help-btn" onclick="startHelping()"><Srong>ASK</Srong></div>
 
     <div class="all-settings">
       <header><span onclick="toggleSettings(true)">X</span></header>
@@ -270,6 +301,52 @@ if ($me && $allUsers) {
     </div>
 
     <script>
+      let shouldStopListening = false;
+
+      function voiceCommand() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+          alert("SpeechRecognition is not supported in this browser");
+        } else {
+          r = new SpeechRecognition();
+
+          r.continuous = false;
+          r.interimResults = false;
+          r.maxAlternatives = 1;
+
+          r.onstart = function() {
+            $('.listening').toggle('slow');
+            $('.listening').css('display', 'flex');
+          };
+          r.onend = function() {
+            if (!shouldStopListening) {
+              $('.listening').toggle('slow');
+            }
+            shouldStopListening = false;
+          };
+          r.onresult = async function(event) {
+            const transcript = event.results[0][0].transcript;
+            $('textarea').html(transcript);
+          };
+          r.onerror = function(event) {
+            shouldStopListening = true;
+            console.error('Error occurred in recognition: ' + event.error);
+            console.log('Please Try To Say,');
+            $('.listening').toggle('slow');
+          };
+          r.start();
+          return 0;
+        }
+      }
+
+      function stopListening() {
+        if (!r) {
+          alert("Nor R Found");
+        } else {
+          r.stop();
+        }
+      }
+
       let color = localStorage.getItem('bcg');
       document.body.style.backgroundColor = color;
       $('#feedbackSendBtn').on('click', function(e) {

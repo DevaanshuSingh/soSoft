@@ -118,7 +118,7 @@ let sendData = {};
 let clickedInteractionIcon;
 function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedElement) {
   $(clickedElement).css("transform", "scale(2)");
-  clickedInteractionIcon=clickedElement;
+  clickedInteractionIcon = clickedElement;
   sendData['myId'] = myId;
   sendData['postOwnerId'] = postOwnerId;
   sendData['postId'] = postId;
@@ -209,6 +209,7 @@ function sendComment(isCheck) {
 
 function commentSectionToggler() {
   $('.comment-section').toggle('slow');
+  $(clickedInteractionIcon).css("transform", "none");
 }
 
 function getInteractionsList(myId, getListOf) {
@@ -266,4 +267,8 @@ function PostReviewToggler() {
 }
 function showInteractedUser(interactedUser) {
   selecteduser(interactedUser);
+}
+
+function startHelping(){
+  $('.help-box').toggle('slow');
 }
