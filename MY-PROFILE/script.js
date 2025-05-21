@@ -47,7 +47,7 @@ $(document).ready(function () {
 
 //Shortcuts
 document.addEventListener("keydown", function (event) {
-    if (event.altKey && event.key.toLowerCase() === "m") {
+    if (event.altKey && event.key.toLowerCase() === "s") {
         location.href = '../MAIN/';
     }
 });

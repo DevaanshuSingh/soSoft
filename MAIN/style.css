@@ -268,7 +268,9 @@ body {
 }
 
 @keyframes float-glow {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
     }
@@ -278,6 +280,7 @@ body {
         box-shadow: 0 12px 30px rgba(38, 132, 255, 0.4);
     }
 }
+
 .help-box {
     height: calc(100vh - (5% + 15vmin));
     width: 80vw;
@@ -288,7 +291,7 @@ body {
     z-index: 5000;
     bottom: 15vmin;
     right: 0%;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -311,7 +314,7 @@ body {
 .help-box>header>.header-left {
     height: 100%;
     width: 100%;
-    border: 1px solid gold;
+    border-right: 2px solid white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -321,7 +324,7 @@ body {
 .help-box>header>.header-right {
     height: 100%;
     width: 100%;
-    border: 1px solid gold;
+    border-left: 2px solid white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -353,41 +356,79 @@ body {
     height: 85%;
     width: 100%;
     border-radius: 20px;
-    /* background-color: rgba(0, 0, 0, 0.562); */
+    border: 1px solid rgba(0, 0, 0, 0.562);
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.help-box>main>.chats>.chat {
+    /* height: 20%; */
+    width: 100%;
+    border: 1px solid white;
+    margin: 2% 0 1% 0 !important;
+}
+
+.help-box>main>.chats>.user-prompt {
+    width: 100%;
+    border: 1px solid white;
+    margin: 2% 0 1% 0 !important;
+    padding: 0 1% 0 1% !important;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
 }
 
 .help-box>main>.chats>.ai-reply {
-    height: 100%;
-    width: 50%;
-    border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.562);
-    border-right: 1px solid white;
+    width: 100%;
+    border: 1px solid white;
+    margin: 2% 0 1% 0 !important;
+    padding: 0 1% 0 1% !important;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
-
-.help-box>main>.chats>.user-msg {
+.help-box>main>.chats>.user-prompt>.chat-text,
+.help-box>main>.chats>.ai-reply>.chat-text {
     height: 100%;
     width: 50%;
-    border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.562);
+    border: 1px solid white;
+    background-color: gold;
 }
 
 .help-box>main>.message-to-ai {
     height: 10%;
     width: 100%;
     border-radius: 20px;
-    background-color: rgba(223, 83, 83, 0.562);
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 .help-box>main>.message-to-ai>#sendToAi {
+    background-color: rgba(74, 97, 88, 0.486);
+    color: white;
+    padding: 0 2% 0 2% !important;
+    border-radius: 20px;
     height: 100%;
     width: 80%;
     resize: none;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 1s ease !important;
+}
+
+.help-box>main>.message-to-ai>#sendToAi:focus {
+    outline: none;
+}
+
+.help-box>main>.message-to-ai>#sendToAi::placeholder {
+    color: rgba(255, 255, 255, 0.582);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.help-box>main>.message-to-ai>.askBtn {
+    border-radius: 20px;
 }
 
 .help-box>main>.message-to-ai>button {
@@ -398,7 +439,9 @@ body {
 
 .help-box>main>.message-to-ai>.voiceBtn {
     border-radius: 50p x;
-    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .all-settings {
@@ -1084,10 +1127,10 @@ body {
     border: 6px solid #2370ff;
     border-top-color: #ebf82e;
     border-radius: 50%;
-    animation: ghumnaa 1s linear infinite;
+    animation: spin 1s linear infinite;
 }
 
-@keyframes ghumnaa {
+@keyframes spin {
     0% {
         transform: rotate(0deg);
     }
