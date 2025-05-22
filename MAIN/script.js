@@ -1,4 +1,6 @@
+
 let isMenuOpen = true;
+
 function toggleMenu() {
   if (isMenuOpen === true) {
     document.querySelector(".menu .menu-button").style.display = "hidden";
@@ -37,6 +39,7 @@ function openContactSection() {
 }
 
 let isMySectionOpen = false;
+
 function toggleMySection() {
   if (isMySectionOpen) {
     $('.my-section').css('height', 'fit-content');
@@ -50,8 +53,7 @@ function toggleMySection() {
 function toggleSettings(isOpen) {
   if (isOpen) {
     $(".all-settings").css("display", "none");
-  }
-  else {
+  } else {
     $(".all-settings").css("display", "flex");
   }
 }
@@ -71,6 +73,7 @@ function updateBcg(colorBox) {
 
 //Using API,
 let expanded = false;
+
 function sendFeedback(feedbackData) {
   console.log(feedbackData);
   $.ajax({
@@ -116,6 +119,7 @@ function openCommentSection() {
 
 let sendData = {};
 let clickedInteractionIcon;
+
 function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedElement) {
   $(clickedElement).css("transform", "scale(2)");
   clickedInteractionIcon = clickedElement;
@@ -141,8 +145,7 @@ function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedEl
             $(clickedElement).removeClass("icon-red");
             $(clickedElement).css("transform", "scale(1)");
           }, 1000);
-        }
-        else if (response.status === "false") {
+        } else if (response.status === "false") {
           console.log("Like Removed");
           setTimeout(() => {
             $(clickedElement).css("transform", "scale(1)");
@@ -154,8 +157,7 @@ function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedEl
         console.error('त्रुटि:', error);
       }
     });
-  }
-  else if (interactionIdentifier === "comment") {
+  } else if (interactionIdentifier === "comment") {
     sendComment(false);
   }
 }
@@ -167,8 +169,7 @@ function sendComment(isCheck) {
     let commentTxt = $('.comment-txt').val();
     if (commentTxt == '') {
       alert("Please Write, What You Want To Comment On This Post,");
-    }
-    else {
+    } else {
       myId = sendData.myId;
       postOwnerId = sendData.postOwnerId;
       postId = sendData.postId;
@@ -190,8 +191,7 @@ function sendComment(isCheck) {
               $(clickedInteractionIcon).removeClass("icon-blue");
               $(clickedInteractionIcon).css("transform", "scale(1)");
             }, 1000);
-          }
-          else if (response.status === "false") {
+          } else if (response.status === "false") {
             console.log("Commente Removed");
             setTimeout(() => {
               $(clickedElement).css("transform", "scale(1)");
@@ -215,8 +215,7 @@ function commentSectionToggler() {
 function getInteractionsList(myId, getListOf) {
   if (getListOf == '') {
     alert('Please Provide Value');
-  }
-  else if (getListOf == 'like') {
+  } else if (getListOf == 'like') {
     $.ajax({
       url: `GET-POST-INTERACTIONS-LIST`,
       type: 'get',
@@ -237,8 +236,7 @@ function getInteractionsList(myId, getListOf) {
         console.error('त्रुटि:', error);
       }
     });
-  }
-  else if (getListOf == 'comment') {
+  } else if (getListOf == 'comment') {
     $.ajax({
       url: `GET-POST-INTERACTIONS-LIST`,
       type: 'get',
@@ -265,10 +263,44 @@ function getInteractionsList(myId, getListOf) {
 function PostReviewToggler() {
   $('.my-post-interaction-view').toggle('2000');
 }
+
 function showInteractedUser(interactedUser) {
   selecteduser(interactedUser);
 }
 
-function startHelping(){
+function startHelping() {
   $('.help-box').toggle('slow');
+}
+
+async function askSosoftAi() {
+  let userPrompt = $('#sendToAi').val();
+  if (userPrompt != '') {
+    const aiResponse = await callSosoftAi(userPrompt);
+    alert(aiResponse.candidates[0].content.parts[0].text);
+  }
+}
+
+async function callSosoftAi(text) {
+  const body = {
+    contents: [{
+      parts: [
+        {
+          text: "Your name is 'Aalu' Your home is Field. Your Owner Is ',' Your gender is Female. You always speak in a very sweet voice. Only give direct answers — no explanations, no extra descriptions. Never use phrases like “(in a sweet, gentle voice)” — just give the answer directly with perfect emotions. If the user asks in another language (e.g., Hindi), then reply in that language, but English keywords may appear naturally (e.g., 'Main achhi hoon, aap kaisi hain?', 'You are very lovely, careful person') So Always Use To Talk With That Language In Which You Are Being Asked But With English Keywords, Like Whatsapp Language, Roman-That Language, . Do not add anything beyond the answer itself."
+        },
+        {
+          text: text
+        }
+      ]
+    }]
+  };
+  const API_KEY = GEMINI_API_KEY;
+
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+
+  const result = await response.json();
+  return result;
 }

@@ -38,6 +38,7 @@ if ($me && $allUsers) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../ENV/env.js"></script>
     <script src="script.js"></script>
   </head>
 
@@ -94,19 +95,61 @@ if ($me && $allUsers) {
         <div class="header-right">YOU</div>
       </header>
       <main>
-        <div class="about-soft-ai text-danger"><span>Soft_AI Cannot Memorize Chats,</span></div>
+        <div class="about-soft-ai text-warning"><span><i>Soft_AI Cannot Memorize Chats,</i></span></div>
         <div class="chats">
-          <div class="ai-reply"></div>
-          <div class="user-msg"></div>
+          <!-- Chats Will Generate Here -->
+
+          <div class="chat user-prompt">
+            <header><strong><u>Your Prompt:</u></strong></header>
+            <main>
+              <div class="chat-text">
+                <div class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum incidunt numquam consequuntur optio fuga, corrupti repellat quis minus atque aliquid ullam libero tempore at recusandae! Provident nihil cumque eaque aliquam illo quibusdam accusantium earum? Necessitatibus perspiciatis, numquam illum aut officia facere enim vero voluptatem quis maiores cupiditate repellendus laudantium, dolore est doloribus! Dolore vero qui eveniet praesentium quae quibusdam blanditiis fugiat quas. Dolor dicta id minus! Ipsum, eveniet neque nemo autem delectus eum amet iusto ex voluptates vel cumque labore esse cum tenetur modi distinctio veniam nisi? Voluptas omnis facilis sint magnam facere exercitationem labore incidunt officiis ad ducimus? Fugit consequuntur, voluptas eveniet amet odio veniam corporis. Nulla placeat earum reprehenderit tenetur id reiciendis sequi voluptatem at libero voluptatibus nobis porro ullam quae animi veritatis minima in officia, dolorem ipsum quos adipisci enim! Placeat consequuntur libero fuga reprehenderit optio exercitationem eaque distinctio dolorum pariatur ipsa sit tempora fugiat magni et provident eligendi obcaecati, officiis, beatae iure quod molestiae nostrum deserunt blanditiis! Quod, atque quaerat cumque nam neque repellendus quos quidem aliquam corrupti ipsa tenetur rem eligendi deleniti aperiam delectus odio vitae magni totam perferendis facilis dolor distinctio animi cupiditate aspernatur. Tempora sit dignissimos reiciendis facere voluptates sed quo saepe officiis.</div>
+              </div>
+            </main>
+          </div>
+
+          <div class="chat ai-reply">
+            <header><strong><u>softAi Says:</u></strong></header>
+            <main>
+              <div class="chat-text">
+                <div class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum incidunt numquam consequuntur optio fuga, corrupti repellat quis minus atque aliquid ullam libero tempore at recusandae! Provident nihil cumque eaque aliquam illo quibusdam accusantium earum? Necessitatibus perspiciatis, numquam illum aut officia facere enim vero voluptatem quis maiores cupiditate repellendus laudantium, dolore est doloribus! Dolore vero qui eveniet praesentium quae quibusdam blanditiis fugiat quas. Dolor dicta id minus! Ipsum, eveniet neque nemo autem delectus eum amet iusto ex voluptates vel cumque labore esse cum tenetur modi distinctio veniam nisi? Voluptas omnis facilis sint magnam facere exercitationem labore incidunt officiis ad ducimus? Fugit consequuntur, voluptas eveniet amet odio veniam corporis. Nulla placeat earum reprehenderit tenetur id reiciendis sequi voluptatem at libero voluptatibus nobis porro ullam quae animi veritatis minima in officia, dolorem ipsum quos adipisci enim! Placeat consequuntur libero fuga reprehenderit optio exercitationem eaque distinctio dolorum pariatur ipsa sit tempora fugiat magni et provident eligendi obcaecati, officiis, beatae iure quod molestiae nostrum deserunt blanditiis! Quod, atque quaerat cumque nam neque repellendus quos quidem aliquam corrupti ipsa tenetur rem eligendi deleniti aperiam delectus odio vitae magni totam perferendis facilis dolor distinctio animi cupiditate aspernatur. Tempora sit dignissimos reiciendis facere voluptates sed quo saepe officiis.</div>
+              </div>
+            </main>
+          </div>
+          
+          <div class="chat user-prompt">
+            <header><strong><u>Your Prompt:</u></strong></header>
+            <main>
+              <div class="chat-text">
+                <div class="message">
+                  Name,
+                </div>
+              </div>
+            </main>
+          </div>
+
+          <div class="chat ai-reply">
+            <header><strong><u>softAi Says:</u></strong></header>
+            <main>
+              <div class="chat-text">
+                <div class="message bg-warning">
+                  HereNameISAalu,HereNameIsAalu,
+                </div>
+              </div>
+            </main>
+          </div>
+
         </div>
         <div class="message-to-ai">
-          <textarea id="sendToAi"></textarea>
-          <button>Ask</button>
+          <textarea id="sendToAi" placeholder="Ask Here,"></textarea>
+          <button class='askBtn' onclick="askSosoftAi()">Ask</button>
           <button class='voiceBtn' onclick="voiceCommand()"><span><i class="ri-speak-fill"></i></span></button>
         </div>
       </main>
     </div>
-    <div class="help-btn" onclick="startHelping()"><Srong>ASK</Srong></div>
+    <div class="help-btn" onclick="startHelping()">
+      <Srong>ASK</Srong>
+    </div>
 
     <div class="all-settings">
       <header><span onclick="toggleSettings(true)">X</span></header>

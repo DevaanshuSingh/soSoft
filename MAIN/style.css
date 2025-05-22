@@ -291,7 +291,7 @@ body {
     z-index: 5000;
     bottom: 15vmin;
     right: 0%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -357,42 +357,87 @@ body {
     width: 100%;
     border-radius: 20px;
     border: 1px solid rgba(0, 0, 0, 0.562);
-    flex-direction: column;
     overflow: scroll;
 }
 
 .help-box>main>.chats>.chat {
-    /* height: 20%; */
     width: 100%;
-    border: 1px solid white;
-    margin: 2% 0 1% 0 !important;
+    background-color: rgba(0, 0, 0, 0.164);
+    margin: 2% 0 2% 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .help-box>main>.chats>.user-prompt {
-    width: 100%;
-    border: 1px solid white;
-    margin: 2% 0 1% 0 !important;
-    padding: 0 1% 0 1% !important;
     display: flex;
     align-items: center;
     justify-content: start;
 }
 
 .help-box>main>.chats>.ai-reply {
-    width: 100%;
-    border: 1px solid white;
-    margin: 2% 0 1% 0 !important;
-    padding: 0 1% 0 1% !important;
     display: flex;
     align-items: center;
     justify-content: end;
 }
-.help-box>main>.chats>.user-prompt>.chat-text,
-.help-box>main>.chats>.ai-reply>.chat-text {
-    height: 100%;
-    width: 50%;
-    border: 1px solid white;
-    background-color: gold;
+
+.help-box>main>.chats>.user-prompt>header {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    padding: 0 2% 0 2% !important;
+    color: white;
+}
+
+.help-box>main>.chats>.ai-reply>header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    padding: 0 2% 0 2% !important;
+    color: skyblue;
+}
+
+.help-box>main>.chats>.user-prompt>main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.help-box>main>.chats>.user-prompt>main>.chat-text {
+    height: fit-content;
+    max-width: 50%;
+}
+
+.help-box>main>.chats>.user-prompt>main>.chat-text>.message {
+    height: fit-content;
+    max-width: 100%;
+    color: white;
+    font-family: "Roboto Condensed", sans-serif;
+    padding: 0 2% 0 2% !important;
+}
+
+.help-box>main>.chats>.ai-reply>main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.help-box>main>.chats>.ai-reply>main>.chat-text {
+    height: fit-content;
+    max-width: 50%;
+}
+
+.help-box>main>.chats>.ai-reply>main>.chat-text>.message {
+    height: fit-content;
+    max-width: 100%;
+    color: skyblue;
+    font-family: "Roboto Condensed", sans-serif;
+    padding: 0 2% 0 2% !important;
 }
 
 .help-box>main>.message-to-ai {

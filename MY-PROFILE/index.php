@@ -288,7 +288,7 @@ if ($me) {
                             response = JSON.parse(response);
                             if (response.success === true) {
                                 $('#postText').val("");
-                                alert(`Response: ${response.message}`);
+                                alert(`${response.message}`);
                             }
                         },
                         error: function(response) {
