@@ -236,9 +236,9 @@ if ($me) {
                         showAbout: '<?php echo $myId; ?>'
                     },
                     success: function(response) {
+                        // response=JSON.parse(response);
                         console.log(response);
-                        //  response=JSON.parse(response);
-                        $('.get-contents').html(response);
+                        // $('.get-contents').html(response);
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error: ", error);

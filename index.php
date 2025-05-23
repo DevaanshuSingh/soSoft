@@ -7,19 +7,19 @@
   <title>Bootstrap demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="container-fluid main-container">
-    
+
     <nav class="nav-container w-100 d-flex align-tems-center justify-content-center">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
-        <a class="navbar-brand" href="https://github.com/sukantahui">
-            <img  src="./MEDIA/codernaccotax.png" alt="Logo" class="rounded-circle" width="40" height="40">
-            <span class="brand-name ms-2" ><strong>CNAT</strong></span>
+          <a class="navbar-brand" href="https://github.com/sukantahui">
+            <img src="./MEDIA/codernaccotax.png" alt="Logo" class="rounded-circle" width="40" height="40">
+            <span class="brand-name ms-2"><strong>CNAT</strong></span>
           </a>
 
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -44,14 +44,29 @@
     <div class="w-100 check-fluid">
       <div class="content">
         <div class="text"></div>
+      </div>
+
     </div>
 
-  </div>
 
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+    <script>
+      if (localStorage.getItem('rememberMyID')) {
+        let rememberedId = localStorage.getItem('rememberMyID');
+
+        fetch('set-session.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: 'myId=' + encodeURIComponent(rememberedId)
+        }).then(() => {
+          window.location.href = './MY-PROFILE';
+        });
+      }
+    </script>
 </body>
 
 </html>

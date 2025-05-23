@@ -6,6 +6,7 @@ try {
         $fullName = $_POST['full-name'];
         $userName = $_POST['user-name'];
         $userPassword = $_POST['user-password'];
+        $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
         $location = $_POST['location'];
         $dob = $_POST['dob'];
         $bio = $_POST['bio'];
@@ -47,7 +48,7 @@ try {
 
         $stmt = $pdo->prepare("INSERT INTO users (userRegSeriolNo, fullName, userName, userPassword, bio, location, dob, interests, profile_picture,email) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)");
 
-        if ($stmt->execute([$userRegSeriolNo, $fullName, $userName, $userPassword, $bio, $location, $dob, $intrests, $imagePath, $email])) {
+        if ($stmt->execute([$userRegSeriolNo, $fullName, $userName, $hashedPassword, $bio, $location, $dob, $intrests, $imagePath, $email])) {
             echo "<script>
                         alert('Registration successful " . $email . "');
                         window.location.href = 'index.php';

@@ -1,5 +1,5 @@
-<?php 
-    session_start();
+<?php
+session_start();
 ?>
 
 <!doctype html>
@@ -73,6 +73,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script>
+
         function wrongInput() {
             document.querySelector('.login-heading h1').innerHTML = "<span><strong>LOGIN HERE:</strong></span><div class='face'>o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;</div>";
             document.querySelector('.face').style.transition = "all 2s ease";
@@ -94,25 +95,26 @@
 require_once '../CONNECTION/config.php';
 
 try {
-    if (isset($_POST['full-name'], $_POST['user-password'])) {
+    if (isset($_POST['full-name'], $_POST['user-password'], $_POST['user-email'])) {
         $fullName = $_POST['full-name'];
         $userPassword = $_POST['user-password'];
         $email = $_POST['user-email'];
 
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE fullName=? AND userPassword=? AND email=?;");
-        $stmt->execute([$fullName, $userPassword, $email]);
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE fullName=? AND email=?;");
+        $stmt->execute([$fullName, $email]);
         $userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($userInfo) {
-            $_SESSION["myId"] =$userInfo['id'];
 
-            echo "<script>
-                    correctInput();
-                    location.href='../MY-PROFILE';
-                </script>";
+        if ($userInfo && password_verify($userPassword, $userInfo['userPassword'])) {
+            $_SESSION["myId"] = $userInfo['id'];
+            $userIdForJS = htmlspecialchars($userInfo['id'], ENT_QUOTES, 'UTF-8');
+?>
+            <script>
+                localStorage.setItem('rememberMyID', "<?php echo $userIdForJS; ?>");
+                correctInput();
+            </script>
+<?php
         } else {
-            echo "<script>
-                    wrongInput();
-                </script>";
+            echo "<script>wrongInput();</script>";
         }
     }
 } catch (PDOException $e) {
