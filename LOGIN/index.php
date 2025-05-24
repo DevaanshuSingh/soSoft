@@ -73,7 +73,6 @@ session_start();
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script>
-
         function wrongInput() {
             document.querySelector('.login-heading h1').innerHTML = "<span><strong>LOGIN HERE:</strong></span><div class='face'>o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;</div>";
             document.querySelector('.face').style.transition = "all 2s ease";
@@ -111,6 +110,19 @@ try {
             <script>
                 localStorage.setItem('rememberMyID', "<?php echo $userIdForJS; ?>");
                 correctInput();
+                if (localStorage.getItem('rememberMyID')) {
+                    let rememberedId = localStorage.getItem('rememberMyID');
+
+                    fetch('set-session.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: 'myId=' + encodeURIComponent(rememberedId)
+                    }).then(() => {
+                        window.location.href = '../MY-PROFILE';
+                    });
+                }
             </script>
 <?php
         } else {

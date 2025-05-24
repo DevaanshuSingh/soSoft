@@ -104,7 +104,12 @@ function sendFeedback(feedbackData) {
 }
 
 function logout() {
-  location.href = "../index.php";
+  console.log("Before: " + localStorage.getItem('rememberMyID'));
+  if (localStorage.removeItem('rememberMyID')) {
+    console.log("Removed");
+  }
+  console.log("After: " + localStorage.getItem('rememberMyID'));
+  window.location.href = "../index.php";
 }
 
 document.addEventListener("keydown", function (event) {

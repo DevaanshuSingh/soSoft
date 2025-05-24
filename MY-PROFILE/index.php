@@ -233,12 +233,13 @@ if ($me) {
                     type: 'post',
                     url: `../GET-CONTENTS/content${buttonClicked}.php`,
                     data: {
-                        showAbout: '<?php echo $myId; ?>'
+                        showAbout: '<?php echo $myId; ?>',
+                        fromMyProfile: true
                     },
                     success: function(response) {
-                        // response=JSON.parse(response);
+                        response = JSON.parse(response);
                         console.log(response);
-                        // $('.get-contents').html(response);
+                        $('.get-contents').html(response.data);
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error: ", error);
@@ -250,8 +251,9 @@ if ($me) {
                                 fromMyProfile: true
                             },
                             success: function(response) {
-                                console.log(response);
-                                $('.get-contents').html(response);
+                                response = JSON.parse(response);
+                                console.log(response.status);
+                                $('.get-contents').html(response.data);
                             },
                             error: function(xhr, status, error) {
                                 console.error("AJAX Error: ", error);

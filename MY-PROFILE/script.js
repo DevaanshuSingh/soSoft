@@ -44,7 +44,6 @@ $(document).ready(function () {
 });
 
 
-
 //Shortcuts
 document.addEventListener("keydown", function (event) {
     if (event.altKey && event.key.toLowerCase() === "s") {

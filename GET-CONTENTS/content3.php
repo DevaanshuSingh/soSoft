@@ -1,9 +1,8 @@
 <?php
-$userId=0;
+$userId = 0;
 if ($_POST['showAbout']) {
-    $userId=$_POST['showAbout'];
-}
-else{
+    $userId = $_POST['showAbout'];
+} else {
     echo "Please Select User";
     die();
 }
@@ -13,12 +12,13 @@ require_once '../CONNECTION/config.php';
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
 $stmt->execute([$userId]);
 $about = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$data = '';
+$responseArr = [];
 
-echo '<div class="about-container">
-<h2 class="about-title">🌼 About 🌼</h2>';
+$innerData='';
 
 foreach ($about as $user) {
-    echo '<div class="about-user">
+    $innerData.='<div class="about-user">
         <div class="about-user-flex">
             <img src="' . $user["profile_picture"] . '" alt="Profile Picture" class="about-user-image">
             <div>
@@ -31,4 +31,11 @@ foreach ($about as $user) {
         </div>
     </div>';
 }
-echo '</div>';
+$data .= '<div class="about-container">
+    <h2 class="about-title">🌼 About 🌼</h2>
+    '.$innerData.'
+</div>';
+$responseArr['status'] = 'success';
+$responseArr['message'] = 'About User Fetched Successfully';
+$responseArr['data'] = $data;
+echo json_encode($responseArr);

@@ -170,7 +170,6 @@ if (isset($_COOKIE['selectedUserId'])) {
                     if (buttonClicked == 4) {
                         beFriends();
                     }
-
                     $.ajax({
                         type: 'POST',
                         url: `../GET-CONTENTS/content${buttonClicked}.php`,
@@ -178,13 +177,14 @@ if (isset($_COOKIE['selectedUserId'])) {
                             showAbout: '<?php echo $userId; ?>',
                         },
                         success: function(response) {
-                            $('.get-contents').html(response);
+                            response = JSON.parse(response);
+                            console.log(response);
+                            $('.get-contents').html(response.data);
                         },
                         error: function(xhr, status, error) {
                             console.error("AJAX Error: ", error);
                         }
                     });
-
                     return;
                 }
 

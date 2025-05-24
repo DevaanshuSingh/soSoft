@@ -54,6 +54,7 @@
       crossorigin="anonymous"></script>
     <script>
       if (localStorage.getItem('rememberMyID')) {
+        // alert("Got :"+localStorage.getItem('rememberMyID'));
         let rememberedId = localStorage.getItem('rememberMyID');
 
         fetch('set-session.php', {

@@ -12,14 +12,16 @@ if (isset($_POST['showAbout'])) {
   $stmt = $pdo->prepare("SELECT * FROM posts WHERE user_Id =?;");
   $stmt->execute([$userId]);
   $userPosts = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
-?>
-  <?php
+  $responseArr = [];
+  $data = '';
+
+
   if (empty($userPosts)) {
     echo "<span style='width: 80vw; position:relative; top: 5%; left: 5%;'>No Posts Yet Please <a href='../MY-PROFILE/' class='text-success'><b>POST</b></a></span>";
   } else {
     if ($fromMyProfile) {
       foreach ($userPosts as $post) {
-        echo '<div class="content mt-2">
+        $data .= '<div class="content mt-2">
                   <div class="post-owner">
                       <div class="post-owner-name"><strong>You</strong></div>
                   </div>
@@ -40,7 +42,7 @@ if (isset($_POST['showAbout'])) {
       }
     } else {
       foreach ($userPosts as $post) {
-        echo '<div class="content mt-2">
+        $data .= '<div class="content mt-2">
                 <div class="post-owner">
                     <div class="post-owner-name"><strong>' . $post['user_name'] . '</strong></div>
                 </div>
@@ -60,10 +62,11 @@ if (isset($_POST['showAbout'])) {
             </div>';
       }
     }
+    $responseArr['status'] = 'success';
+    $responseArr['message'] = 'Posts Fetched Successfully';
+    $responseArr['data'] = $data;
+    echo json_encode($responseArr);
   }
-  ?>
-
-<?php
 } else {
   echo "Pleaes Select Correct User";
 }
