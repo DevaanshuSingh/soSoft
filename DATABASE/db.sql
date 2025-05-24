@@ -74,7 +74,7 @@ CREATE TABLE `post_interactions` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-CREATE TABLE `userPrompts` (
+CREATE TABLE `user_ai_chats` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
   `user_prompt` varchar(20) NOT NULL,

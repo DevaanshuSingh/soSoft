@@ -291,7 +291,7 @@ body {
     z-index: 5000;
     bottom: 15vmin;
     right: 0%;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -359,8 +359,13 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.562);
     overflow: scroll;
 }
+.help-box>main>.chats>.prompt-reply {
+    width: 100%;
+    height: fit-content;
+    /* border-radius: 20px; */
+}
 
-.help-box>main>.chats>.chat {
+.help-box>main>.chats>.prompt-reply>.chat {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.164);
     margin: 2% 0 2% 0 !important;
@@ -370,19 +375,14 @@ body {
     flex-direction: column;
 }
 
-.help-box>main>.chats>.user-prompt {
+.help-box>main>.chats>.prompt-reply>.user-prompt {
     display: flex;
     align-items: center;
     justify-content: start;
+    flex-direction: column;
 }
 
-.help-box>main>.chats>.ai-reply {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-}
-
-.help-box>main>.chats>.user-prompt>header {
+.help-box>main>.chats>.prompt-reply>.user-prompt>header {
     display: flex;
     align-items: center;
     justify-content: end;
@@ -391,53 +391,78 @@ body {
     color: white;
 }
 
-.help-box>main>.chats>.ai-reply>header {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 100%;
-    padding: 0 2% 0 2% !important;
-    color: skyblue;
-}
-
-.help-box>main>.chats>.user-prompt>main {
+.help-box>main>.chats>.prompt-reply>.user-prompt>main {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: end;
 }
 
-.help-box>main>.chats>.user-prompt>main>.chat-text {
+.help-box>main>.chats>.prompt-reply>.user-prompt>main>.chat-text {
     height: fit-content;
     max-width: 50%;
 }
 
-.help-box>main>.chats>.user-prompt>main>.chat-text>.message {
+.help-box>main>.chats>.prompt-reply>.user-prompt>main>.chat-text>.message {
     height: fit-content;
     max-width: 100%;
     color: white;
     font-family: "Roboto Condensed", sans-serif;
-    padding: 0 2% 0 2% !important;
+    padding: 0 2% 0 0% !important;
 }
 
-.help-box>main>.chats>.ai-reply>main {
+.help-box>main>.chats>.prompt-reply>.user-prompt>footer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2% 0 2% !important;
+    border-bottom: 1px solid black;
+}
+
+.help-box>main>.chats>.prompt-reply>.ai-reply {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: column;
+}
+
+.help-box>main>.chats>.prompt-reply>.ai-reply>header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    padding: 0 2% 0 2% !important;
+    color: skyblue;
+}
+
+.help-box>main>.chats>.prompt-reply>.ai-reply>main {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: start;
 }
 
-.help-box>main>.chats>.ai-reply>main>.chat-text {
+.help-box>main>.chats>.prompt-reply>.ai-reply>main>.chat-text {
     height: fit-content;
     max-width: 50%;
 }
 
-.help-box>main>.chats>.ai-reply>main>.chat-text>.message {
+.help-box>main>.chats>.prompt-reply>.ai-reply>main>.chat-text>.message {
     height: fit-content;
     max-width: 100%;
     color: skyblue;
     font-family: "Roboto Condensed", sans-serif;
     padding: 0 2% 0 2% !important;
+}
+
+.help-box>main>.chats>.prompt-reply>.ai-reply>footer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2% 0 2% !important;
+    border-bottom: 1px solid black;
 }
 
 .help-box>main>.message-to-ai {

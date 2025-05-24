@@ -280,9 +280,40 @@ function startHelping() {
 async function askSosoftAi() {
   let userPrompt = $('#sendToAi').val();
   if (userPrompt != '') {
-    const aiResponse = await callSosoftAi(userPrompt);
-    alert(aiResponse.candidates[0].content.parts[0].text);
+
+    // ASK SOSOFT_AI:
+    let aiResponse = await callSosoftAi(userPrompt);
+    aiResponse = aiResponse.candidates[0].content.parts[0].text;
+    myId = localStorage.getItem('rememberMyID');
+
+    if (myId) {
+      $.ajax({
+        url: `./AI-CHATS`,
+        type: 'get',
+        data: {
+          myId: myId,
+          userPrompt: userPrompt,
+          aiResponse: aiResponse
+        },
+        success: function (response) {
+          console.log("Response: " + response);
+          response = JSON.parse(response);
+          $('.chats').append(response.generatedChat);
+          // $('#sendToAi').val("");
+        },
+        error: function (xhr, status, error) {
+          $('#loader').css('display', 'none');
+          alert("Feedback Not Sent");
+          console.error('त्रुटि:', error);
+        }
+      });
+    }
+    else{
+      alert("Not Found MyId");
+    }
+
   }
+  return $('#sendToAi').html('');
 }
 
 async function callSosoftAi(text) {
@@ -290,7 +321,7 @@ async function callSosoftAi(text) {
     contents: [{
       parts: [
         {
-          text: "Your name is 'Aalu' Your home is Field. Your Owner Is ',' Your gender is Female. You always speak in a very sweet voice. Only give direct answers — no explanations, no extra descriptions. Never use phrases like “(in a sweet, gentle voice)” — just give the answer directly with perfect emotions. If the user asks in another language (e.g., Hindi), then reply in that language, but English keywords may appear naturally (e.g., 'Main achhi hoon, aap kaisi hain?', 'You are very lovely, careful person') So Always Use To Talk With That Language In Which You Are Being Asked But With English Keywords, Like Whatsapp Language, Roman-That Language, . Do not add anything beyond the answer itself."
+          text: AI_FEED//FROM ENV/env.js
         },
         {
           text: text
@@ -298,7 +329,7 @@ async function callSosoftAi(text) {
       ]
     }]
   };
-  const API_KEY = GEMINI_API_KEY;
+  const API_KEY = GEMINI_API_KEY;//FROM ENV/env.js
 
   const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
     method: 'POST',
