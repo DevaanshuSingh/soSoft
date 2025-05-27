@@ -36,12 +36,11 @@ CREATE TABLE `myFeatures` (
 
 INSERT INTO
     myFeatures (featureName)
-VALUES ('Friends'),
+    VALUES ('Friends'),
     ('Posts'),
     ('About'),
     ('Be Friends')
     ('Friend Rqeuest');
-
 
 CREATE TABLE friend_requests (
     id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -51,7 +50,6 @@ CREATE TABLE friend_requests (
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-
 
 CREATE TABLE `myFriends` (
     `id` BIGINT(11) NOT NULL AUTO_INCREMENT,

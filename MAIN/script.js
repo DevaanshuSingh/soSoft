@@ -1,3 +1,8 @@
+if (localStorage.getItem('bcg') === 'rgb(0, 0, 0)') {
+  $('.menu').css({ color: 'white !important' });
+}
+
+
 
 let isMenuOpen = true;
 
@@ -273,8 +278,17 @@ function showInteractedUser(interactedUser) {
   selecteduser(interactedUser);
 }
 
+let aiStart=false;
 function startHelping() {
   $('.help-box').toggle('slow');
+  if(aiStart){
+    $('.help-btn').css('opacity', '0.5');
+    aiStart = false;
+  }
+  else{
+    $('.help-btn').css('opacity', '1');
+    aiStart = true;
+  }
 }
 
 async function askSosoftAi() {
@@ -296,10 +310,8 @@ async function askSosoftAi() {
           aiResponse: aiResponse
         },
         success: function (response) {
-          console.log("Response: " + response);
           response = JSON.parse(response);
           $('.chats').append(response.generatedChat);
-          // $('#sendToAi').val("");
         },
         error: function (xhr, status, error) {
           $('#loader').css('display', 'none');
@@ -313,10 +325,10 @@ async function askSosoftAi() {
     }
 
   }
-  return $('#sendToAi').html('');
+  return $('#sendToAi').val('');
 }
 
-async function callSosoftAi(text) {
+async function callSosoftAi(userPrompt) {
   const body = {
     contents: [{
       parts: [
@@ -324,7 +336,7 @@ async function callSosoftAi(text) {
           text: AI_FEED//FROM ENV/env.js
         },
         {
-          text: text
+          text: userPrompt
         }
       ]
     }]
@@ -339,4 +351,16 @@ async function callSosoftAi(text) {
 
   const result = await response.json();
   return result;
+}
+
+function speakChat(speakElem){
+  speakElem = $(`.${speakElem}>main>.chat-text>.message`).html();
+  console.log(speakElem);
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(speakElem);
+    utterance.lang = 'en-US;'
+    speechSynthesis.speak(utterance);
+  } else {
+    alert('Speech synthesis not supported in this browser.');
+  }
 }

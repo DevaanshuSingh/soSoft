@@ -110,7 +110,7 @@ if ($me && $allUsers) {
 
     </div>
     <div class="help-btn" onclick="startHelping()">
-      <Srong>ASK</Srong>
+      <strong>ASK</strong>
     </div>
 
     <div class="all-settings">
@@ -331,7 +331,8 @@ if ($me && $allUsers) {
           };
           r.onresult = async function(event) {
             const transcript = event.results[0][0].transcript;
-            $('textarea').html(transcript);
+            // $('textarea').html(transcript);
+            $('textarea').val(transcript);
           };
           r.onerror = function(event) {
             shouldStopListening = true;
