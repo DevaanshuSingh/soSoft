@@ -40,7 +40,8 @@ INSERT INTO
     ('Posts'),
     ('About'),
     ('Be Friends')
-    ('Friend Rqeuest');
+    ('Friend Rqeuest'),
+    ('All Requests');
 
 CREATE TABLE friend_requests (
     id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,

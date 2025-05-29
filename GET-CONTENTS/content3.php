@@ -35,7 +35,7 @@ $data .= '<div class="about-container">
     <h2 class="about-title">🌼 About 🌼</h2>
     '.$innerData.'
 </div>';
-$responseArr['status'] = 'success';
+$responseArr['status'] = 'true';
 $responseArr['message'] = 'About User Fetched Successfully';
 $responseArr['data'] = $data;
 echo json_encode($responseArr);

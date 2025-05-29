@@ -32,20 +32,21 @@ body {
     left: 50%;
     transform: translateX(-50%);
     display: none;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.398);
+    border-left: 2px solid black;
+    backdrop-filter: blur(10px);
 }
 
 .New-friend-request>.request-data {
     height: 100%;
     width: 100%;
-    background-color: #15ff00;
     display: flex;
-
+    background-color: rgba(255, 255, 255, 0.346);
 }
 
 .New-friend-request>.request-data>.request-image {
     height: 100%;
     width: 10%;
-    border: 1px solid black;
 }
 
 .request-image>img {
@@ -56,43 +57,40 @@ body {
 .New-friend-request>.request-data>.request-info {
     height: 100%;
     width: 90%;
-    border: 1px solid blue;
 }
 
 .request-info>.requested-profile-name {
     height: 50%;
     width: 100%;
-    border: 1px solid brown;
 }
 
 .request-info>.requested-profile-actions {
     height: 50%;
     width: 100%;
-    border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 .requested-profile-actions>.accept-btn {
-    background: linear-gradient(to right, rgba(38, 38, 119, 0.842), rgb(126, 113, 35));
-    color: skyblue;
+    color: rgb(225, 225, 225);
     padding: 1%;
-    border-radius: 25%;
+    border-radius: 7%;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .requested-profile-actions>.decline-btn {
-    background: linear-gradient(rgba(151, 46, 148, 0.842));
-    color: skyblue;
+    color: rgb(255, 255, 255);
     padding: 1%;
-    border-radius: 25%;
+    border-radius: 7%;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .requested-profile-actions>.all-requests-btn {
-    background: linear-gradient(rgba(81, 159, 42, 0.733));
-    color: skyblue;
+    color: rgb(0, 0, 0);
     padding: 1%;
-    border-radius: 25%;
+    border-radius: 7%;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 
@@ -286,7 +284,7 @@ body {
     justify-content: center;
     align-items: center;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .post-section main>form>.form-field>.input-section>.command:hover {
@@ -304,6 +302,7 @@ body {
     color: lime;
     font-size: x-large;
 }
+
 /* Voice Command*/
 
 .post-section main>form>.form-field>.input-section>.command {
@@ -314,7 +313,7 @@ body {
     justify-content: center;
     align-items: center;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .post-section main>form>.form-field>.input-section>.command:hover {
@@ -516,21 +515,25 @@ body {
 
 .get-contents>.friendList>.friend {
     height: 25vmin;
-    width: 25vmin;
+    width: 95%;
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.324);
+    backdrop-filter: blur(10px);
 }
 
 .friend>.friend-contents {
     height: 100%;
     width: 100%;
-    background-color: #4b0082;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .friend-contents>.profile-photo {
-    height: 50%;
-    width: 100%;
-    background-color: #ff416c;
+    height: 100%;
+    width: 15%;
 
     >img {
         height: 100%;
@@ -540,9 +543,8 @@ body {
 }
 
 .friend-contents>.profile-name {
-    height: 50%;
-    width: 100%;
-    background-color: #5141ff;
+    height: 100%;
+    width: 85%;
 }
 
 .post {
@@ -564,7 +566,7 @@ body {
     overflow: scroll;
     flex-direction: column;
     padding: 1%;
-    
+
     &>span {
         margin-top: 2%;
         position: relative;
@@ -751,7 +753,9 @@ body {
     align-items: center !important;
     justify-content: center !important;
     color: rgb(255, 255, 255);
-}@keyframes pulse {
+}
+
+@keyframes pulse {
     0% {
         transform: scale(1);
     }

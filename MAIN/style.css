@@ -20,10 +20,11 @@ body::-webkit-scrollbar {
 }
 
 *::selection {
-    background-color: rgba(0, 0, 255, 0.13);
+    background-color: rgba(0, 0, 255, 0.593);
 }
-
-
+*::-moz-selection {
+    background-color: rgba(0, 0, 0, 0.593);
+}
 body {
     height: 100vh;
     width: 100vw;

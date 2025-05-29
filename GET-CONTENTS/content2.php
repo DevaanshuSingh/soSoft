@@ -62,7 +62,7 @@ if (isset($_POST['showAbout'])) {
             </div>';
       }
     }
-    $responseArr['status'] = 'success';
+    $responseArr['status'] = 'true';
     $responseArr['message'] = 'Posts Fetched Successfully';
     $responseArr['data'] = $data;
     echo json_encode($responseArr);

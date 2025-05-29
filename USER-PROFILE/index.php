@@ -71,9 +71,13 @@ if (isset($_COOKIE['selectedUserId'])) {
                         foreach ($allFeatures as $feature) {
                             ++$x;
                             if ($feature['featureName'] == "Be Friends") {
-                                echo "<button class='more-me be-friend-btn' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
-                            } else {
-                                echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
+                                echo "<button class='more-user be-friend-btn' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
+                            }
+                            else if ($feature['featureName'] == "All Requests") {
+                                continue;
+                            }
+                            else {
+                                echo "<button class='more-user' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                             }
                         }
                         ?>

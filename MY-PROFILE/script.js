@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".first-col img").on("click", function () {
+    $("*>img").on("click", function () {
         let imageSrc = $(this).attr("src");
         $(".full-image img").attr("src", imageSrc);
         $(".full-image").css("display", "flex").hide().fadeIn(500);

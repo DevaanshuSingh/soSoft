@@ -50,7 +50,7 @@ if ($me) {
                 </div>
                 <div class="request-info">
                     <div class="requested-profile-name">
-                        <h1><span id="requested-friend-name"></span> user has sent you a friend request</h1>
+                        <h1>user <u><span id="requested-friend-name"></span></u> has sent request</h1>
                     </div>
                     <div class="requested-profile-actions">
                         <button type="button" class="accept-btn">Accept</button>
@@ -133,8 +133,13 @@ if ($me) {
                     $x = 0;
                     foreach ($allFeatures as $feature) {
                         ++$x;
-                        if ($feature['featureName'] == "Be Friends")
+                        if ($feature['featureName'] == "Be Friends") {
                             continue;
+                        }
+                        if ($feature['featureName'] == "All Requests") {
+                            echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
+                            continue;
+                        }
                         echo "<button class='more-me' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                     }
                     ?>
@@ -151,17 +156,7 @@ if ($me) {
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="script.js"></script>
         <script>
-            $('#postText').on('input', function() {
-                if ($('#postText').val().trim() !== "") {
-                    $('.post-btn').prop('disabled', false);
-                    $('.post-btn').css('opacity', '1');
-                    $('.post-btn').css('border', '1px solid green');
-                } else {
-                    $('.post-btn').prop('disabled', true);
-                    $('.post-btn').css('opacity', '0.2');
-                    $('.post-btn').css('border', '1px solid red');
-                }
-            });
+            $('#postText').on('input', checkValidInput);
 
             $('.post-btn').on('click', function() {
                 if ($('#postText').val().trim() !== "") {
@@ -175,6 +170,17 @@ if ($me) {
                 }
             });
 
+            function checkValidInput() {
+                if ($('#postText').val().trim() !== "") {
+                    $('.post-btn').prop('disabled', false);
+                    $('.post-btn').css('opacity', '1');
+                    $('.post-btn').css('border', '1px solid green');
+                } else {
+                    $('.post-btn').prop('disabled', true);
+                    $('.post-btn').css('opacity', '0.2');
+                    $('.post-btn').css('border', '1px solid red');
+                }
+            }
             let r = null;
 
             function voiceCommand() {
@@ -183,7 +189,6 @@ if ($me) {
                     alert("SpeechRecognition is not supported in this browser");
                 } else {
                     r = new SpeechRecognition();
-
                     r.continuous = false;
                     r.interimResults = false;
                     r.maxAlternatives = 1;
@@ -198,6 +203,7 @@ if ($me) {
                             $('.listening').toggle('slow');
                         }
                         stopListening = false;
+                        checkValidInput();
                     };
                     r.onresult = async function(event) {
                         const transcript = event.results[0][0].transcript;
@@ -222,11 +228,11 @@ if ($me) {
                 r.stop();
             }
 
-
             let buttonClicked = null;
 
             function btnClicked(btn) {
 
+                console.log(btn);
                 buttonClicked = btn.value;
 
                 $.ajax({
@@ -239,7 +245,13 @@ if ($me) {
                     success: function(response) {
                         response = JSON.parse(response);
                         console.log(response);
-                        $('.get-contents').html(response.data);
+                        if (response.status == 'false') {
+                            $('.get-contents').html(response.message);
+                        } else if (response.status == "true") {
+                            $('.get-contents').html(response.data);
+                        } else {
+                            alert("Unknown Statuts");
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error: ", error);
@@ -336,7 +348,9 @@ if ($me) {
                                 deleteFriendRequests: deleteFriendRequests
                             },
                             success: function(response) {
-                                console.log(response);
+                                $('.New-friend-request').css({
+                                    "display": "none"
+                                });
                             }
                         });
                     }
@@ -348,43 +362,31 @@ if ($me) {
                             myFriendId: myFriendId
                         },
                         success: function(response) {
-                            response = JSON.parse(response);
                             console.log(response);
+                            response = JSON.parse(response);
                             if (response.success == true) {
-                                let msg = `<span>${response.message}</span>`;
-                                let cross = `<button class="cross">x</button>`;
-                                $('.New-friend-request').html(msg);
-                                $('.New-friend-request').append(cross);
-                                $('.cross').on('click', function() {
-                                    $('.New-friend-request').hide();
-                                });
-                                $('.cross').css({
-                                    "margin": "1vh",
-                                    "padding": "1vh"
-                                });
-                                $('.New-friend-request').css({
-                                    "height": "fit-content",
-                                    "width": "40vw",
-                                    "display": "flex",
-                                    "align-item": "center",
-                                    "justify-content": "space-between",
-                                    "background-color": "blue",
-                                    "color": "gold",
-                                    "border": "2px solid green",
-                                    "margin-top": "2vh",
-                                    "padding": "2vh"
-
-                                });
+                                alert("You Are Now Friends,");
                                 friendRequestAccept();
                             }
                         }
-
-
                     })
-
-
                 });
-
+                $('.decline-btn').on('click', function() {
+                    $.ajax({
+                        type: 'post',
+                        url: './MY-FRIEND-REQUESTS/friendRequestAccept.php',
+                        data: {
+                            deleteFriendRequests: deleteFriendRequests
+                        },
+                        success: function(response) {
+                            response = JSON.parse(response)
+                            console.log(response);
+                            if (response.success == true) {
+                                $('.New-friend-request').css("display", "none");
+                            }
+                        }
+                    })
+                });
                 $('.decline-btn').on('click', function() {
                     $.ajax({
                         type: 'post',
