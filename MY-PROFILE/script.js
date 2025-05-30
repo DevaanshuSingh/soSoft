@@ -50,3 +50,9 @@ document.addEventListener("keydown", function (event) {
         location.href = '../MAIN/';
     }
 });
+
+
+function selecteduser(user) {
+  document.cookie = `selectedUserId = ${user}; path=/`;
+  location.href = '../USER-PROFILE';
+}

@@ -1,5 +1,3 @@
-
- 
 <?php
 if (isset($_POST['showAbout'])) {
     $myId = $_POST['showAbout'];
@@ -16,7 +14,7 @@ if (isset($_POST['showAbout'])) {
                 $stmt = $pdo->prepare(' select users.id,users.profile_picture,users.userName,users.fullName from users where id=?');
                 $stmt->execute([$friendId['friendId']]);
                 $friendDetails = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                $myFriends .= '<div class="friendList">
+                $myFriends .= '<div class="friendList" onclick="selecteduser(' . $friendDetails[0]['id'] . ')">
                     <div class="friend">
                         <div class="friend-contents">
                             <div class="profile-photo">
