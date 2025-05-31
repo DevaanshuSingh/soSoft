@@ -229,12 +229,9 @@ if ($me) {
             }
 
             let buttonClicked = null;
-
             function btnClicked(btn) {
-
                 console.log(btn);
                 buttonClicked = btn.value;
-
                 $.ajax({
                     type: 'post',
                     url: `../GET-CONTENTS/content${buttonClicked}.php`,
@@ -319,8 +316,8 @@ if ($me) {
                     },
                     success: function(response) {
                         response = JSON.parse(response);
-                        console.log(deleteFriendRequests);
-                        console.log(response);
+                        // console.log(deleteFriendRequests);
+                        // console.log(response);
                         if (response.status == true) {
                             myFriendId = response.requestedData[0].requested_from_id;
                             deleteFriendRequests = response.requestedData[0].id;
@@ -340,6 +337,7 @@ if ($me) {
 
                 $('.accept-btn').on('click', function() {
                     // Delete friend request row 
+
                     function friendRequestAccept() {
                         $.ajax({
                             type: "post",
@@ -354,6 +352,7 @@ if ($me) {
                             }
                         });
                     }
+
                     // adding friends
                     $.ajax({
                         type: 'get',
@@ -385,25 +384,8 @@ if ($me) {
                                 $('.New-friend-request').css("display", "none");
                             }
                         }
-                    })
+                    });
                 });
-                $('.decline-btn').on('click', function() {
-                    $.ajax({
-                        type: 'post',
-                        url: './MY-FRIEND-REQUESTS/friendRequestAccept.php',
-                        data: {
-                            deleteFriendRequests: deleteFriendRequests
-                        },
-                        success: function(response) {
-                            response = JSON.parse(response)
-                            console.log(response);
-                            if (response.success == true) {
-                                $('.New-friend-request').css("display", "none");
-                            }
-                        }
-                    })
-                });
-
             });
         </script>
     </body>

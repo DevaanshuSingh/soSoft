@@ -13,8 +13,6 @@ if(isset($_POST)){
                 $responseArray['success']=false;
             }
             echo json_encode($responseArray);
-
-            
     } catch (PDOException $e) {
         echo "Error While Requestiong To Be Friend:<br>" . $e->getMessage();
     }
@@ -22,5 +20,3 @@ if(isset($_POST)){
 else{
     echo 'data not found';
 }
-
-            
