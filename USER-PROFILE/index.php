@@ -1,16 +1,30 @@
 <?php
+session_start();
 if (isset($_COOKIE['selectedUserId'])) {
     require_once '../CONNECTION/config.php';
+    try {
+        $userId = $_COOKIE['selectedUserId'];
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
+        $stmt->execute([$userId]);
+        $user = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
-    $userId = $_COOKIE['selectedUserId'];
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE id =?;");
-    $stmt->execute([$userId]);
-    $user = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
+        //Getting Features/Contents;
+        $stmt = $pdo->prepare("SELECT * FROM myFeatures;");
+        $stmt->execute();
+        $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
 
-    //Getting Features/Contents;
-    $stmt = $pdo->prepare("SELECT * FROM myFeatures;");
-    $stmt->execute([]);
-    $allFeatures = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
+        //Check isFriend
+        $stmt = $pdo->prepare("SELECT * FROM myfriends WHERE myId = ? AND friendId = ? LIMIT 1;");
+        $stmt->execute([$_SESSION['myId'], $userId]);
+        $isFriend = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
+        if(!$isFriend){
+            $stmt = $pdo->prepare("SELECT * FROM myfriends WHERE myId = ? AND friendId = ? LIMIT 1;");
+            $stmt->execute([$userId,$_SESSION['myId']]);
+            $isFriend = $stmt->fetchAll(PDO::ATTR_AUTOCOMMIT);
+        }
+    } catch (PDOException $e) {
+        echo "Error While Requestiong To Be Friend:<br>" . $e->getMessage();
+    }
 
     if ($user) {
 ?>
@@ -56,7 +70,6 @@ if (isset($_COOKIE['selectedUserId'])) {
                                             echo $user[0]['fullName'];
                                             ?></span></main>
                             </div>
-
                             <div class="bio name">
                                 <header>Bio</header>
                                 <main><span><?php
@@ -71,12 +84,14 @@ if (isset($_COOKIE['selectedUserId'])) {
                         foreach ($allFeatures as $feature) {
                             ++$x;
                             if ($feature['featureName'] == "Be Friends") {
-                                echo "<button class='more-user be-friend-btn' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
-                            }
-                            else if ($feature['featureName'] == "All Requests") {
+                                if (!$isFriend) {
+                                    echo "<script>console.log('You Are Not Friends')</script><button class='more-user be-friend-btn' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
+                                } else {
+                                    echo "<script>console.log('You Are Friends')</script><button class='more-user be-friend-btn text-danger' value='" . $x . "' onclick='btnClicked(this)' >Unfriend</button>";
+                                }
+                            } else if ($feature['featureName'] == "All Requests") {
                                 continue;
-                            }
-                            else {
+                            } else {
                                 echo "<button class='more-user' value='" . $x . "' onclick='btnClicked(this)'>" . $feature['featureName'] . "</button>";
                             }
                         }
@@ -96,9 +111,7 @@ if (isset($_COOKIE['selectedUserId'])) {
                         <strong class="me-auto text-danger">SUCCESSFULL</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body">
-                        Friend Request Sent Successfully
-                    </div>
+                    <div class="toast-body"><span class="toast-message"></span></div>
                 </div>
             </div>
 
@@ -110,20 +123,33 @@ if (isset($_COOKIE['selectedUserId'])) {
 
                 function reqSuccess(msg) {
                     let toast = new bootstrap.Toast(document.getElementById('liveToast'));
+                    $('.toast-message').text(msg);
                     toast.show();
                 }
 
                 function beFriends() {
+                    let isFriend = false;
+                    if (<?php echo $isFriend ? 'true' : 'false'; ?>) {
+                        isFriend = true;
+                    } else {
+                        isFriend = false;
+                    }
+                    console.log("SENDING: "+isFriend);
                     $.ajax({
                         type: 'GET',
-                        url: '../BE-FRIENDS',
+                        url: './BE-FRIENDS',
+                        data: {
+                            isFriend: isFriend,
+                        },
                         success: function(response) {
                             console.log(response);
                             response = JSON.parse(response);
                             if (response.success === true) {
                                 reqSuccess(response.message);
-                            } else {
+                            } else if (response.success === false) {
                                 alert(response);
+                            } else {
+                                alert("Something Went Wrong");
                             }
                         },
                         error: function() {
@@ -170,9 +196,10 @@ if (isset($_COOKIE['selectedUserId'])) {
 
                 function btnClicked(btn) {
                     buttonClicked = btn.value;
-                    console.log(buttonClicked);
+                    // console.log(`REQUESTING TO-> ../GET-CONTENTS/content${buttonClicked}.php`);
                     if (buttonClicked == 4) {
                         beFriends();
+                        return;
                     }
                     $.ajax({
                         type: 'POST',
@@ -249,7 +276,7 @@ if (isset($_COOKIE['selectedUserId'])) {
 
     <body>
         <h1>No User Found</h1>
-        <div><a href="..">Go To House</a></div>
+        <div><a href="../MAIN/">Go Back To Main</a></div>
     </body>
 
     </html>
