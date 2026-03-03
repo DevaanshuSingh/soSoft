@@ -94,7 +94,7 @@ function sendFeedback(feedbackData) {
       $('#loader').css('display', 'flex');
     },
     success: function (response) {
-      console.log(response);
+      // console.log(response);
       $('#loader').css('display', 'none');
       $('#txt').val('');
       alert("Feedback Sent Successfully");
@@ -109,11 +109,11 @@ function sendFeedback(feedbackData) {
 }
 
 function logout() {
-  console.log("Before: " + localStorage.getItem('rememberMyID'));
+  // console.log("Before: " + localStorage.getItem('rememberMyID'));
   if (localStorage.removeItem('rememberMyID')) {
-    console.log("Removed");
+    // console.log("Removed");
   }
-  console.log("After: " + localStorage.getItem('rememberMyID'));
+  // console.log("After: " + localStorage.getItem('rememberMyID'));
   window.location.href = "../index.php";
 }
 
@@ -136,7 +136,7 @@ function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedEl
   sendData['myId'] = myId;
   sendData['postOwnerId'] = postOwnerId;
   sendData['postId'] = postId;
-  console.log("sendData:", sendData);
+  // console.log("sendData:", sendData);
 
   if (interactionIdentifier === "like") {
     $.ajax({
@@ -156,7 +156,7 @@ function interaction(interactionIdentifier, myId, postOwnerId, postId, clickedEl
             $(clickedElement).css("transform", "scale(1)");
           }, 1000);
         } else if (response.status === "false") {
-          console.log("Like Removed");
+          // console.log("Like Removed");
           setTimeout(() => {
             $(clickedElement).css("transform", "scale(1)");
           }, 1000);
@@ -193,7 +193,7 @@ function sendComment(isCheck) {
           commentVal: commentTxt
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
           response = JSON.parse(response);
           if (response.status === "true") {
             setTimeout(() => {
@@ -202,7 +202,7 @@ function sendComment(isCheck) {
               $(clickedInteractionIcon).css("transform", "scale(1)");
             }, 1000);
           } else if (response.status === "false") {
-            console.log("Commente Removed");
+            // console.log("Commente Removed");
             setTimeout(() => {
               $(clickedElement).css("transform", "scale(1)");
             }, 1000);
@@ -235,7 +235,7 @@ function getInteractionsList(myId, getListOf) {
       },
       success: function (response) {
         response = JSON.parse(response);
-        console.log(response);
+        // console.log(response);
         if (response.status === 'true') {
           $('.review-list').html(response.data);
         } else if (response.status === 'false') {
@@ -256,7 +256,7 @@ function getInteractionsList(myId, getListOf) {
       },
       success: function (response) {
         response = JSON.parse(response);
-        console.log(response);
+        // console.log(response);
         if (response.status === 'true') {
           $('.review-list').html(response.data);
         } else if (response.status === 'false') {
@@ -355,7 +355,7 @@ async function callSosoftAi(userPrompt) {
 
 function speakChat(speakElem){
   speakElem = $(`.${speakElem}>main>.chat-text>.message`).html();
-  console.log(speakElem);
+  // console.log(speakElem);
   if ('speechSynthesis' in window) {
     const utterance = new SpeechSynthesisUtterance(speakElem);
     utterance.lang = 'en-US;'
