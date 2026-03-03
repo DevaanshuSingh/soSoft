@@ -1,5 +1,5 @@
 MEDIA
 config.php
 uploaded_files
-ENV
+ENV/env.js
 SOSOFT_AI
